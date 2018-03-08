@@ -8,10 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		749C85B12051B9AA00387832 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C85B02051B9AA00387832 /* AppDelegate.swift */; };
-		749C85B32051B9AA00387832 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C85B22051B9AA00387832 /* ViewController.swift */; };
-		749C85B62051B9AA00387832 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 749C85B42051B9AA00387832 /* Main.storyboard */; };
 		749C85B82051B9AA00387832 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 749C85B72051B9AA00387832 /* Assets.xcassets */; };
-		749C85BB2051B9AA00387832 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 749C85B92051B9AA00387832 /* LaunchScreen.storyboard */; };
 		E881CBB353462A90EE6FCD9D /* Pods_GoodGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5BD78CBC920B67DCC385F3 /* Pods_GoodGame.framework */; };
 /* End PBXBuildFile section */
 
@@ -19,10 +16,7 @@
 		2E5BD78CBC920B67DCC385F3 /* Pods_GoodGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		749C85AD2051B9AA00387832 /* GoodGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		749C85B02051B9AA00387832 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		749C85B22051B9AA00387832 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		749C85B52051B9AA00387832 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		749C85B72051B9AA00387832 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		749C85BA2051B9AA00387832 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		749C85BC2051B9AA00387832 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A166B63B3B0A00ECF3F57DE /* Pods-GoodGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoodGame/Pods-GoodGame.release.xcconfig"; sourceTree = "<group>"; };
 		A67EE64D92EE42166DD94648 /* Pods-GoodGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoodGame/Pods-GoodGame.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,14 +72,67 @@
 		749C85AF2051B9AA00387832 /* GoodGame */ = {
 			isa = PBXGroup;
 			children = (
-				749C85B02051B9AA00387832 /* AppDelegate.swift */,
-				749C85B22051B9AA00387832 /* ViewController.swift */,
-				749C85B42051B9AA00387832 /* Main.storyboard */,
-				749C85B72051B9AA00387832 /* Assets.xcassets */,
-				749C85B92051B9AA00387832 /* LaunchScreen.storyboard */,
-				749C85BC2051B9AA00387832 /* Info.plist */,
+				749C85CA2051C15A00387832 /* Common */,
+				749C85C22051BE8F00387832 /* Application */,
+				749C85C32051BE9A00387832 /* Resources */,
+				749C85C42051BF1600387832 /* Modules */,
+				749C85C52051C02A00387832 /* Businesslogic */,
 			);
 			path = GoodGame;
+			sourceTree = "<group>";
+		};
+		749C85C22051BE8F00387832 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				749C85B02051B9AA00387832 /* AppDelegate.swift */,
+				749C85BC2051B9AA00387832 /* Info.plist */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		749C85C32051BE9A00387832 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				749C85B72051B9AA00387832 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		749C85C42051BF1600387832 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		749C85C52051C02A00387832 /* Businesslogic */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Businesslogic;
+			sourceTree = "<group>";
+		};
+		749C85CA2051C15A00387832 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				749C85CC2051C1A700387832 /* Extensions */,
+				749C85CB2051C19C00387832 /* Views */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		749C85CB2051C19C00387832 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		749C85CC2051C1A700387832 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,9 +197,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				749C85BB2051B9AA00387832 /* LaunchScreen.storyboard in Resources */,
 				749C85B82051B9AA00387832 /* Assets.xcassets in Resources */,
-				749C85B62051B9AA00387832 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,31 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				749C85B32051B9AA00387832 /* ViewController.swift in Sources */,
 				749C85B12051B9AA00387832 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		749C85B42051B9AA00387832 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				749C85B52051B9AA00387832 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		749C85B92051B9AA00387832 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				749C85BA2051B9AA00387832 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		749C85BD2051B9AA00387832 /* Debug */ = {
@@ -364,7 +389,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J74552PZ47;
-				INFOPLIST_FILE = GoodGame/Info.plist;
+				INFOPLIST_FILE = GoodGame/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = alexey.pak.GoodGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -380,7 +405,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J74552PZ47;
-				INFOPLIST_FILE = GoodGame/Info.plist;
+				INFOPLIST_FILE = GoodGame/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = alexey.pak.GoodGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
