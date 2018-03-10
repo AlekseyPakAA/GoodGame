@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-271" y="-41"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--StreamsStoryboard-->
         <scene sceneID="spU-S3-YyY">
             <objects>
-                <viewControllerPlaceholder id="3Nc-Kq-NBJ" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="StreamsStoryboard" id="3Nc-Kq-NBJ" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="epx-Yn-pWX"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="96m-4k-yuU" userLabel="First Responder" sceneMemberID="firstResponder"/>

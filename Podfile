@@ -7,9 +7,7 @@ target 'GoodGame' do
   
   pod 'Alamofire'
   pod 'ObjectMapper'
-  
-  pod 'RxSwift'
-  pod 'RxAlamofire'
+  pod 'AlamofireObjectMapper'
  
   # Pods for GoodGame
 
