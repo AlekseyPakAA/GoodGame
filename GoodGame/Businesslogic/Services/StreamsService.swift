@@ -6,4 +6,20 @@
 //  Copyright © 2018 alexey.pak. All rights reserved.
 //
 
-import Ala
+import AlamofireObjectMapper
+import ObjectMapper
+import Alamofire
+
+class StreamsService {
+    
+    func getStreams() {
+        Alamofire.request("http://api2.goodgame.ru/v2/streams").responseObject { (response: DataResponse<PaginableResponse<Stream>>) in
+            print(response.value)
+        }
+    }
+    
+}
+
+
+
+

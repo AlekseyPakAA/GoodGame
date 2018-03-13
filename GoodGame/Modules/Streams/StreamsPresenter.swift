@@ -14,6 +14,14 @@ enum StreamsCollectionItemTypes {
 
 class StreamsPresenter {
     
-    private(set) var collectionItems: [StreamsCollectionItemTypes] = []
+    private var collectionItems: [StreamsCollectionItemTypes] = []
+    
+    func willDisplayCell(at index: Int) {
+        
+    }
+    
+    func didPullRefreshControl() {
+        
+    }
     
 }

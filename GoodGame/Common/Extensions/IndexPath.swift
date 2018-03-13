@@ -15,7 +15,7 @@ extension IndexPath {
     }
     
     init(row: Int) {
-        self.init(row: item, section: 0)
+        self.init(row: row, section: 0)
     }
     
 }
