@@ -21,7 +21,31 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVR-32-QJr">
                         <rect key="frame" x="0.0" y="0.0" width="411" height="196"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3fP-IE-fUl">
+                                <rect key="frame" x="8" y="70.5" width="395" height="55.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmi-2H-8yB">
+                                        <rect key="frame" x="0.0" y="0.0" width="395" height="31.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="subtitile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpd-tU-GEN">
+                                        <rect key="frame" x="0.0" y="31.5" width="395" height="24"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3fP-IE-fUl" secondAttribute="trailing" constant="8" id="Aqi-aK-ELu"/>
+                            <constraint firstItem="3fP-IE-fUl" firstAttribute="leading" secondItem="IVR-32-QJr" secondAttribute="leading" constant="8" id="GZz-Af-q9X"/>
+                            <constraint firstItem="3fP-IE-fUl" firstAttribute="centerY" secondItem="IVR-32-QJr" secondAttribute="centerY" id="VUp-ok-miQ"/>
+                        </constraints>
                     </view>
                 </subviews>
             </view>
@@ -33,6 +57,10 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="cFL-EE-9HB"/>
             <size key="customSize" width="411" height="196"/>
+            <connections>
+                <outlet property="subtitleLabel" destination="mpd-tU-GEN" id="SRe-Rb-Wq0"/>
+                <outlet property="titleLabel" destination="lmi-2H-8yB" id="fDS-oo-S9r"/>
+            </connections>
             <point key="canvasLocation" x="3" y="39"/>
         </collectionViewCell>
     </objects>

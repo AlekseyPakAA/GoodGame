@@ -8,7 +8,7 @@ target 'GoodGame' do
   pod 'Alamofire'
   pod 'ObjectMapper'
   pod 'AlamofireObjectMapper'
- 
+
   # Pods for GoodGame
 
 end

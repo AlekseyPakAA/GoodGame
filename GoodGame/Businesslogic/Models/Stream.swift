@@ -11,11 +11,12 @@ import ObjectMapper
 struct Stream: ImmutableMappable {
     
     let id: Int
-    let title: String
+    let channel: Channel
     
     init(map: Map) throws {
-        id = try map.value("id")
-        title = try map.value("channel.title")
+        id      = try map.value("id")
+        channel = try map.value("channel")
     }
     
 }
+

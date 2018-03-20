@@ -9,45 +9,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoodGame/Modules/Streams/StreamsViewController.swift"
-            timestampString = "542667058.373621"
+            filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
+            timestampString = "543268661.370957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "collectionView"
-            landmarkType = "24">
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "willDisplayCell(at:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoodGame/Modules/Streams/StreamsViewController.swift"
-            timestampString = "542667058.373679"
+            filePath = "GoodGame/Modules/Streams/Subviews/StreamsPreloaderCell/StreamsPreloaderCell.swift"
+            timestampString = "543268661.371294"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "collectionView"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoodGame/Modules/Streams/StreamsViewController.swift"
-            timestampString = "542667058.373776"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "viewDidLayoutSubviews()"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "removeFromSuperview()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

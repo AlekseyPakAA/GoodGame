@@ -8,7 +8,10 @@
 
 import UIKit
 
-protocol StreamsView: MVPCollectionView {
+protocol StreamsView: class, MVPCollectionView {
+    
+    func refreshControlBeginRefreshing()
+    func refreshControlEndRefreshing()
     
 }
 
@@ -21,13 +24,17 @@ class StreamsViewController: UIViewController {
             collectionView.dataSource = self
             collectionView.delegate   = self
             
-            let nib = UINib(nibName: StreamsCell.reuseIdentifier, bundle: nil)
+            var nib = UINib(nibName: StreamsCell.reuseIdentifier, bundle: nil)
             collectionView.register(nib, forCellWithReuseIdentifier: StreamsCell.reuseIdentifier)
+
+            nib = UINib(nibName: StreamsPreloaderCell.reuseIdentifier, bundle: nil)
+            collectionView.register(nib, forCellWithReuseIdentifier: StreamsPreloaderCell.reuseIdentifier)
             
             let control = UIRefreshControl()
             control.backgroundColor = .clear
             control.addTarget(self, action: #selector(didRefreshControlValueChange), for: .valueChanged)
-            collectionView.addSubview(control)
+           
+            collectionView.refreshControl = control
             
             collectionView.contentInset.top    = margin
             collectionView.contentInset.bottom = margin
@@ -35,13 +42,14 @@ class StreamsViewController: UIViewController {
     }
     
     @IBAction func didRefreshControlValueChange(_ sender: UIRefreshControl) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
-            sender.endRefreshing()
-        })
+        presenter.didPullRefreshControl()
     }
     
+    let presenter: StreamsPresenter =  StreamsPresenter()
+    
     override func viewDidLoad() {
-        StreamsService().getStreams()
+        presenter.view = self
+        presenter.viewDidLoad()
     }
     
     override func viewDidLayoutSubviews() {
@@ -62,19 +70,34 @@ class StreamsViewController: UIViewController {
 
 extension StreamsViewController: StreamsView {
     
-
+    func refreshControlBeginRefreshing() {
+        collectionView.refreshControl?.beginRefreshing()
+    }
+    
+    func refreshControlEndRefreshing() {
+        collectionView.refreshControl?.endRefreshing()
+    }
     
 }
 
 extension StreamsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return presenter.numberOfItems(in: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StreamsCell.reuseIdentifier, for: indexPath)
-        return cell
+        let item = presenter.itemForCell(at: indexPath)
+        switch item {
+        case .default(let model):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StreamsCell.reuseIdentifier, for: indexPath) as! StreamsCell
+            cell.configure(model: model)
+            return cell
+        case .activityIndicator:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StreamsPreloaderCell.reuseIdentifier, for: indexPath) as! StreamsPreloaderCell
+            return cell
+        }
+
     }
     
 }
@@ -82,7 +105,7 @@ extension StreamsViewController: UICollectionViewDataSource {
 extension StreamsViewController: UICollectionViewDelegateFlowLayout {
    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
+        presenter.willDisplayCell(at: indexPath)
     }
     
 }

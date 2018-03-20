@@ -12,26 +12,23 @@ protocol MVPCollectionView {
     
     var collectionView: UICollectionView! { get set }
     
-    func insertItems(at indexes: [Int])
-    func deleteItems(at indexes: [Int])
-    func reloadItems(at indexes: [Int])
+    func insertItems(at indexPaths: [IndexPath])
+    func deleteItems(at indexPaths: [IndexPath])
+    func reloadItems(at indexPaths: [IndexPath])
     func performBatchUpdates(_ updates: (()->Void)?, completion: ((Bool)->Void)?)
     
 }
 
 extension MVPCollectionView {
-    func insertItems(at indexes: [Int]) {
-        let indexPaths = indexes.map { return IndexPath(item: $0) }
+    func insertItems(at indexPaths: [IndexPath]) {
         collectionView.insertItems(at: indexPaths)
     }
     
-    func deleteItems(at indexes: [Int]) {
-        let indexPaths = indexes.map { return IndexPath(item: $0) }
+    func deleteItems(at indexPaths: [IndexPath]) {
         collectionView.deleteItems(at: indexPaths)
     }
     
-    func reloadItems(at indexes: [Int]) {
-        let indexPaths = indexes.map { return IndexPath(item: $0) }
+    func reloadItems(at indexPaths: [IndexPath]) {
         collectionView.reloadItems(at: indexPaths)
     }
     
