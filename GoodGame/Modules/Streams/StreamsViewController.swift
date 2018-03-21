@@ -17,10 +17,10 @@ protocol StreamsView: class, MVPCollectionView {
 
 class StreamsViewController: UIViewController {
     
+    let margin: CGFloat = 16.0
+    
     @IBOutlet internal weak var collectionView: UICollectionView! {
         didSet {
-            let margin: CGFloat = 15.0
-            
             collectionView.dataSource = self
             collectionView.delegate   = self
             
@@ -30,16 +30,22 @@ class StreamsViewController: UIViewController {
             nib = UINib(nibName: StreamsPreloaderCell.reuseIdentifier, bundle: nil)
             collectionView.register(nib, forCellWithReuseIdentifier: StreamsPreloaderCell.reuseIdentifier)
             
+            nib = UINib(nibName: StreamsErrorCell.reuseIdentifier, bundle: nil)
+            collectionView.register(nib, forCellWithReuseIdentifier: StreamsErrorCell.reuseIdentifier)
+            
             let control = UIRefreshControl()
             control.backgroundColor = .clear
             control.addTarget(self, action: #selector(didRefreshControlValueChange), for: .valueChanged)
-           
-            collectionView.refreshControl = control
+            refreshControl = control
+            
+            collectionView.addSubview(control)
             
             collectionView.contentInset.top    = margin
             collectionView.contentInset.bottom = margin
         }
     }
+    
+    fileprivate weak var refreshControl: UIRefreshControl!
     
     @IBAction func didRefreshControlValueChange(_ sender: UIRefreshControl) {
         presenter.didPullRefreshControl()
@@ -53,15 +59,7 @@ class StreamsViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        let margin: CGFloat = 15.0
-
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = {
-            let width  = collectionView.frame.width - margin * 2
-            let height = width / 16 * 9
-            return CGSize(width: width, height: height)
-        }()
-
         layout.minimumLineSpacing           = margin
         collectionView.collectionViewLayout = layout
     }
@@ -71,11 +69,15 @@ class StreamsViewController: UIViewController {
 extension StreamsViewController: StreamsView {
     
     func refreshControlBeginRefreshing() {
-        collectionView.refreshControl?.beginRefreshing()
+        if !refreshControl.isRefreshing {
+            refreshControl.beginRefreshing()
+        }
     }
     
     func refreshControlEndRefreshing() {
-        collectionView.refreshControl?.endRefreshing()
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
     }
     
 }
@@ -93,8 +95,11 @@ extension StreamsViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StreamsCell.reuseIdentifier, for: indexPath) as! StreamsCell
             cell.configure(model: model)
             return cell
-        case .activityIndicator:
+        case .activityIndicator, .activityIndicatorFullScreen:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StreamsPreloaderCell.reuseIdentifier, for: indexPath) as! StreamsPreloaderCell
+            return cell
+        case .errorMessageFullScreen:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StreamsErrorCell.reuseIdentifier, for: indexPath) as! StreamsErrorCell
             return cell
         }
 
@@ -106,6 +111,21 @@ extension StreamsViewController: UICollectionViewDelegateFlowLayout {
    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         presenter.willDisplayCell(at: indexPath)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let item = presenter.itemForCell(at: indexPath)
+        
+        switch item {
+        case .default, .activityIndicator:
+            let width  = collectionView.frame.width - margin * 2
+            let height = width / 16 * 9
+            return CGSize(width: width, height: height)
+        case .activityIndicatorFullScreen, .errorMessageFullScreen:
+            let width  = collectionView.frame.width  - margin * 2
+            let height = collectionView.frame.height - margin * 2
+            return CGSize(width: width, height: height)
+        }
     }
     
 }

@@ -11,6 +11,8 @@
 		741097DA20619068004A4EF0 /* StreamsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741097D920619068004A4EF0 /* StreamsCellViewModel.swift */; };
 		741097DD206195BF004A4EF0 /* StreamsPreloaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741097DC206195BF004A4EF0 /* StreamsPreloaderCell.swift */; };
 		741097DF206195EA004A4EF0 /* StreamsPreloaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 741097DE206195EA004A4EF0 /* StreamsPreloaderCell.xib */; };
+		741097E22061A418004A4EF0 /* StreamsErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741097E12061A418004A4EF0 /* StreamsErrorCell.swift */; };
+		741097E42061A426004A4EF0 /* StreamsErrorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 741097E32061A426004A4EF0 /* StreamsErrorCell.xib */; };
 		746B91032057225A00A2A26F /* MVPCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746B91022057225A00A2A26F /* MVPCollectionView.swift */; };
 		749C85B12051B9AA00387832 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C85B02051B9AA00387832 /* AppDelegate.swift */; };
 		749C85B82051B9AA00387832 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 749C85B72051B9AA00387832 /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 		741097D920619068004A4EF0 /* StreamsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamsCellViewModel.swift; sourceTree = "<group>"; };
 		741097DC206195BF004A4EF0 /* StreamsPreloaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamsPreloaderCell.swift; sourceTree = "<group>"; };
 		741097DE206195EA004A4EF0 /* StreamsPreloaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StreamsPreloaderCell.xib; sourceTree = "<group>"; };
+		741097E12061A418004A4EF0 /* StreamsErrorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamsErrorCell.swift; sourceTree = "<group>"; };
+		741097E32061A426004A4EF0 /* StreamsErrorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StreamsErrorCell.xib; sourceTree = "<group>"; };
 		746B91022057225A00A2A26F /* MVPCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPCollectionView.swift; sourceTree = "<group>"; };
 		749C85AD2051B9AA00387832 /* GoodGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		749C85B02051B9AA00387832 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +102,15 @@
 				741097DE206195EA004A4EF0 /* StreamsPreloaderCell.xib */,
 			);
 			path = StreamsPreloaderCell;
+			sourceTree = "<group>";
+		};
+		741097E02061A34D004A4EF0 /* StreamsErrorCell */ = {
+			isa = PBXGroup;
+			children = (
+				741097E12061A418004A4EF0 /* StreamsErrorCell.swift */,
+				741097E32061A426004A4EF0 /* StreamsErrorCell.xib */,
+			);
+			path = StreamsErrorCell;
 			sourceTree = "<group>";
 		};
 		746B91012057220D00A2A26F /* MVPProtocols */ = {
@@ -226,6 +239,7 @@
 		74A7A96E205443F600FA06BE /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				741097E02061A34D004A4EF0 /* StreamsErrorCell */,
 				741097DB206194E7004A4EF0 /* StreamsPreloaderCell */,
 				74A7A96F2054440400FA06BE /* StreamsCell */,
 			);
@@ -342,6 +356,7 @@
 				749C85CF2051C6CA00387832 /* Main.storyboard in Resources */,
 				741097D720605B6B004A4EF0 /* LaunchScreen.storyboard in Resources */,
 				741097DF206195EA004A4EF0 /* StreamsPreloaderCell.xib in Resources */,
+				741097E42061A426004A4EF0 /* StreamsErrorCell.xib in Resources */,
 				74A7A97320544C0700FA06BE /* StreamsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,12 +374,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftWebSocket/SwiftWebSocket.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftWebSocket.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -419,6 +436,7 @@
 				74CE8033205AFC25007A1A48 /* Channel.swift in Sources */,
 				74C00B7B2054408D00EF0B70 /* StreamsViewController.swift in Sources */,
 				74A7A9782054502A00FA06BE /* StreamsService.swift in Sources */,
+				741097E22061A418004A4EF0 /* StreamsErrorCell.swift in Sources */,
 				74A7A96D2054436C00FA06BE /* StreamsPresenter.swift in Sources */,
 				74A9EA20205C56BA007D945C /* MVPCollectionViewDataSource.swift in Sources */,
 				749C85B12051B9AA00387832 /* AppDelegate.swift in Sources */,

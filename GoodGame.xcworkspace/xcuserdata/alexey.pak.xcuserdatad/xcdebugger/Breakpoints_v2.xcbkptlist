@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
-            timestampString = "543268661.370957"
+            timestampString = "543353575.268132"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "willDisplayCell(at:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,12 +26,108 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodGame/Modules/Streams/Subviews/StreamsPreloaderCell/StreamsPreloaderCell.swift"
-            timestampString = "543268661.371294"
+            timestampString = "543353575.268618"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
             landmarkName = "removeFromSuperview()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
+            timestampString = "543353575.268728"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "refresh()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
+            timestampString = "543353575.269112"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "refresh()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
+            timestampString = "543353575.26939"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "refresh()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (GoodGame.PaginableResponse&lt;GoodGame.Stream&gt;) -&gt; () in GoodGame.StreamsPresenter.(refresh in _E33F8666A15245DF30EF86D7EFF8529D)() -&gt; ()"
+                  moduleName = "GoodGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexey.pak/Desktop/GoodGame/GoodGame/Modules/Streams/StreamsPresenter.swift"
+                  timestampString = "543352951.9987479"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "154"
+                  endingLineNumber = "154"
+                  offsetFromSymbolStart = "1440">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Swift.Int) -&gt; Foundation.IndexPath in closure #5 (GoodGame.PaginableResponse&lt;GoodGame.Stream&gt;) -&gt; () in GoodGame.StreamsPresenter.(refresh in _E33F8666A15245DF30EF86D7EFF8529D)() -&gt; ()"
+                  moduleName = "GoodGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexey.pak/Desktop/GoodGame/GoodGame/Modules/Streams/StreamsPresenter.swift"
+                  timestampString = "543352952.0017329"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "154"
+                  endingLineNumber = "154"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
+            timestampString = "543353575.2696871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "refresh()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

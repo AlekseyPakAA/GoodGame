@@ -9,7 +9,10 @@
 import Foundation
 
 enum StreamsCollectionItemTypes {
-    case `default`(model: StreamsCellViewModel), activityIndicator
+    case `default`(model: StreamsCellViewModel)
+    case activityIndicator
+    case activityIndicatorFullScreen
+    case errorMessageFullScreen
 }
 
 enum StreamsPresenterState {
@@ -40,7 +43,7 @@ class StreamsPresenter {
     }
     
     func willDisplayCell(at indexPath: IndexPath) {
-        if indexPath.row == items.count - 10 {
+        if indexPath.row == items.count - 1 {
             loadNextPage()
         }
     }
@@ -55,77 +58,109 @@ fileprivate extension StreamsPresenter {
     
     func refresh() {
         switch state {
-        case .empty, .emptyError, .emptyData, .pageProgress:
+        case .empty, .emptyData:
             state = .emptyProgress
+            view?.refreshControlBeginRefreshing()
+            
+            streamsService.getStreams(page: 1, success: { [weak self] result in
+                guard let `self` = self else { return }
+                
+                let newitems: [StreamsCollectionItemTypes] = result.data.map {
+                    let model = StreamsCellViewModel(stream: $0)
+                    return .default(model: model)
+                }
+                self.items.append(contentsOf: newitems)
+                
+                if result.numberOfPages == self.page {
+                    self.state = .end
+                } else {
+                    self.state = .data
+                    self.items.append(.activityIndicator)
+                }
+                
+                let indexPaths = (0..<self.items.count).map { return IndexPath(item: $0) }
+                self.view?.performBatchUpdates({
+                    self.view?.insertItems(at: indexPaths)
+                }, completion: { _ in
+                    self.view?.refreshControlEndRefreshing()
+                })
+            }, failure: { error in
+                self.view?.refreshControlEndRefreshing()
+                self.state = .emptyError
+                self.items.append(.errorMessageFullScreen)
+                self.view?.insertItems(at: [IndexPath(item: 0)])
+            })
+        case .emptyError:
+            state = .emptyProgress
+            view?.refreshControlBeginRefreshing()
+            
             streamsService.getStreams(page: 1, success: { [weak self] result in
                 guard let `self` = self else { return }
                 
                 self.page = 1
-                if result.data.count > 0 {
-                    let newitems: [StreamsCollectionItemTypes] = result.data.map {
-                        let model = StreamsCellViewModel(stream: $0)
-                        return .default(model: model)
-                    }
-                    self.items.append(contentsOf: newitems)
-                    
-                    if result.numberOfPages == self.page {
-                        self.state = .end
-                    } else {
-                        self.state = .data
-                        self.items.append(.activityIndicator)
-                    }
-                    
-                    let indexPaths = (0..<self.items.count).map { return IndexPath(item: $0) }
-                    self.view?.performBatchUpdates({
-                        self.view?.insertItems(at: indexPaths)
-                    }, completion: { _ in
-                        self.view?.refreshControlEndRefreshing()
-                    })
-                } else {
-                   self.state = .emptyData
+                
+                let deletedIndexPaths  = (0..<self.items.count).map { IndexPath(item: $0) }
+                self.items.removeAll()
+                
+                let newitems: [StreamsCollectionItemTypes] = result.data.map {
+                    let model = StreamsCellViewModel(stream: $0)
+                    return .default(model: model)
                 }
+                self.items.append(contentsOf: newitems)
+                
+                if result.numberOfPages == self.page {
+                    self.state = .end
+                } else {
+                    self.state = .data
+                    self.items.append(.activityIndicator)
+                }
+                
+                let insertedIndexPaths = (0..<self.items.count).map { return IndexPath(item: $0) }
+                self.view?.performBatchUpdates({
+                    self.view?.deleteItems(at: deletedIndexPaths)
+                    self.view?.insertItems(at: insertedIndexPaths)
+                }, completion: { _ in
+                    self.view?.refreshControlEndRefreshing()
+                })
             }, failure: { error in
                 self.view?.refreshControlEndRefreshing()
                 self.state = .emptyError
             })
         case .emptyProgress, .refresh:
             break
-        case .data, .end:
+        case .data, .end, .pageProgress:
             state = .refresh
             streamsService.getStreams(page: page, success: { [weak self] result in
                 guard let `self` = self else { return }
                 
                 self.page = 1
-                if result.data.count > 0 {
-                    let newitems: [StreamsCollectionItemTypes] = result.data.map {
-                        let model = StreamsCellViewModel(stream: $0)
-                        return .default(model: model)
-                    }
-                    let deletedIndexPaths  = (0..<self.items.count).map { IndexPath(item: $0) }
-                    self.items.removeAll()
-                    
-                    self.items.append(contentsOf: newitems)
-                    
-                    if result.numberOfPages == self.page {
-                        self.state = .end
-                    } else {
-                        self.state = .data
-                        self.items.append(.activityIndicator)
-                    }
-                    
-                    let insertedIndexPaths = (0..<self.items.count).map { IndexPath(item: $0) }
-      
-                    self.view?.performBatchUpdates({
-                        self.view?.deleteItems(at: deletedIndexPaths)
-                        self.view?.insertItems(at: insertedIndexPaths)
-                    }, completion: { _ in
-                        self.view?.refreshControlEndRefreshing()
-                    })
-                } else {
-                    self.state = .emptyData
-                    self.view?.refreshControlEndRefreshing()
+
+                let newitems: [StreamsCollectionItemTypes] = result.data.map {
+                    let model = StreamsCellViewModel(stream: $0)
+                    return .default(model: model)
                 }
+                let deletedIndexPaths  = (0..<self.items.count).map { IndexPath(item: $0) }
+                self.items.removeAll()
+                
+                self.items.append(contentsOf: newitems)
+                
+                if result.numberOfPages == self.page {
+                    self.state = .end
+                } else {
+                    self.state = .data
+                    self.items.append(.activityIndicator)
+                }
+                
+                let insertedIndexPaths = (0..<self.items.count).map { IndexPath(item: $0) }
+  
+                self.view?.performBatchUpdates({
+                    self.view?.deleteItems(at: deletedIndexPaths)
+                    self.view?.insertItems(at: insertedIndexPaths)
+                }, completion: { _ in
+                    self.view?.refreshControlEndRefreshing()
+                })
             }, failure: { error in
+                self.state = .data
                 self.view?.refreshControlEndRefreshing()
             })
         }
