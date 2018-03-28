@@ -24,7 +24,6 @@ enum Router: URLRequestConvertible {
         
         let url = try Router.baseURLString.asURL()
         let urlRequest = URLRequest(url: url.appendingPathComponent(result.path))
-        urlRequest.description
         return try URLEncoding.default.encode(urlRequest, with: result.parameters)
     }
 }

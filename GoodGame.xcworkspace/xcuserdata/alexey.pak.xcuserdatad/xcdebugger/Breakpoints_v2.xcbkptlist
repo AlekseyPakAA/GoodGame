@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
-            timestampString = "543353575.268132"
+            timestampString = "543356928.227286"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodGame/Modules/Streams/Subviews/StreamsPreloaderCell/StreamsPreloaderCell.swift"
-            timestampString = "543353575.268618"
+            timestampString = "543356928.227404"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
-            timestampString = "543353575.268728"
+            timestampString = "543356928.227531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "160"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
-            timestampString = "543353575.269112"
+            timestampString = "543356928.227599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "164"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
-            timestampString = "543353575.26939"
+            timestampString = "543356928.227679"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "154"
@@ -122,12 +122,92 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
-            timestampString = "543353575.2696871"
+            timestampString = "543356928.2277631"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "156"
             endingLineNumber = "156"
             landmarkName = "refresh()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoodGame/Businesslogic/Services/ChatSocketService/Models/WelcomeChatSocketMessage.swift"
+            timestampString = "543874913.304175"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "WelcomeChatSocketMessage"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoodGame/Businesslogic/Services/ChatSocketService/ChatSocketService.swift"
+            timestampString = "543874913.304273"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "connect()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (Any) -&gt; () in GoodGame.ChatSocketService.connect() -&gt; ()"
+                  moduleName = "GoodGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexey.pak/Desktop/GoodGame/GoodGame/Businesslogic/Services/ChatSocketService/ChatSocketService.swift"
+                  timestampString = "543874781.652844"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "2529">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (Any) -&gt; () in GoodGame.ChatSocketService.connect() -&gt; ()"
+                  moduleName = "GoodGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexey.pak/Desktop/GoodGame/GoodGame/Businesslogic/Services/ChatSocketService/ChatSocketService.swift"
+                  timestampString = "543874781.656072"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "2706">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoodGame/Businesslogic/Services/ChatSocketService/ChatSocketService.swift"
+            timestampString = "543874913.304341"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "connect()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
