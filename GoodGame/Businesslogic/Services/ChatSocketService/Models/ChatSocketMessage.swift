@@ -15,5 +15,5 @@ protocol ChatSocketMessage: ImmutableMappable {
 }
 
 enum ChatSocketMessageType: String {
-    case welcome, join
+    case welcome, join, successJoin = "success_join", message, channelCounters = "channel_counters"
 }

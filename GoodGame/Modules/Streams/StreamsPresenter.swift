@@ -48,6 +48,11 @@ class StreamsPresenter {
         }
     }
     
+    func didSelectItem(at indexPath: IndexPath) {
+         print("didSelectItem(at indexPath: \(indexPath))")
+    }
+
+    
     func didPullRefreshControl() {
         refresh()
     }

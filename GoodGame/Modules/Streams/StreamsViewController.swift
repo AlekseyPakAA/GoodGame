@@ -113,6 +113,10 @@ extension StreamsViewController: UICollectionViewDelegateFlowLayout {
         presenter.willDisplayCell(at: indexPath)
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.didSelectItem(at: indexPath)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let item = presenter.itemForCell(at: indexPath)
         

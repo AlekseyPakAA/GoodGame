@@ -12,7 +12,7 @@ protocol ChatSocketServiceDelegate: class {
     
     func connectionOpened()
     func connectionClosed(code: Int, reason: String, clean: Bool)
-    func didReciveMessage()
+    func didRecive(message: ChatSocketMessage)
     
 }
 
@@ -65,13 +65,25 @@ class ChatSocketService {
             case "welcome":
                 let join = JoinChatSocketMessage(channelID: self.channelID)
                 self.socket.send(message: join)
-            case "join":
-               return
+            case "success_join":
+                self.deleate?.connectionOpened()
+            case "message":
+                guard let message = try? MessageChatSocketMessage(JSON: json) else {
+                    print("Unable parse \(MessageChatSocketMessage.self) from json \(string))")
+                    return
+                }
+                self.deleate?.didRecive(message: message)
+            case "channel_counters":
+                guard let message = try? ChannelCountersChatSocketMessage(JSON: json) else {
+                    print("Unable parse \(ChannelCountersChatSocketMessage.self) from json \(string))")
+                    return
+                }
+                self.deleate?.didRecive(message: message)
             default:
-                print(string)
+                print("Unknown message: \(string)")
                 return
             }
-            self.deleate?.didReciveMessage()
+            
         }
     }
     
@@ -91,8 +103,6 @@ fileprivate extension WebSocket {
             print("Unable to parse \(message.type) to a json string")
             return
         }
-        
-        print(jsonstring)
         
         send(text: jsonstring)
     }
