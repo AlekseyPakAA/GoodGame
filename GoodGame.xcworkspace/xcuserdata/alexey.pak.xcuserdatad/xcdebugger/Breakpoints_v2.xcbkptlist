@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
-            timestampString = "543356928.227286"
+            timestampString = "544393949.307494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
-            timestampString = "543356928.227531"
+            timestampString = "544393949.307611"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "160"
@@ -54,17 +54,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
-            timestampString = "543356928.227599"
+            timestampString = "544393949.307669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "164"
             endingLineNumber = "164"
             landmarkName = "unknown"
             landmarkType = "0">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 () -&gt; () in closure #5 (GoodGame.PaginableResponse&lt;GoodGame.Stream&gt;) -&gt; () in GoodGame.StreamsPresenter.(refresh in _E33F8666A15245DF30EF86D7EFF8529D)() -&gt; ()"
+                  moduleName = "GoodGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexey.pak/Desktop/GoodGame/GoodGame/Modules/Streams/StreamsPresenter.swift"
+                  timestampString = "544393791.711223"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
+                  offsetFromSymbolStart = "486">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (Swift.Bool) -&gt; () in closure #5 (GoodGame.PaginableResponse&lt;GoodGame.Stream&gt;) -&gt; () in GoodGame.StreamsPresenter.(refresh in _E33F8666A15245DF30EF86D7EFF8529D)() -&gt; ()"
+                  moduleName = "GoodGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexey.pak/Desktop/GoodGame/GoodGame/Modules/Streams/StreamsPresenter.swift"
+                  timestampString = "544393791.715533"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "165"
+                  endingLineNumber = "165"
+                  offsetFromSymbolStart = "22">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -74,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
-            timestampString = "543356928.227679"
+            timestampString = "544393949.307723"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "154"
@@ -122,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodGame/Modules/Streams/StreamsPresenter.swift"
-            timestampString = "543356928.2277631"
+            timestampString = "544393949.307773"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "156"

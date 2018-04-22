@@ -6,8 +6,6 @@
 //  Copyright © 2018 alexey.pak. All rights reserved.
 //
 
-import Foundation
-
 struct StreamsCellViewModel {
     
     let title: String

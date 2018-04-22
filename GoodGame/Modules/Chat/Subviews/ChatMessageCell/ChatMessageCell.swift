@@ -10,4 +10,10 @@ import UIKit
 
 class ChatMessageCell: UICollectionViewCell {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    func configure(model: ChatMessageCellViewModel) {
+        titleLabel.text = model.title
+    }
+    
 }

@@ -42,7 +42,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="7bk-tZ-2XL" id="6Od-D6-y5C"/>
-                        <segue destination="tyR-fL-gUV" kind="presentation" identifier="StreamsDetail" id="Qt1-JY-LDC"/>
+                        <segue destination="tyR-fL-gUV" kind="show" identifier="StreamsDetail" id="Kf0-h5-cBJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0y1-vH-GME" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -11,19 +11,20 @@ import UIKit
 protocol ChatView: class, MVPCollectionView {
     
 }
+
 class ChatViewController: UIViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
-    
-    override func viewDidLoad() {
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-        let nib = UINib(nibName: ChatMessageCell.reuseIdentifier, bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: ChatMessageCell.reuseIdentifier)
+    @IBOutlet weak var collectionView: UICollectionView! {
+        didSet {
+            collectionView.dataSource = self
+            collectionView.delegate = self
+            
+            let nib = UINib(nibName: ChatMessageCell.reuseIdentifier, bundle: nil)
+            collectionView.register(nib, forCellWithReuseIdentifier: ChatMessageCell.reuseIdentifier)
+        }
     }
     
-    override func viewDidLayoutSubviews() {
+    override func viewDidLoad() {
         let layout = ChatCollectionViewFlowLayout()
         
         let size: CGSize = {
@@ -46,6 +47,8 @@ extension ChatViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChatMessageCell.reuseIdentifier, for: indexPath) as! ChatMessageCell
+        let model = ChatMessageCellViewModel(string: indexPath.row.description)
+        cell.configure(model: model)
         return cell
     }
     

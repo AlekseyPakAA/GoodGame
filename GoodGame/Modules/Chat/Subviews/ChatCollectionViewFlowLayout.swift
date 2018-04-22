@@ -10,6 +10,26 @@ import UIKit
 
 class ChatCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        let layoutAttributes = super.layoutAttributesForElements(in: rect)?.flatMap { attribute in
+            return attribute.copy() as? UICollectionViewLayoutAttributes
+        }
+        
+        layoutAttributes?.forEach { attribute in
+            attribute.frame.size.width = attribute.frame.size.width / 4 * 3
+        }
+        return layoutAttributes
+    }
+    
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard let layoutAttributes: UICollectionViewLayoutAttributes = {
+            return super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes
+        }()  else { return nil }
+        
+        layoutAttributes.frame.size.width = layoutAttributes.frame.size.width / 4 * 3
+        return layoutAttributes
+    }
+    
 }
 //
 //  ALGReversedFlowLayout.m

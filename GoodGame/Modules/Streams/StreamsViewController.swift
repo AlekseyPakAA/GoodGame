@@ -13,6 +13,7 @@ protocol StreamsView: class, MVPCollectionView {
     func refreshControlBeginRefreshing()
     func refreshControlEndRefreshing()
     
+    func showDetailScreen()
 }
 
 class StreamsViewController: UIViewController {
@@ -42,6 +43,10 @@ class StreamsViewController: UIViewController {
             
             collectionView.contentInset.top    = margin
             collectionView.contentInset.bottom = margin
+            
+            let layout = UICollectionViewFlowLayout()
+            layout.minimumLineSpacing = margin
+            collectionView.collectionViewLayout = layout
         }
     }
     
@@ -58,15 +63,13 @@ class StreamsViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
-    override func viewDidLayoutSubviews() {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing           = margin
-        collectionView.collectionViewLayout = layout
-    }
-    
 }
 
 extension StreamsViewController: StreamsView {
+    
+    func showDetailScreen() {
+        performSegue(withIdentifier: "StreamsDetail", sender: nil)
+    }
     
     func refreshControlBeginRefreshing() {
         if !refreshControl.isRefreshing {
