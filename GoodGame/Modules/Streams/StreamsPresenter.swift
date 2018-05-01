@@ -23,6 +23,7 @@ class StreamsPresenter {
     
     fileprivate var items: [StreamsCollectionItemTypes] = []
     fileprivate let streamsService = StreamsService()
+    fileprivate(set) var selectedItemIndex: Int?
     
     fileprivate var page: Int = 1 {
         didSet {
@@ -49,7 +50,8 @@ class StreamsPresenter {
     }
     
     func didSelectItem(at indexPath: IndexPath) {
-         view?.showDetailScreen()
+        
+        view?.showStreamsDetail()
     }
 
     

@@ -13,7 +13,7 @@ protocol StreamsView: class, MVPCollectionView {
     func refreshControlBeginRefreshing()
     func refreshControlEndRefreshing()
     
-    func showDetailScreen()
+    func showStreamsDetail()
 }
 
 class StreamsViewController: UIViewController {
@@ -63,11 +63,17 @@ class StreamsViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let destination = segue.destination as? ChatViewController {
+//            destination.presenter.channelID = 
+//        }
+    }
+    
 }
 
 extension StreamsViewController: StreamsView {
     
-    func showDetailScreen() {
+    func showStreamsDetail() {
         performSegue(withIdentifier: "StreamsDetail", sender: nil)
     }
     
@@ -105,7 +111,6 @@ extension StreamsViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StreamsErrorCell.reuseIdentifier, for: indexPath) as! StreamsErrorCell
             return cell
         }
-
     }
     
 }

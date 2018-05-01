@@ -98,9 +98,9 @@ class ChatSocketService {
 
 fileprivate extension WebSocket {
     
-    func send(message: ChatSocketMessage) {
+    func send(message: ImmutableMappable) {
         guard let jsonstring = message.toJSONString() else {
-            print("Unable to parse \(message.type) to a json string")
+            print("Unable to parse \(message) to a json string")
             return
         }
         

@@ -19,7 +19,6 @@
 		74857A81206AD22D0078746D /* WelcomeChatSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74857A80206AD22D0078746D /* WelcomeChatSocketMessage.swift */; };
 		74857A83206AD2830078746D /* ChatSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74857A82206AD2830078746D /* ChatSocketMessage.swift */; };
 		74857A85206AD7600078746D /* JoinChatSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74857A84206AD7600078746D /* JoinChatSocketMessage.swift */; };
-		749BCCB9206C2909008189B8 /* SuccessJoinChatSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749BCCB8206C2909008189B8 /* SuccessJoinChatSocketMessage.swift */; };
 		749BCCBB206C2CBA008189B8 /* MessageChatSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749BCCBA206C2CBA008189B8 /* MessageChatSocketMessage.swift */; };
 		749BCCBD206C319B008189B8 /* ChannelCountersChatSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749BCCBC206C319B008189B8 /* ChannelCountersChatSocketMessage.swift */; };
 		749C85B12051B9AA00387832 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C85B02051B9AA00387832 /* AppDelegate.swift */; };
@@ -43,7 +42,6 @@
 		74E1415C206D7E1C0032A69A /* ChatStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74E1415B206D7E1C0032A69A /* ChatStoryboard.storyboard */; };
 		74E1415E206D7E310032A69A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E1415D206D7E310032A69A /* ChatViewController.swift */; };
 		74E14160206D7E500032A69A /* ChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E1415F206D7E500032A69A /* ChatPresenter.swift */; };
-		74E14163206D80670032A69A /* ChatCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E14162206D80670032A69A /* ChatCollectionViewFlowLayout.swift */; };
 		74F7114220586DDD00BCF893 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7114120586DDD00BCF893 /* Stream.swift */; };
 		74F7114520586E2200BCF893 /* PaginableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7114420586E2200BCF893 /* PaginableResponse.swift */; };
 		E881CBB353462A90EE6FCD9D /* Pods_GoodGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5BD78CBC920B67DCC385F3 /* Pods_GoodGame.framework */; };
@@ -63,7 +61,6 @@
 		74857A80206AD22D0078746D /* WelcomeChatSocketMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeChatSocketMessage.swift; sourceTree = "<group>"; };
 		74857A82206AD2830078746D /* ChatSocketMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSocketMessage.swift; sourceTree = "<group>"; };
 		74857A84206AD7600078746D /* JoinChatSocketMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinChatSocketMessage.swift; sourceTree = "<group>"; };
-		749BCCB8206C2909008189B8 /* SuccessJoinChatSocketMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessJoinChatSocketMessage.swift; sourceTree = "<group>"; };
 		749BCCBA206C2CBA008189B8 /* MessageChatSocketMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageChatSocketMessage.swift; sourceTree = "<group>"; };
 		749BCCBC206C319B008189B8 /* ChannelCountersChatSocketMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCountersChatSocketMessage.swift; sourceTree = "<group>"; };
 		749C85AD2051B9AA00387832 /* GoodGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,7 +86,6 @@
 		74E1415B206D7E1C0032A69A /* ChatStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatStoryboard.storyboard; sourceTree = "<group>"; };
 		74E1415D206D7E310032A69A /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		74E1415F206D7E500032A69A /* ChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPresenter.swift; sourceTree = "<group>"; };
-		74E14162206D80670032A69A /* ChatCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		74F7114120586DDD00BCF893 /* Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
 		74F7114420586E2200BCF893 /* PaginableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginableResponse.swift; sourceTree = "<group>"; };
 		8A166B63B3B0A00ECF3F57DE /* Pods-GoodGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoodGame/Pods-GoodGame.release.xcconfig"; sourceTree = "<group>"; };
@@ -167,7 +163,6 @@
 				74857A82206AD2830078746D /* ChatSocketMessage.swift */,
 				74857A80206AD22D0078746D /* WelcomeChatSocketMessage.swift */,
 				74857A84206AD7600078746D /* JoinChatSocketMessage.swift */,
-				749BCCB8206C2909008189B8 /* SuccessJoinChatSocketMessage.swift */,
 				749BCCBA206C2CBA008189B8 /* MessageChatSocketMessage.swift */,
 				749BCCBC206C319B008189B8 /* ChannelCountersChatSocketMessage.swift */,
 			);
@@ -360,7 +355,6 @@
 			isa = PBXGroup;
 			children = (
 				74C1E22D20713D7B00DF2611 /* ChatMessageCell */,
-				74E14162206D80670032A69A /* ChatCollectionViewFlowLayout.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -543,10 +537,8 @@
 				746B91032057225A00A2A26F /* MVPCollectionView.swift in Sources */,
 				74857A83206AD2830078746D /* ChatSocketMessage.swift in Sources */,
 				74C1E23120713E0900DF2611 /* ChatMessageCell.swift in Sources */,
-				749BCCB9206C2909008189B8 /* SuccessJoinChatSocketMessage.swift in Sources */,
 				749BCCBD206C319B008189B8 /* ChannelCountersChatSocketMessage.swift in Sources */,
 				74E14160206D7E500032A69A /* ChatPresenter.swift in Sources */,
-				74E14163206D80670032A69A /* ChatCollectionViewFlowLayout.swift in Sources */,
 				74A7A97A2054519800FA06BE /* Constants.swift in Sources */,
 				74E1415E206D7E310032A69A /* ChatViewController.swift in Sources */,
 				74A7A97520544E1B00FA06BE /* IndexPath.swift in Sources */,

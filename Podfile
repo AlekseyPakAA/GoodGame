@@ -10,8 +10,7 @@ target 'GoodGame' do
   pod 'AlamofireObjectMapper'
   
   pod 'SwiftWebSocket'
-    pod 'SwiftWebSocket'
-
+  pod 'Swjeck'
   # Pods for GoodGame
 
 end

@@ -13,6 +13,8 @@ protocol ChatView: class, MVPCollectionView {
 }
 
 class ChatViewController: UIViewController {
+
+    var presenter = ChatPresenter()
     
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -25,16 +27,7 @@ class ChatViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        let layout = ChatCollectionViewFlowLayout()
         
-        let size: CGSize = {
-            let width: CGFloat = collectionView.frame.width
-            let height: CGFloat = 60.0
-            return CGSize(width: width, height: height)
-        } ()
-        
-        layout.itemSize = size
-        collectionView.collectionViewLayout = layout
     }
     
 }
@@ -42,7 +35,7 @@ class ChatViewController: UIViewController {
 extension ChatViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -54,4 +47,15 @@ extension ChatViewController: UICollectionViewDataSource {
     
 }
 
-extension ChatViewController: UICollectionViewDelegateFlowLayout { }
+extension ChatViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size: CGSize = {
+            let width: CGFloat = collectionView.frame.width
+            let height: CGFloat = 60.0
+            return CGSize(width: width, height: height)
+        }()
+        return size
+    }
+    
+}

@@ -8,9 +8,9 @@
 
 import ObjectMapper
 
-struct JoinChatSocketMessage: ChatSocketMessage {
+struct JoinChatSocketMessage: ImmutableMappable {
     
-    fileprivate(set) var type: ChatSocketMessageType
+    let type: String
     
     let channelID: Int
     let hidden: Bool
@@ -30,7 +30,7 @@ struct JoinChatSocketMessage: ChatSocketMessage {
     }
     
     init(channelID: Int) {
-        self.type = .join
+        self.type = "join"
         self.channelID = channelID
         self.hidden = false
     }
