@@ -18,17 +18,12 @@ protocol ChatSocketServiceDelegate: class {
 
 class ChatSocketService {
     
-    init(channelID: Int) {
-        self.channelID = channelID
-    }
-    
     fileprivate let url   = "ws://chat.goodgame.ru:8081/chat/websocket"
     fileprivate let socket = WebSocket()
-    fileprivate let channelID: Int
     
     weak var deleate: ChatSocketServiceDelegate?
     
-    func connect() {
+    func connect(channelID: Int) {
         socket.open(url)
         
         socket.event.open = { [weak self] in
@@ -63,7 +58,7 @@ class ChatSocketService {
             
             switch type {
             case "welcome":
-                let join = JoinChatSocketMessage(channelID: self.channelID)
+                let join = JoinChatSocketMessage(channelID: channelID)
                 self.socket.send(message: join)
             case "success_join":
                 self.deleate?.connectionOpened()

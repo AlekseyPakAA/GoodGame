@@ -53,14 +53,14 @@ class StreamsViewController: UIViewController {
     fileprivate weak var refreshControl: UIRefreshControl!
     
     @IBAction func didRefreshControlValueChange(_ sender: UIRefreshControl) {
-        presenter.didPullRefreshControl()
+        presenter?.didPullRefreshControl()
     }
     
-    let presenter: StreamsPresenter =  StreamsPresenter()
+    var presenter: StreamsPresenter?
     
     override func viewDidLoad() {
-        presenter.view = self
-        presenter.viewDidLoad()
+        presenter?.view = self
+        presenter?.viewDidLoad()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -94,11 +94,11 @@ extension StreamsViewController: StreamsView {
 extension StreamsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.numberOfItems(in: section)
+        return presenter?.numberOfItems(in: section) ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = presenter.itemForCell(at: indexPath)
+        guard let item = presenter?.itemForCell(at: indexPath) else { return UICollectionViewCell() }
         switch item {
         case .default(let model):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StreamsCell.reuseIdentifier, for: indexPath) as! StreamsCell
@@ -118,15 +118,15 @@ extension StreamsViewController: UICollectionViewDataSource {
 extension StreamsViewController: UICollectionViewDelegateFlowLayout {
    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        presenter.willDisplayCell(at: indexPath)
+        presenter?.willDisplayCell(at: indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter.didSelectItem(at: indexPath)
+        presenter?.didSelectItem(at: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let item = presenter.itemForCell(at: indexPath)
+        guard let item = presenter?.itemForCell(at: indexPath) else { return .zero }
         
         switch item {
         case .default, .activityIndicator:

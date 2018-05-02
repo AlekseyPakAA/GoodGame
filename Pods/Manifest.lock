@@ -4,23 +4,17 @@ PODS:
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
   - ObjectMapper (3.1.0)
-  - SwiftWebSocket (2.7.0)
-  - Swinject (2.4.0)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
   - ObjectMapper
-  - SwiftWebSocket
-  - Swinject
 
 SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
-  SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
-  Swinject: a1364b0f66c2736bb03c1c7cab54809e16df25da
 
-PODFILE CHECKSUM: cb3aec6d963670159f51a2e24e97fe49f5c6a7e2
+PODFILE CHECKSUM: 81f94815e0200d741a72bd3fe481b44402f35eff
 
 COCOAPODS: 1.4.0

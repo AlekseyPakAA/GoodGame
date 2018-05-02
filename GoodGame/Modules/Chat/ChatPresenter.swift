@@ -18,9 +18,9 @@ class ChatPresenter {
     }
     
     func viewDidLoad() {        
-        service = ChatSocketService(channelID: channelID)
-        service?.deleate = self
-        service?.connect()
+//        service = ChatSocketService(channelID: channelID)
+//        service?.deleate = self
+//        service?.connect()
     }
 }
 
