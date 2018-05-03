@@ -8,7 +8,7 @@
 
 import ObjectMapper
 
-struct WelcomeChatSocketMessage: ChatSocketMessage {
+struct WelcomeChatSocketMessage: IncomingMessage {
     
     fileprivate(set) var type: ChatSocketMessageType
 

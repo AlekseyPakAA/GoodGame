@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Swinject
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-                
+        // Instantiate a window.
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.makeKeyAndVisible()
+        self.window = window
+        
+        // Instantiate the root view controller with dependencies injected by the container.
+        window.rootViewController = UINavigationController(rootViewController: StreamsAssembly.makeModule())
+        
         return true
     }
 

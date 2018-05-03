@@ -14,7 +14,7 @@ protocol ChatView: class, MVPCollectionView {
 
 class ChatViewController: UIViewController {
 
-    var presenter = ChatPresenter()
+    var presenter: ChatPresenter?
     
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -27,22 +27,41 @@ class ChatViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .UIApplicationWillResignActive, object: nil)
+
+        presenter?.viewDidLoad()
     }
+    
+    @objc func applicationDidBecomeActive() {
+        presenter?.applicationDidBecomeActive()
+    }
+
+    @objc func applicationWillResignActive() {
+        presenter?.applicationWillResignActive()
+    }
+    
+}
+
+extension ChatViewController: ChatView {
     
 }
 
 extension ChatViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return presenter?.numberOfItems(in: 0) ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChatMessageCell.reuseIdentifier, for: indexPath) as! ChatMessageCell
-        let model = ChatMessageCellViewModel(string: indexPath.row.description)
-        cell.configure(model: model)
-        return cell
+        guard let item = presenter?.itemForCell(at: indexPath) else { return UICollectionViewCell() }
+
+        switch item {
+        case .default(let model):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChatMessageCell.reuseIdentifier, for: indexPath) as! ChatMessageCell
+            cell.configure(model: model)
+            return cell
+        }
     }
     
 }

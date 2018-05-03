@@ -15,6 +15,10 @@
 		741097E42061A426004A4EF0 /* StreamsErrorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 741097E32061A426004A4EF0 /* StreamsErrorCell.xib */; };
 		741097E62062F686004A4EF0 /* ChatSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741097E52062F686004A4EF0 /* ChatSocketService.swift */; };
 		7417ECAB2072C0AC003734F0 /* ChatMessageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7417ECAA2072C0AC003734F0 /* ChatMessageCellViewModel.swift */; };
+		7445E5692099E38600647A96 /* ChatAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7445E5682099E38600647A96 /* ChatAssembly.swift */; };
+		7445E56B2099E47600647A96 /* StreamsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7445E56A2099E47600647A96 /* StreamsRouter.swift */; };
+		7445E56D2099F24B00647A96 /* StreamsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7445E56C2099F24B00647A96 /* StreamsAssembly.swift */; };
+		7445E56F2099F51100647A96 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7445E56E2099F51100647A96 /* UIViewController.swift */; };
 		746B91032057225A00A2A26F /* MVPCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746B91022057225A00A2A26F /* MVPCollectionView.swift */; };
 		74857A81206AD22D0078746D /* WelcomeChatSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74857A80206AD22D0078746D /* WelcomeChatSocketMessage.swift */; };
 		74857A83206AD2830078746D /* ChatSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74857A82206AD2830078746D /* ChatSocketMessage.swift */; };
@@ -57,6 +61,10 @@
 		741097E32061A426004A4EF0 /* StreamsErrorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StreamsErrorCell.xib; sourceTree = "<group>"; };
 		741097E52062F686004A4EF0 /* ChatSocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSocketService.swift; sourceTree = "<group>"; };
 		7417ECAA2072C0AC003734F0 /* ChatMessageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCellViewModel.swift; sourceTree = "<group>"; };
+		7445E5682099E38600647A96 /* ChatAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAssembly.swift; sourceTree = "<group>"; };
+		7445E56A2099E47600647A96 /* StreamsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamsRouter.swift; sourceTree = "<group>"; };
+		7445E56C2099F24B00647A96 /* StreamsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamsAssembly.swift; sourceTree = "<group>"; };
+		7445E56E2099F51100647A96 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		746B91022057225A00A2A26F /* MVPCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPCollectionView.swift; sourceTree = "<group>"; };
 		74857A80206AD22D0078746D /* WelcomeChatSocketMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeChatSocketMessage.swift; sourceTree = "<group>"; };
 		74857A82206AD2830078746D /* ChatSocketMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSocketMessage.swift; sourceTree = "<group>"; };
@@ -262,6 +270,7 @@
 			children = (
 				74A7A97420544E1B00FA06BE /* IndexPath.swift */,
 				74A7A97E20545B5100FA06BE /* UICollectionViewCell.swift */,
+				7445E56E2099F51100647A96 /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -281,6 +290,8 @@
 				749C85D12051C83A00387832 /* StreamsStoryboard.storyboard */,
 				74C00B7A2054408D00EF0B70 /* StreamsViewController.swift */,
 				74A7A96C2054436C00FA06BE /* StreamsPresenter.swift */,
+				7445E56A2099E47600647A96 /* StreamsRouter.swift */,
+				7445E56C2099F24B00647A96 /* StreamsAssembly.swift */,
 			);
 			path = Streams;
 			sourceTree = "<group>";
@@ -347,6 +358,7 @@
 				74E1415B206D7E1C0032A69A /* ChatStoryboard.storyboard */,
 				74E1415D206D7E310032A69A /* ChatViewController.swift */,
 				74E1415F206D7E500032A69A /* ChatPresenter.swift */,
+				7445E5682099E38600647A96 /* ChatAssembly.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -531,6 +543,7 @@
 				741097E22061A418004A4EF0 /* StreamsErrorCell.swift in Sources */,
 				74A7A96D2054436C00FA06BE /* StreamsPresenter.swift in Sources */,
 				74857A85206AD7600078746D /* JoinChatSocketMessage.swift in Sources */,
+				7445E56F2099F51100647A96 /* UIViewController.swift in Sources */,
 				74A9EA20205C56BA007D945C /* MVPCollectionViewDataSource.swift in Sources */,
 				749C85B12051B9AA00387832 /* AppDelegate.swift in Sources */,
 				74A7A97F20545B5100FA06BE /* UICollectionViewCell.swift in Sources */,
@@ -539,11 +552,14 @@
 				74C1E23120713E0900DF2611 /* ChatMessageCell.swift in Sources */,
 				749BCCBD206C319B008189B8 /* ChannelCountersChatSocketMessage.swift in Sources */,
 				74E14160206D7E500032A69A /* ChatPresenter.swift in Sources */,
+				7445E5692099E38600647A96 /* ChatAssembly.swift in Sources */,
 				74A7A97A2054519800FA06BE /* Constants.swift in Sources */,
 				74E1415E206D7E310032A69A /* ChatViewController.swift in Sources */,
 				74A7A97520544E1B00FA06BE /* IndexPath.swift in Sources */,
+				7445E56D2099F24B00647A96 /* StreamsAssembly.swift in Sources */,
 				74A7A97120544BFB00FA06BE /* StreamsCell.swift in Sources */,
 				7417ECAB2072C0AC003734F0 /* ChatMessageCellViewModel.swift in Sources */,
+				7445E56B2099E47600647A96 /* StreamsRouter.swift in Sources */,
 				74E14159206D70280032A69A /* IntegerTransform.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,7 +8,7 @@
 
 import ObjectMapper
 
-struct MessageChatSocketMessage: ChatSocketMessage {
+struct MessageChatSocketMessage: IncomingMessage {
     
     fileprivate(set) var type: ChatSocketMessageType
     let id: Int

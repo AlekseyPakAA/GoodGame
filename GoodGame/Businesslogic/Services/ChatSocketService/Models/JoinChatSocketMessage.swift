@@ -8,7 +8,7 @@
 
 import ObjectMapper
 
-struct JoinChatSocketMessage: ImmutableMappable {
+struct JoinChatSocketMessage: OutgoingMessage {
     
     let type: String
     

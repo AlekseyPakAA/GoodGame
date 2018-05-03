@@ -8,11 +8,13 @@
 
 struct StreamsCellViewModel {
     
+    let id: Int
     let title: String
     let subtitle: String
     
     init(stream: Stream) {
-        title    = "\(stream.channel.key):\(stream.channel.id)"
+        id = stream.channel.id
+        title = "\(stream.channel.key):\(stream.channel.id)"
         subtitle = stream.channel.title
     }
     

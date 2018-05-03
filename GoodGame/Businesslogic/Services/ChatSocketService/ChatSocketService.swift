@@ -12,7 +12,7 @@ protocol ChatSocketServiceDelegate: class {
     
     func connectionOpened()
     func connectionClosed(code: Int, reason: String, clean: Bool)
-    func didRecive(message: ChatSocketMessage)
+    func didRecive(message: IncomingMessage)
     
 }
 
@@ -24,11 +24,8 @@ class ChatSocketService {
     weak var deleate: ChatSocketServiceDelegate?
     
     func connect(channelID: Int) {
-        socket.open(url)
         
-        socket.event.open = { [weak self] in
-            self?.deleate?.connectionOpened()
-        }
+        socket.open(url)
         
         socket.event.close = { [weak self] (code, reason, clean) in
             self?.deleate?.connectionClosed(code: code, reason: reason, clean: clean)
@@ -59,7 +56,7 @@ class ChatSocketService {
             switch type {
             case "welcome":
                 let join = JoinChatSocketMessage(channelID: channelID)
-                self.socket.send(message: join)
+                self.send(message: join)
             case "success_join":
                 self.deleate?.connectionOpened()
             case "message":
@@ -82,27 +79,24 @@ class ChatSocketService {
         }
     }
     
-    func disconnect() {
-        socket.close()
-    }
-    
-    deinit {
-        
-    }
-}
-
-fileprivate extension WebSocket {
-    
-    func send(message: ImmutableMappable) {
+    func send(message: OutgoingMessage) {
         guard let jsonstring = message.toJSONString() else {
             print("Unable to parse \(message) to a json string")
             return
         }
         
-        send(text: jsonstring)
+        socket.send(text: jsonstring)
     }
     
+    func disconnect() {
+        socket.close()
+    }
+    
+    deinit {
+        socket.close()
+    }
 }
+
 
 //Mapper want an generic parameter inherited from "Base mappable"
 fileprivate class PH: Mappable {

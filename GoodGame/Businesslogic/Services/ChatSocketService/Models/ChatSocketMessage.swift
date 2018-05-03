@@ -10,7 +10,15 @@ import ObjectMapper
 
 protocol ChatSocketMessage: ImmutableMappable {
     
+}
+
+protocol IncomingMessage: ChatSocketMessage {
+    
     var type: ChatSocketMessageType { get }
+
+}
+
+protocol OutgoingMessage: ChatSocketMessage {
     
 }
 

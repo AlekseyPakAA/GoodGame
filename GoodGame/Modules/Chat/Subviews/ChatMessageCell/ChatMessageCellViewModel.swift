@@ -14,5 +14,9 @@ struct ChatMessageCellViewModel {
         title = string
     }
     
+    init(message: MessageChatSocketMessage) {
+        title = message.text
+    }
+    
 }
 

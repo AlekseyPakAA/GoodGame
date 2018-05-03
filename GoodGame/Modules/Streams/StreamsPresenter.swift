@@ -38,6 +38,7 @@ class StreamsPresenter {
     }
     
     weak var view: StreamsView?
+    var router: StreamsRouter?
     
     func viewDidLoad() {
         refresh()
@@ -50,8 +51,9 @@ class StreamsPresenter {
     }
     
     func didSelectItem(at indexPath: IndexPath) {
-        
-        view?.showStreamsDetail()
+        if case let .default(model) = items[indexPath.row] {
+            router?.showStreamsDetail(channelID: model.id)
+        }
     }
 
     

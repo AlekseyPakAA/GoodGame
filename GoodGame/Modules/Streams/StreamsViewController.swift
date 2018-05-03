@@ -13,7 +13,6 @@ protocol StreamsView: class, MVPCollectionView {
     func refreshControlBeginRefreshing()
     func refreshControlEndRefreshing()
     
-    func showStreamsDetail()
 }
 
 class StreamsViewController: UIViewController {
@@ -41,7 +40,7 @@ class StreamsViewController: UIViewController {
             
             collectionView.addSubview(control)
             
-            collectionView.contentInset.top    = margin
+            collectionView.contentInset.top = margin
             collectionView.contentInset.bottom = margin
             
             let layout = UICollectionViewFlowLayout()
@@ -63,20 +62,10 @@ class StreamsViewController: UIViewController {
         presenter?.viewDidLoad()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let destination = segue.destination as? ChatViewController {
-//            destination.presenter.channelID = 
-//        }
-    }
-    
 }
 
 extension StreamsViewController: StreamsView {
-    
-    func showStreamsDetail() {
-        performSegue(withIdentifier: "StreamsDetail", sender: nil)
-    }
-    
+        
     func refreshControlBeginRefreshing() {
         if !refreshControl.isRefreshing {
             refreshControl.beginRefreshing()
@@ -134,7 +123,7 @@ extension StreamsViewController: UICollectionViewDelegateFlowLayout {
             let height = width / 16 * 9
             return CGSize(width: width, height: height)
         case .activityIndicatorFullScreen, .errorMessageFullScreen:
-            let width  = collectionView.frame.width  - margin * 2
+            let width  = collectionView.frame.width - margin * 2
             let height = collectionView.frame.height - margin * 2
             return CGSize(width: width, height: height)
         }
