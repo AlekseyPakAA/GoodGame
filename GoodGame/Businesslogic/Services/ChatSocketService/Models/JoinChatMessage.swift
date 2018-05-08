@@ -8,29 +8,24 @@
 
 import ObjectMapper
 
-struct JoinChatSocketMessage: OutgoingMessage {
+struct JoinChatMessage: OutgoingMessage {
     
-    let type: String
-    
+    let type: String = "join"
+
     let channelID: Int
     let hidden: Bool
     
     init(map: Map) throws {
-        type = try map.value("type")
-        
-        channelID = try map.value("data.channel_id")
-        hidden    = try map.value("data.hidden")
+        channelID = try map.value("channel_id")
+        hidden    = try map.value("hidden")
     }
     
     func mapping(map: Map) {
-        type      >>> map["type"]
-        
-        channelID >>> map["data.channel_id"]
-        hidden    >>> map["data.hidden"]
+        channelID >>> map["channel_id"]
+        hidden    >>> map["hidden"]
     }
     
     init(channelID: Int) {
-        self.type = "join"
         self.channelID = channelID
         self.hidden = false
     }

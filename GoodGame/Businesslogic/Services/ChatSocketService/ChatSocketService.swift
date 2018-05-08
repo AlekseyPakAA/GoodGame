@@ -18,13 +18,12 @@ protocol ChatSocketServiceDelegate: class {
 
 class ChatSocketService {
     
-    fileprivate let url   = "ws://chat.goodgame.ru:8081/chat/websocket"
+    fileprivate let url = "ws://chat.goodgame.ru:8081/chat/websocket"
     fileprivate let socket = WebSocket()
     
     weak var deleate: ChatSocketServiceDelegate?
     
     func connect(channelID: Int) {
-        
         socket.open(url)
         
         socket.event.close = { [weak self] (code, reason, clean) in
@@ -53,21 +52,32 @@ class ChatSocketService {
                 return
             }
             
+            guard let data = json["data"] as? [String: Any] else {
+                print("There is no the key \"type\" in the json")
+                return
+            }
+            
             switch type {
             case "welcome":
-                let join = JoinChatSocketMessage(channelID: channelID)
+                let join = JoinChatMessage(channelID: channelID)
                 self.send(message: join)
             case "success_join":
                 self.deleate?.connectionOpened()
             case "message":
-                guard let message = try? MessageChatSocketMessage(JSON: json) else {
-                    print("Unable parse \(MessageChatSocketMessage.self) from json \(string))")
+                guard let message = try? MessageChatMessage(JSON: data) else {
+                    print("Unable parse \(MessageChatMessage.self) from json \(string))")
+                    return
+                }
+                self.deleate?.didRecive(message: message)
+            case "channel_history":
+                guard let message = try? ChatHistoryChatMesssage(JSON: data) else {
+                    print("Unable parse \(ChatHistoryChatMesssage.self) from json \(string))")
                     return
                 }
                 self.deleate?.didRecive(message: message)
             case "channel_counters":
-                guard let message = try? ChannelCountersChatSocketMessage(JSON: json) else {
-                    print("Unable parse \(ChannelCountersChatSocketMessage.self) from json \(string))")
+                guard let message = try? ChannelCountersChatMessage(JSON: data) else {
+                    print("Unable parse \(ChannelCountersChatMessage.self) from json \(string))")
                     return
                 }
                 self.deleate?.didRecive(message: message)
@@ -80,7 +90,9 @@ class ChatSocketService {
     }
     
     func send(message: OutgoingMessage) {
-        guard let jsonstring = message.toJSONString() else {
+        let json = message.toJSON()
+        let embededjson: [String: Any] = ["type": message.type, "data": json]
+        guard let jsonstring = Mapper<PH>.toJSONString(embededjson, prettyPrint: false) else {
             print("Unable to parse \(message) to a json string")
             return
         }

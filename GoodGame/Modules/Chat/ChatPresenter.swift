@@ -8,7 +8,14 @@
 
 import Foundation
 
-enum ChatCollectionItemTypes {
+enum ChatCollectionItemTypes: Equatable {
+    static func == (lhs: ChatCollectionItemTypes, rhs: ChatCollectionItemTypes) -> Bool {
+        switch (lhs, rhs) {
+        case (.default(let lhsmodel), .default(let rhsmodel)):
+            return lhsmodel == rhsmodel
+        }
+    }
+    
     case `default`(model: ChatMessageCellViewModel)
 }
 
@@ -44,7 +51,8 @@ class ChatPresenter {
 extension ChatPresenter: ChatSocketServiceDelegate {
     
     func connectionOpened() {
-        print(#function)
+        let message = GetChatHistoryChatMesssage(channelID: channelID)
+        service?.send(message: message)
     }
     
     func connectionClosed(code: Int, reason: String, clean: Bool) {
@@ -52,17 +60,41 @@ extension ChatPresenter: ChatSocketServiceDelegate {
     }
     
     func didRecive(message: IncomingMessage) {
-        switch message.type {
-        case .message:
-            guard let message = message as? MessageChatSocketMessage else { return }
-            
+        if let message = message as? MessageChatMessage  {
             let model = ChatMessageCellViewModel(message: message)
             items.append(.default(model: model))
             
             let indexPath = IndexPath(item: items.count - 1)
             view?.insertItems(at: [indexPath])
-        case .channelCounters:
-            break
+        } else if let message = message as? ChannelCountersChatMessage {
+            return
+        } else if let message = message as? ChatHistoryChatMesssage {
+            let models: [ChatCollectionItemTypes] = message.messages.map {
+                .default(model:ChatMessageCellViewModel(message: $0))
+            }
+            
+            let insertItemsIndexPaths: [IndexPath]  //(items.count..<items.count + models.count).map { IndexPath(item: $0) }
+            let deleteItemsIndexPaths: [IndexPath] //(items.count..<items.count + models.count).map { IndexPath(item: $0) }
+            
+            if items.isEmpty {
+                items.append(contentsOf: models)
+                insertItemsIndexPaths = (items.count..<items.count + models.count).map { IndexPath(item: $0) }
+                deleteItemsIndexPaths = []
+            } else {
+                if let startIndex = models.index(of: items[items.count - 1]) {
+                    
+                } else {
+                    
+                }
+                insertItemsIndexPaths = []
+                deleteItemsIndexPaths = []
+            }
+            items.append(contentsOf: models)
+            
+            view?.performBatchUpdates( { [weak self] in
+                self?.view?.deleteItems(at: deleteItemsIndexPaths)//(at: insertItemsIndexPaths)
+                self?.view?.insertItems(at: insertItemsIndexPaths)
+            }, completion: nil)
         }
     }
     
