@@ -18,8 +18,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73Y-5i-Q2G">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B9j-zV-cKM" customClass="NextGrowingTextView" customModule="NextGrowingTextView">
+                                        <rect key="frame" x="4" y="4" width="367" height="32"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="B9j-zV-cKM" firstAttribute="top" secondItem="73Y-5i-Q2G" secondAttribute="top" constant="4" id="5bP-dj-t1d"/>
+                                    <constraint firstAttribute="bottom" secondItem="B9j-zV-cKM" secondAttribute="bottom" constant="4" id="9dN-LW-EZc"/>
+                                    <constraint firstAttribute="trailing" secondItem="B9j-zV-cKM" secondAttribute="trailing" constant="4" id="Sx8-45-B4M"/>
+                                    <constraint firstAttribute="height" constant="40" id="abu-B1-axq"/>
+                                    <constraint firstItem="B9j-zV-cKM" firstAttribute="leading" secondItem="73Y-5i-Q2G" secondAttribute="leading" constant="4" id="xWo-te-PSx"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CtN-1d-dhB">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="Dg7-VU-rJ6">
                                     <size key="itemSize" width="50" height="50"/>
@@ -32,7 +49,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="73Y-5i-Q2G" firstAttribute="trailing" secondItem="a8Z-6i-abg" secondAttribute="trailing" id="20p-BF-XlY"/>
                             <constraint firstItem="CtN-1d-dhB" firstAttribute="leading" secondItem="a8Z-6i-abg" secondAttribute="leading" id="BVR-Zo-3o2"/>
+                            <constraint firstItem="a8Z-6i-abg" firstAttribute="bottom" secondItem="73Y-5i-Q2G" secondAttribute="bottom" id="FCX-Un-bUk"/>
+                            <constraint firstItem="73Y-5i-Q2G" firstAttribute="leading" secondItem="a8Z-6i-abg" secondAttribute="leading" id="Oav-UD-LcG"/>
                             <constraint firstItem="CtN-1d-dhB" firstAttribute="top" secondItem="a8Z-6i-abg" secondAttribute="top" id="Whl-kv-FQU"/>
                             <constraint firstItem="a8Z-6i-abg" firstAttribute="bottom" secondItem="CtN-1d-dhB" secondAttribute="bottom" id="cpX-J6-XWK"/>
                             <constraint firstItem="a8Z-6i-abg" firstAttribute="trailing" secondItem="CtN-1d-dhB" secondAttribute="trailing" id="plZ-qm-UFq"/>
@@ -42,14 +62,14 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="384-va-2eM"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="CtN-1d-dhB" id="uhS-eI-DYd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gi7-PE-nva" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="154" y="113"/>
+            <point key="canvasLocation" x="152.80000000000001" y="112.89355322338831"/>
         </scene>
     </scenes>
 </document>
