@@ -46,6 +46,9 @@ class ChatPresenter {
         service?.disconnect()
     }
     
+    func updateChatCounters(message: ChannelCountersChatMessage) {
+        
+    }
 }
 
 extension ChatPresenter: ChatSocketServiceDelegate {
@@ -67,32 +70,55 @@ extension ChatPresenter: ChatSocketServiceDelegate {
             let indexPath = IndexPath(item: items.count - 1)
             view?.insertItems(at: [indexPath])
         } else if let message = message as? ChannelCountersChatMessage {
-            return
+            updateChatCounters(message: message)
         } else if let message = message as? ChatHistoryChatMesssage {
-            let models: [ChatCollectionItemTypes] = message.messages.map {
+            var models: [ChatCollectionItemTypes] = message.messages.map {
                 .default(model:ChatMessageCellViewModel(message: $0))
             }
             
-            let insertItemsIndexPaths: [IndexPath]  //(items.count..<items.count + models.count).map { IndexPath(item: $0) }
-            let deleteItemsIndexPaths: [IndexPath] //(items.count..<items.count + models.count).map { IndexPath(item: $0) }
+            let insertItemsIndexPaths: [IndexPath]
+            let deleteItemsIndexPaths: [IndexPath]
             
             if items.isEmpty {
-                items.append(contentsOf: models)
-                insertItemsIndexPaths = (items.count..<items.count + models.count).map { IndexPath(item: $0) }
-                deleteItemsIndexPaths = []
-            } else {
-                if let startIndex = models.index(of: items[items.count - 1]) {
-                    
-                } else {
-                    
+                print("Chat was empty, will be added new items.")
+                
+                insertItemsIndexPaths = (items.count..<items.count + models.count).map {
+                    IndexPath(item: $0)
                 }
-                insertItemsIndexPaths = []
                 deleteItemsIndexPaths = []
+                items.append(contentsOf: models)
+            } else {
+                if items[items.count - 1] == models[models.count - 1] {
+                    print("The last item of chat equals the last item of new items, nothing has been changed.")
+
+                    insertItemsIndexPaths = []
+                    deleteItemsIndexPaths = []
+                } else if let startIndex = models.index(of: items[items.count - 1]) {
+                    print("Chat was non empty, but new items contain the last item of chat and they are can be merged.")
+
+                    models.removeSubrange((0...startIndex))
+                    insertItemsIndexPaths = (items.count..<items.count + models.count).map {
+                        IndexPath(item: $0)
+                    }
+                    deleteItemsIndexPaths = []
+                    items.append(contentsOf: models)
+                } else {
+                    print("Chat was non empty, and new items don't contain the last item of chat, chat will be cleaned then will be added new items.")
+
+                    deleteItemsIndexPaths = (0..<items.count).map {
+                        IndexPath(item: $0)
+                    }
+                    items.removeAll()
+                    
+                    insertItemsIndexPaths = (items.count..<items.count + models.count).map {
+                        IndexPath(item: $0)
+                    }
+                    items.append(contentsOf: models)
+                }
             }
-            items.append(contentsOf: models)
             
             view?.performBatchUpdates( { [weak self] in
-                self?.view?.deleteItems(at: deleteItemsIndexPaths)//(at: insertItemsIndexPaths)
+                self?.view?.deleteItems(at: deleteItemsIndexPaths)
                 self?.view?.insertItems(at: insertItemsIndexPaths)
             }, completion: nil)
         }

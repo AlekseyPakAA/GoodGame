@@ -27,6 +27,9 @@ class ChatViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .UIApplicationWillResignActive, object: nil)
 
@@ -41,6 +44,27 @@ class ChatViewController: UIViewController {
         presenter?.applicationWillResignActive()
     }
     
+    @objc func keyboardWillShow(notification: Notification) {
+        guard let frame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
+            return
+        }
+        
+        guard let duartion = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? CGRect else {
+            return
+        }
+        
+        
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        guard let frame = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? CGRect else {
+            return
+        }
+        
+        guard let duartion = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? CGRect else {
+            return
+        }
+    }
 }
 
 extension ChatViewController: ChatView {
@@ -54,7 +78,9 @@ extension ChatViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let item = presenter?.itemForCell(at: indexPath) else { return UICollectionViewCell() }
+        guard let item = presenter?.itemForCell(at: indexPath) else {
+            return UICollectionViewCell()
+        }
 
         switch item {
         case .default(let model):
