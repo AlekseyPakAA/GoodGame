@@ -3,24 +3,21 @@ PODS:
   - AlamofireObjectMapper (5.0.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
-  - NextGrowingTextView (1.2.2)
   - ObjectMapper (3.1.0)
   - SwiftWebSocket (2.7.0)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
-  - NextGrowingTextView
   - ObjectMapper
   - SwiftWebSocket
 
 SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
-  NextGrowingTextView: 78c8b96f7ac6dc845f5babb27dcf7c18dd3210ec
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
 
-PODFILE CHECKSUM: a890278a6d7ce33cd52d4e777fef19f7e1d4742b
+PODFILE CHECKSUM: bf12a6959a1f65f64a0f2b1ae0899cb407aa530d
 
 COCOAPODS: 1.4.0

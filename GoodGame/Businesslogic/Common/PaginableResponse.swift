@@ -23,7 +23,7 @@ struct PaginableResponse<T: ImmutableMappable>: ImmutableMappable {
     
     let datatransform = TransformOf<[T], [String: Any]>(fromJSON: { (value: [String: Any]?) -> [T]? in
         if let array = value?.first?.value as? [[String : Any]] {
-            return array.flatMap { return T(JSON: $0) }
+            return array.compactMap { return T(JSON: $0) }
         } else {
             return []
         }

@@ -21,6 +21,7 @@
 		7445E56F2099F51100647A96 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7445E56E2099F51100647A96 /* UIViewController.swift */; };
 		7445E573209B8C0800647A96 /* GetChatHistoryChatMesssage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7445E572209B8C0800647A96 /* GetChatHistoryChatMesssage.swift */; };
 		7445E575209B8E2C00647A96 /* ChatHistoryChatMesssage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7445E574209B8E2C00647A96 /* ChatHistoryChatMesssage.swift */; };
+		745A691420A36B7F00C52F3A /* GrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745A691320A36B7F00C52F3A /* GrowingTextView.swift */; };
 		746B91032057225A00A2A26F /* MVPCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746B91022057225A00A2A26F /* MVPCollectionView.swift */; };
 		74857A83206AD2830078746D /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74857A82206AD2830078746D /* ChatMessage.swift */; };
 		74857A85206AD7600078746D /* JoinChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74857A84206AD7600078746D /* JoinChatMessage.swift */; };
@@ -68,6 +69,8 @@
 		7445E56E2099F51100647A96 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		7445E572209B8C0800647A96 /* GetChatHistoryChatMesssage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChatHistoryChatMesssage.swift; sourceTree = "<group>"; };
 		7445E574209B8E2C00647A96 /* ChatHistoryChatMesssage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryChatMesssage.swift; sourceTree = "<group>"; };
+		745A691320A36B7F00C52F3A /* GrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingTextView.swift; sourceTree = "<group>"; };
+		745A691520A38A4100C52F3A /* Objective-CBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Objective-CBridgingHeader.h"; sourceTree = "<group>"; };
 		746B91022057225A00A2A26F /* MVPCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPCollectionView.swift; sourceTree = "<group>"; };
 		74857A82206AD2830078746D /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		74857A84206AD7600078746D /* JoinChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinChatMessage.swift; sourceTree = "<group>"; };
@@ -147,6 +150,23 @@
 				741097E32061A426004A4EF0 /* StreamsErrorCell.xib */,
 			);
 			path = StreamsErrorCell;
+			sourceTree = "<group>";
+		};
+		745A691220A36AC800C52F3A /* GrowingTextView */ = {
+			isa = PBXGroup;
+			children = (
+				745A691320A36B7F00C52F3A /* GrowingTextView.swift */,
+			);
+			name = GrowingTextView;
+			path = MessageInputView;
+			sourceTree = "<group>";
+		};
+		745A691620A38A4700C52F3A /* Objective-C */ = {
+			isa = PBXGroup;
+			children = (
+				745A691520A38A4100C52F3A /* Objective-CBridgingHeader.h */,
+			);
+			path = "Objective-C";
 			sourceTree = "<group>";
 		};
 		746B91012057220D00A2A26F /* MVPProtocols */ = {
@@ -251,6 +271,7 @@
 		749C85CA2051C15A00387832 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				745A691620A38A4700C52F3A /* Objective-C */,
 				746B91012057220D00A2A26F /* MVPProtocols */,
 				74A7A97B2054528B00FA06BE /* Alamofire */,
 				74E14157206D6FFB0032A69A /* ObjectMapper */,
@@ -369,6 +390,7 @@
 		74E14161206D80350032A69A /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				745A691220A36AC800C52F3A /* GrowingTextView */,
 				74C1E22D20713D7B00DF2611 /* ChatMessageCell */,
 			);
 			path = Subviews;
@@ -477,7 +499,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-GoodGame/Pods-GoodGame-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/NextGrowingTextView/NextGrowingTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftWebSocket/SwiftWebSocket.framework",
 			);
@@ -485,7 +506,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NextGrowingTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftWebSocket.framework",
 			);
@@ -567,6 +587,7 @@
 				7417ECAB2072C0AC003734F0 /* ChatMessageCellViewModel.swift in Sources */,
 				7445E56B2099E47600647A96 /* StreamsRouter.swift in Sources */,
 				74E14159206D70280032A69A /* IntegerTransform.swift in Sources */,
+				745A691420A36B7F00C52F3A /* GrowingTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,12 +706,15 @@
 			baseConfigurationReference = A67EE64D92EE42166DD94648 /* Pods-GoodGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J74552PZ47;
+				DEVELOPMENT_TEAM = Q5BTGEHWS4;
 				INFOPLIST_FILE = GoodGame/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = alexey.pak.GoodGame;
+				PRODUCT_BUNDLE_IDENTIFIER = alexey.pak.GoodGamee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/GoodGame/Common/Objective-C/Objective-CBridgingHeader.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -701,12 +725,15 @@
 			baseConfigurationReference = 8A166B63B3B0A00ECF3F57DE /* Pods-GoodGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J74552PZ47;
+				DEVELOPMENT_TEAM = Q5BTGEHWS4;
 				INFOPLIST_FILE = GoodGame/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = alexey.pak.GoodGame;
+				PRODUCT_BUNDLE_IDENTIFIER = alexey.pak.GoodGamee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/GoodGame/Common/Objective-C/Objective-CBridgingHeader.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

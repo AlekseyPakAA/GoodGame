@@ -11,6 +11,5 @@ target 'GoodGame' do
   pod 'AlamofireObjectMapper'
   
   pod 'SwiftWebSocket'
-  pod 'NextGrowingTextView'
 
 end

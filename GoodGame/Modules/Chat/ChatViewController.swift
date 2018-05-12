@@ -9,37 +9,59 @@
 import UIKit
 
 protocol ChatView: class, MVPCollectionView {
-    
+
 }
 
 class ChatViewController: UIViewController {
-
-    var presenter: ChatPresenter?
     
+    var presenter: ChatPresenter?
+
+    fileprivate var collectionViewOrgignalIndicatorInsets: UIEdgeInsets!
+    fileprivate var collectionViewOrgignalInsets: UIEdgeInsets!
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.dataSource = self
             collectionView.delegate = self
             
+            collectionViewOrgignalInsets = collectionView.contentInset
+            collectionViewOrgignalIndicatorInsets = collectionView.scrollIndicatorInsets
+            
             let nib = UINib(nibName: ChatMessageCell.reuseIdentifier, bundle: nil)
             collectionView.register(nib, forCellWithReuseIdentifier: ChatMessageCell.reuseIdentifier)
         }
     }
+    @IBOutlet fileprivate weak var messageInputViewBottomConstarint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var messageInputView: UIView! {
+        didSet {
+//            messageInputView.growingTextView.maxNumberOfLines = 3
+//            messageInputView.growingTextView.minNumberOfLines = 1
+            
+//            messageInputView.growingTextView.autocorrectionType = .no
+////
+//            messageInputView.growingTextView.showsVerticalScrollIndicator = false
+        }
+    }
     
     override func viewDidLoad() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+        print(#function)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .UIApplicationWillResignActive, object: nil)
-
+        
         presenter?.viewDidLoad()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.additionalSafeAreaInsets.bottom = messageInputView.frame.height
     }
     
     @objc func applicationDidBecomeActive() {
         presenter?.applicationDidBecomeActive()
     }
-
+    
     @objc func applicationWillResignActive() {
         presenter?.applicationWillResignActive()
     }
@@ -49,11 +71,22 @@ class ChatViewController: UIViewController {
             return
         }
         
-        guard let duartion = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? CGRect else {
+        guard let duartion = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double else {
             return
         }
         
+        collectionView.contentInset.bottom = collectionViewOrgignalInsets.bottom + frame.height
+        collectionView.scrollIndicatorInsets.bottom = collectionViewOrgignalIndicatorInsets.bottom + frame.height
+        collectionView.contentOffset = {
+            let x = collectionView.contentOffset.x
+            let y = collectionView.contentOffset.y + frame.height
+            return CGPoint(x: x, y: y)
+        }()
         
+        messageInputViewBottomConstarint.constant = frame.height
+        UIView.animate(withDuration: duartion, animations: { [weak self] in
+            self?.view.layoutIfNeeded()
+        })
     }
     
     @objc func keyboardWillHide(notification: Notification) {
@@ -61,8 +94,27 @@ class ChatViewController: UIViewController {
             return
         }
         
-        guard let duartion = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? CGRect else {
+        guard let duartion = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double else {
             return
+        }
+        
+        collectionView.contentInset.bottom = collectionViewOrgignalInsets.bottom
+        collectionView.scrollIndicatorInsets.bottom = collectionViewOrgignalIndicatorInsets.bottom
+        collectionView.contentOffset = {
+            let x = collectionView.contentOffset.x
+            let y = collectionView.contentOffset.y - frame.height
+            return CGPoint(x: x, y: y)
+        }()
+
+        messageInputViewBottomConstarint.constant = 0
+        UIView.animate(withDuration: duartion, animations: {[weak self] in
+            self?.view.layoutIfNeeded()
+        })
+    }
+    
+    @IBAction func didTouchScrollView(_ sender: Any) {
+        if messageInputView.isFirstResponder {
+            _ = messageInputView.resignFirstResponder()
         }
     }
 }
@@ -100,6 +152,7 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout {
             let height: CGFloat = 60.0
             return CGSize(width: width, height: height)
         }()
+        
         return size
     }
     
