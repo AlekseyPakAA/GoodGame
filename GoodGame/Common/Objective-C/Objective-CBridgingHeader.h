@@ -12,5 +12,3 @@
 
 #endif /* Objective_CBridgingHeader_h */
 
-//#import "HPGrowingTextView.h"
-#import <HPGrowingTextView/HPGrowingTextView.h>
