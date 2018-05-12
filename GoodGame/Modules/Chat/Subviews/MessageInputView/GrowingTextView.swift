@@ -60,6 +60,19 @@ class GrowingTextView: UIView {
         heightConstraint = heightAnchor.constraint(equalToConstant: maxHeight)
     }
     
+    override var isFirstResponder: Bool {
+        get {
+            return innerTextView.isFirstResponder
+        }
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        return innerTextView.resignFirstResponder()
+    }
+    
+    override func becomeFirstResponder() -> Bool {
+        return innerTextView.becomeFirstResponder()
+    }
 }
 
 extension GrowingTextView: InnerTextViewDelegate {

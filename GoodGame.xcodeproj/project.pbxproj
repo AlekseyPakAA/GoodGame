@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7409D74420A74A9E00C2F70C /* OutgoingMessageChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */; };
+		7409D74620A75EE900C2F70C /* AuthChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7409D74520A75EE900C2F70C /* AuthChatMessage.swift */; };
 		741097D720605B6B004A4EF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */; };
 		741097DA20619068004A4EF0 /* StreamsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741097D920619068004A4EF0 /* StreamsCellViewModel.swift */; };
 		741097DD206195BF004A4EF0 /* StreamsPreloaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741097DC206195BF004A4EF0 /* StreamsPreloaderCell.swift */; };
@@ -25,7 +27,7 @@
 		746B91032057225A00A2A26F /* MVPCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746B91022057225A00A2A26F /* MVPCollectionView.swift */; };
 		74857A83206AD2830078746D /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74857A82206AD2830078746D /* ChatMessage.swift */; };
 		74857A85206AD7600078746D /* JoinChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74857A84206AD7600078746D /* JoinChatMessage.swift */; };
-		749BCCBB206C2CBA008189B8 /* MessageChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749BCCBA206C2CBA008189B8 /* MessageChatMessage.swift */; };
+		749BCCBB206C2CBA008189B8 /* IncomingMessageChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749BCCBA206C2CBA008189B8 /* IncomingMessageChatMessage.swift */; };
 		749BCCBD206C319B008189B8 /* ChannelCountersChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749BCCBC206C319B008189B8 /* ChannelCountersChatMessage.swift */; };
 		749C85B12051B9AA00387832 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C85B02051B9AA00387832 /* AppDelegate.swift */; };
 		749C85B82051B9AA00387832 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 749C85B72051B9AA00387832 /* Assets.xcassets */; };
@@ -55,6 +57,8 @@
 
 /* Begin PBXFileReference section */
 		2E5BD78CBC920B67DCC385F3 /* Pods_GoodGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageChatMessage.swift; sourceTree = "<group>"; };
+		7409D74520A75EE900C2F70C /* AuthChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthChatMessage.swift; sourceTree = "<group>"; };
 		741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		741097D920619068004A4EF0 /* StreamsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamsCellViewModel.swift; sourceTree = "<group>"; };
 		741097DC206195BF004A4EF0 /* StreamsPreloaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamsPreloaderCell.swift; sourceTree = "<group>"; };
@@ -74,7 +78,7 @@
 		746B91022057225A00A2A26F /* MVPCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPCollectionView.swift; sourceTree = "<group>"; };
 		74857A82206AD2830078746D /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		74857A84206AD7600078746D /* JoinChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinChatMessage.swift; sourceTree = "<group>"; };
-		749BCCBA206C2CBA008189B8 /* MessageChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageChatMessage.swift; sourceTree = "<group>"; };
+		749BCCBA206C2CBA008189B8 /* IncomingMessageChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessageChatMessage.swift; sourceTree = "<group>"; };
 		749BCCBC206C319B008189B8 /* ChannelCountersChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCountersChatMessage.swift; sourceTree = "<group>"; };
 		749C85AD2051B9AA00387832 /* GoodGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		749C85B02051B9AA00387832 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -192,10 +196,12 @@
 			children = (
 				74857A82206AD2830078746D /* ChatMessage.swift */,
 				74857A84206AD7600078746D /* JoinChatMessage.swift */,
-				749BCCBA206C2CBA008189B8 /* MessageChatMessage.swift */,
+				749BCCBA206C2CBA008189B8 /* IncomingMessageChatMessage.swift */,
 				749BCCBC206C319B008189B8 /* ChannelCountersChatMessage.swift */,
 				7445E572209B8C0800647A96 /* GetChatHistoryChatMesssage.swift */,
 				7445E574209B8E2C00647A96 /* ChatHistoryChatMesssage.swift */,
+				7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */,
+				7409D74520A75EE900C2F70C /* AuthChatMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -555,7 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				741097E62062F686004A4EF0 /* ChatSocketService.swift in Sources */,
-				749BCCBB206C2CBA008189B8 /* MessageChatMessage.swift in Sources */,
+				749BCCBB206C2CBA008189B8 /* IncomingMessageChatMessage.swift in Sources */,
 				74F7114520586E2200BCF893 /* PaginableResponse.swift in Sources */,
 				74F7114220586DDD00BCF893 /* Stream.swift in Sources */,
 				741097DD206195BF004A4EF0 /* StreamsPreloaderCell.swift in Sources */,
@@ -568,6 +574,7 @@
 				74A7A96D2054436C00FA06BE /* StreamsPresenter.swift in Sources */,
 				7445E573209B8C0800647A96 /* GetChatHistoryChatMesssage.swift in Sources */,
 				74857A85206AD7600078746D /* JoinChatMessage.swift in Sources */,
+				7409D74420A74A9E00C2F70C /* OutgoingMessageChatMessage.swift in Sources */,
 				7445E56F2099F51100647A96 /* UIViewController.swift in Sources */,
 				7445E575209B8E2C00647A96 /* ChatHistoryChatMesssage.swift in Sources */,
 				74A9EA20205C56BA007D945C /* MVPCollectionViewDataSource.swift in Sources */,
@@ -576,6 +583,7 @@
 				746B91032057225A00A2A26F /* MVPCollectionView.swift in Sources */,
 				74857A83206AD2830078746D /* ChatMessage.swift in Sources */,
 				74C1E23120713E0900DF2611 /* ChatMessageCell.swift in Sources */,
+				7409D74620A75EE900C2F70C /* AuthChatMessage.swift in Sources */,
 				749BCCBD206C319B008189B8 /* ChannelCountersChatMessage.swift in Sources */,
 				74E14160206D7E500032A69A /* ChatPresenter.swift in Sources */,
 				7445E5692099E38600647A96 /* ChatAssembly.swift in Sources */,

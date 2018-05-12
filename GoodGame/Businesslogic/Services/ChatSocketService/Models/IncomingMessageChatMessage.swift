@@ -8,7 +8,7 @@
 
 import ObjectMapper
 
-struct MessageChatMessage: IncomingMessage, Equatable {
+struct IncomingMessageChatMessage: IncomingMessage, Equatable {
     
     let id: Int
     let text: String
@@ -44,7 +44,7 @@ struct MessageChatMessage: IncomingMessage, Equatable {
         color >>> map["message_color"]
     }
     
-    static func == (lhs: MessageChatMessage, rhs: MessageChatMessage) -> Bool {
+    static func == (lhs: IncomingMessageChatMessage, rhs: IncomingMessageChatMessage) -> Bool {
         return lhs.id == rhs.id
     }
     

@@ -11,7 +11,7 @@ import ObjectMapper
 struct ChatHistoryChatMesssage: IncomingMessage {
     
     let channelID: Int
-    let messages: [MessageChatMessage]
+    let messages: [IncomingMessageChatMessage]
     
     init(map: Map) throws {
         channelID = try map.value("channel_id")

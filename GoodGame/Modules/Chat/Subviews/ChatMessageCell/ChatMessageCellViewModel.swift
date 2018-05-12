@@ -16,7 +16,7 @@ struct ChatMessageCellViewModel: Equatable {
         title = string
     }
     
-    init(message: MessageChatMessage) {
+    init(message: IncomingMessageChatMessage) {
         id = message.id
         title = message.text
     }

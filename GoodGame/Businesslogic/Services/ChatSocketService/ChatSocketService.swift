@@ -64,8 +64,8 @@ class ChatSocketService {
             case "success_join":
                 self.deleate?.connectionOpened()
             case "message":
-                guard let message = try? MessageChatMessage(JSON: data) else {
-                    print("Unable parse \(MessageChatMessage.self) from json \(string))")
+                guard let message = try? IncomingMessageChatMessage(JSON: data) else {
+                    print("Unable parse \(IncomingMessageChatMessage.self) from json \(string))")
                     return
                 }
                 self.deleate?.didRecive(message: message)
@@ -96,6 +96,8 @@ class ChatSocketService {
             print("Unable to parse \(message) to a json string")
             return
         }
+        
+        print(jsonstring)
         
         socket.send(text: jsonstring)
     }

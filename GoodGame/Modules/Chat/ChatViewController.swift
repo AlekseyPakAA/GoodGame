@@ -31,16 +31,8 @@ class ChatViewController: UIViewController {
         }
     }
     @IBOutlet fileprivate weak var messageInputViewBottomConstarint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var messageInputView: UIView! {
-        didSet {
-//            messageInputView.growingTextView.maxNumberOfLines = 3
-//            messageInputView.growingTextView.minNumberOfLines = 1
-            
-//            messageInputView.growingTextView.autocorrectionType = .no
-////
-//            messageInputView.growingTextView.showsVerticalScrollIndicator = false
-        }
-    }
+    @IBOutlet fileprivate weak var messageInputViewContainer: UIView!
+    @IBOutlet fileprivate weak var messageInputView: GrowingTextView!
     
     override func viewDidLoad() {
         print(#function)
@@ -55,7 +47,7 @@ class ChatViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        self.additionalSafeAreaInsets.bottom = messageInputView.frame.height
+        self.additionalSafeAreaInsets.bottom = messageInputViewContainer.frame.height
     }
     
     @objc func applicationDidBecomeActive() {
@@ -117,6 +109,11 @@ class ChatViewController: UIViewController {
             _ = messageInputView.resignFirstResponder()
         }
     }
+    
+    @IBAction func didTouchSendButton(_ sender: Any) {
+        presenter?.didTouchSendButton()
+    }
+    
 }
 
 extension ChatViewController: ChatView {

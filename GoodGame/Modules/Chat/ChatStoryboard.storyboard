@@ -44,6 +44,9 @@
                                             <constraint firstAttribute="width" constant="36" id="hfP-WG-Dj9"/>
                                         </constraints>
                                         <state key="normal" title="S"/>
+                                        <connections>
+                                            <action selector="didTouchSendButton:" destination="5Xo-iX-hwF" eventType="touchUpInside" id="tMp-9F-gJJ"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOR-wU-O8y" customClass="GrowingTextView" customModule="GoodGame" customModuleProvider="target">
                                         <rect key="frame" x="4" y="4" width="327" height="36"/>
@@ -81,8 +84,9 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="CtN-1d-dhB" id="uhS-eI-DYd"/>
-                        <outlet property="messageInputView" destination="73Y-5i-Q2G" id="ZN2-3t-iyf"/>
+                        <outlet property="messageInputView" destination="XOR-wU-O8y" id="7Ij-oU-AcX"/>
                         <outlet property="messageInputViewBottomConstarint" destination="FCX-Un-bUk" id="cYr-2w-uRV"/>
+                        <outlet property="messageInputViewContainer" destination="73Y-5i-Q2G" id="ZN2-3t-iyf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gi7-PE-nva" userLabel="First Responder" sceneMemberID="firstResponder"/>

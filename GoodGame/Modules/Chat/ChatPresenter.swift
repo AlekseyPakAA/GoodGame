@@ -49,6 +49,12 @@ class ChatPresenter {
     func updateChatCounters(message: ChannelCountersChatMessage) {
         
     }
+    
+    func didTouchSendButton() {
+        let message = OutgoingMessageChatMessage(channelID: channelID, text: "Lorem ipsum dolor sit amet.")
+        service?.send(message: message)
+    }
+    
 }
 
 extension ChatPresenter: ChatSocketServiceDelegate {
@@ -63,7 +69,7 @@ extension ChatPresenter: ChatSocketServiceDelegate {
     }
     
     func didRecive(message: IncomingMessage) {
-        if let message = message as? MessageChatMessage  {
+        if let message = message as? IncomingMessageChatMessage  {
             let model = ChatMessageCellViewModel(message: message)
             items.append(.default(model: model))
             
