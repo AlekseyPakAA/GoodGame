@@ -17,6 +17,9 @@ protocol MVPCollectionView {
     func reloadItems(at indexPaths: [IndexPath])
     func performBatchUpdates(_ updates: (()->Void)?, completion: ((Bool)->Void)?)
     
+    func scrollToItem(at indexPath: IndexPath, at position: UICollectionViewScrollPosition, animated: Bool)
+    func scrollToTop(animated: Bool)
+    func scrollToBottom(animated: Bool)
 }
 
 extension MVPCollectionView {
@@ -36,5 +39,18 @@ extension MVPCollectionView {
     func performBatchUpdates(_ updates: (()->Void)?, completion: ((Bool)->Void)?) {
         collectionView.performBatchUpdates(updates, completion: completion)
     }
-	
+    
+    func scrollToItem(at indexPath: IndexPath, at position: UICollectionViewScrollPosition, animated: Bool) {
+        collectionView.scrollToItem(at: indexPath, at: position, animated: animated)
+    }
+    
+    func scrollToTop(animated: Bool) {
+        let offset = CGPoint(x: collectionView.contentOffset.x, y: 0)
+        collectionView.setContentOffset(offset, animated: animated)
+    }
+    
+    func scrollToBottom(animated: Bool) {
+        let offset = CGPoint(x: collectionView.contentOffset.x, y:collectionView.contentSize.height - collectionView.bounds.size.height)
+        collectionView.setContentOffset(offset, animated: animated)
+    }
 }

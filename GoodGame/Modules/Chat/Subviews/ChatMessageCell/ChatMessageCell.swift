@@ -12,6 +12,10 @@ class ChatMessageCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     
+    override func awakeFromNib() {
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     func configure(model: ChatMessageCellViewModel) {
         titleLabel.text = model.title
     }

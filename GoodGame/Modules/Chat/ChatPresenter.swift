@@ -27,6 +27,8 @@ class ChatPresenter {
     fileprivate var service: ChatSocketService?
     fileprivate var channelID: Int
     
+    fileprivate var isVisibleLastCell: Bool = false
+    
     init(channelID: Int) {
         self.channelID = channelID
         
@@ -55,6 +57,18 @@ class ChatPresenter {
         service?.send(message: message)
     }
     
+    func willDisplayCell(at indexPath: IndexPath) {
+        if indexPath.row == items.count - 1 {
+            isVisibleLastCell = true
+        }
+    }
+    
+    func didEndDisplayCell(at indexPath: IndexPath) {
+        if indexPath.row == items.count - 1 {
+            isVisibleLastCell = false
+        }
+    }
+    
 }
 
 extension ChatPresenter: ChatSocketServiceDelegate {
@@ -74,7 +88,16 @@ extension ChatPresenter: ChatSocketServiceDelegate {
             items.append(.default(model: model))
             
             let indexPath = IndexPath(item: items.count - 1)
-            view?.insertItems(at: [indexPath])
+            let isVisibleLastCell = self.isVisibleLastCell
+            
+            view?.performBatchUpdates( { [weak self] in
+                self?.view?.insertItems(at: [indexPath])
+            }, completion: { [weak self] _ in
+                guard let `self` = self else { return }
+                if isVisibleLastCell {
+                    self.view?.scrollToBottom(animated: true) 
+                }
+            })
         } else if let message = message as? ChannelCountersChatMessage {
             updateChatCounters(message: message)
         } else if let message = message as? ChatHistoryChatMesssage {
@@ -126,7 +149,10 @@ extension ChatPresenter: ChatSocketServiceDelegate {
             view?.performBatchUpdates( { [weak self] in
                 self?.view?.deleteItems(at: deleteItemsIndexPaths)
                 self?.view?.insertItems(at: insertItemsIndexPaths)
-            }, completion: nil)
+            }, completion: { [weak self] _ in
+                guard let `self` = self else { return }
+                self.view?.scrollToBottom(animated: true)
+            })
         }
     }
     
