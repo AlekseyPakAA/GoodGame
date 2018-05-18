@@ -132,7 +132,7 @@ extension ChatPresenter: ChatSocketServiceDelegate {
     
 }
 
-extension ChatPresenter: MVPCollectionViewDataSource {
+extension ChatPresenter: MVPCollectionDataSource {
     
     typealias ViewModelType = ChatCollectionItemTypes
     

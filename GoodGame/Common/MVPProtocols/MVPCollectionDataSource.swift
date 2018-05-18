@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol MVPCollectionViewDataSource {
+protocol MVPCollectionDataSource {
     
     associatedtype ViewModelType
     
@@ -17,6 +17,6 @@ protocol MVPCollectionViewDataSource {
     
 }
 
-extension MVPCollectionViewDataSource {
+extension MVPCollectionDataSource {
 
 }

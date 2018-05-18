@@ -218,7 +218,7 @@ fileprivate extension StreamsPresenter {
     
 }
 
-extension StreamsPresenter: MVPCollectionViewDataSource {
+extension StreamsPresenter: MVPCollectionDataSource {
  
     typealias ViewModelType = StreamsCollectionItemTypes
     
