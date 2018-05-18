@@ -20,7 +20,7 @@ protocol MVPAsyncTableView {
 
 }
 
-extension MVPTableView {
+extension MVPAsyncTableView {
 
 	func insertItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
 		tableView.insertRows(at: indexPaths, with: animation)
