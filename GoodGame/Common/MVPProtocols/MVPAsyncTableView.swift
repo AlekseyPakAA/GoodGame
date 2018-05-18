@@ -21,6 +21,7 @@ protocol MVPAsyncTableView {
 }
 
 extension MVPTableView {
+
 	func insertItems(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
 		tableView.insertRows(at: indexPaths, with: animation)
 	}
@@ -36,5 +37,6 @@ extension MVPTableView {
 	func performBatchUpdates(_ updates: (()->Void)?, completion: ((Bool)->Void)?) {
 		tableView.performBatchUpdates(updates, completion: completion)
 	}
+	
 }
 

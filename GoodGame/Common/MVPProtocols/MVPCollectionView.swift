@@ -20,6 +20,7 @@ protocol MVPCollectionView {
 }
 
 extension MVPCollectionView {
+
     func insertItems(at indexPaths: [IndexPath]) {
         collectionView.insertItems(at: indexPaths)
     }
@@ -35,4 +36,5 @@ extension MVPCollectionView {
     func performBatchUpdates(_ updates: (()->Void)?, completion: ((Bool)->Void)?) {
         collectionView.performBatchUpdates(updates, completion: completion)
     }
+	
 }
