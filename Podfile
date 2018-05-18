@@ -12,4 +12,6 @@ target 'GoodGame' do
   
   pod 'SwiftWebSocket'
 
+  pod 'Texture'
+
 end
