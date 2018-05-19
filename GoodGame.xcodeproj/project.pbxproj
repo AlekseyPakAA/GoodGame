@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		431AD75720AF1F8200B1F856 /* MVPAsyncTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431AD75620AF1F8200B1F856 /* MVPAsyncTableView.swift */; };
+		431AD75720AF1F8200B1F856 /* MVPTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431AD75620AF1F8200B1F856 /* MVPTableNode.swift */; };
 		7409D74420A74A9E00C2F70C /* OutgoingMessageChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */; };
 		7409D74620A75EE900C2F70C /* AuthChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7409D74520A75EE900C2F70C /* AuthChatMessage.swift */; };
 		741097D720605B6B004A4EF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */; };
@@ -34,6 +34,8 @@
 		749C85B82051B9AA00387832 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 749C85B72051B9AA00387832 /* Assets.xcassets */; };
 		749C85CF2051C6CA00387832 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 749C85CE2051C6CA00387832 /* Main.storyboard */; };
 		749C85D22051C83A00387832 /* StreamsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 749C85D12051C83A00387832 /* StreamsStoryboard.storyboard */; };
+		74A60AF420B0BBA20011130B /* ChatInputControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A60AF320B0BBA20011130B /* ChatInputControl.swift */; };
+		74A60AF620B0BBB10011130B /* ChatInputControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74A60AF520B0BBB10011130B /* ChatInputControl.xib */; };
 		74A7A96D2054436C00FA06BE /* StreamsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7A96C2054436C00FA06BE /* StreamsPresenter.swift */; };
 		74A7A97120544BFB00FA06BE /* StreamsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7A97020544BFB00FA06BE /* StreamsCell.swift */; };
 		74A7A97320544C0700FA06BE /* StreamsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74A7A97220544C0700FA06BE /* StreamsCell.xib */; };
@@ -48,7 +50,6 @@
 		74C1E23120713E0900DF2611 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C1E23020713E0900DF2611 /* ChatMessageCell.swift */; };
 		74CE8033205AFC25007A1A48 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CE8032205AFC25007A1A48 /* Channel.swift */; };
 		74E14159206D70280032A69A /* IntegerTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E14158206D70280032A69A /* IntegerTransform.swift */; };
-		74E1415C206D7E1C0032A69A /* ChatStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74E1415B206D7E1C0032A69A /* ChatStoryboard.storyboard */; };
 		74E1415E206D7E310032A69A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E1415D206D7E310032A69A /* ChatViewController.swift */; };
 		74E14160206D7E500032A69A /* ChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E1415F206D7E500032A69A /* ChatPresenter.swift */; };
 		74F7114220586DDD00BCF893 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7114120586DDD00BCF893 /* Stream.swift */; };
@@ -58,7 +59,7 @@
 
 /* Begin PBXFileReference section */
 		2E5BD78CBC920B67DCC385F3 /* Pods_GoodGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		431AD75620AF1F8200B1F856 /* MVPAsyncTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPAsyncTableView.swift; sourceTree = "<group>"; };
+		431AD75620AF1F8200B1F856 /* MVPTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPTableNode.swift; sourceTree = "<group>"; };
 		7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageChatMessage.swift; sourceTree = "<group>"; };
 		7409D74520A75EE900C2F70C /* AuthChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthChatMessage.swift; sourceTree = "<group>"; };
 		741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,6 +89,8 @@
 		749C85BC2051B9AA00387832 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		749C85CE2051C6CA00387832 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		749C85D12051C83A00387832 /* StreamsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StreamsStoryboard.storyboard; sourceTree = "<group>"; };
+		74A60AF320B0BBA20011130B /* ChatInputControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputControl.swift; sourceTree = "<group>"; };
+		74A60AF520B0BBB10011130B /* ChatInputControl.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatInputControl.xib; sourceTree = "<group>"; };
 		74A7A96C2054436C00FA06BE /* StreamsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamsPresenter.swift; sourceTree = "<group>"; };
 		74A7A97020544BFB00FA06BE /* StreamsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamsCell.swift; sourceTree = "<group>"; };
 		74A7A97220544C0700FA06BE /* StreamsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StreamsCell.xib; sourceTree = "<group>"; };
@@ -102,7 +105,6 @@
 		74C1E23020713E0900DF2611 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		74CE8032205AFC25007A1A48 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		74E14158206D70280032A69A /* IntegerTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegerTransform.swift; sourceTree = "<group>"; };
-		74E1415B206D7E1C0032A69A /* ChatStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatStoryboard.storyboard; sourceTree = "<group>"; };
 		74E1415D206D7E310032A69A /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		74E1415F206D7E500032A69A /* ChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPresenter.swift; sourceTree = "<group>"; };
 		74F7114120586DDD00BCF893 /* Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
@@ -180,7 +182,7 @@
 			children = (
 				746B91022057225A00A2A26F /* MVPCollectionView.swift */,
 				74A9EA1F205C56BA007D945C /* MVPCollectionDataSource.swift */,
-				431AD75620AF1F8200B1F856 /* MVPAsyncTableView.swift */,
+				431AD75620AF1F8200B1F856 /* MVPTableNode.swift */,
 			);
 			path = MVPProtocols;
 			sourceTree = "<group>";
@@ -321,6 +323,15 @@
 			path = Streams;
 			sourceTree = "<group>";
 		};
+		74A60AF220B0BB840011130B /* ChatInputControl */ = {
+			isa = PBXGroup;
+			children = (
+				74A60AF320B0BBA20011130B /* ChatInputControl.swift */,
+				74A60AF520B0BBB10011130B /* ChatInputControl.xib */,
+			);
+			path = ChatInputControl;
+			sourceTree = "<group>";
+		};
 		74A7A96E205443F600FA06BE /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,7 +391,6 @@
 			isa = PBXGroup;
 			children = (
 				74E14161206D80350032A69A /* Subviews */,
-				74E1415B206D7E1C0032A69A /* ChatStoryboard.storyboard */,
 				74E1415D206D7E310032A69A /* ChatViewController.swift */,
 				74E1415F206D7E500032A69A /* ChatPresenter.swift */,
 				7445E5682099E38600647A96 /* ChatAssembly.swift */,
@@ -391,6 +401,7 @@
 		74E14161206D80350032A69A /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				74A60AF220B0BB840011130B /* ChatInputControl */,
 				745A691220A36AC800C52F3A /* GrowingTextView */,
 				74C1E22D20713D7B00DF2611 /* ChatMessageCell */,
 			);
@@ -477,9 +488,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				749C85D22051C83A00387832 /* StreamsStoryboard.storyboard in Resources */,
-				74E1415C206D7E1C0032A69A /* ChatStoryboard.storyboard in Resources */,
 				749C85B82051B9AA00387832 /* Assets.xcassets in Resources */,
 				749C85CF2051C6CA00387832 /* Main.storyboard in Resources */,
+				74A60AF620B0BBB10011130B /* ChatInputControl.xib in Resources */,
 				741097D720605B6B004A4EF0 /* LaunchScreen.storyboard in Resources */,
 				74C1E22F20713DCE00DF2611 /* ChatMessageCell.xib in Resources */,
 				741097DF206195EA004A4EF0 /* StreamsPreloaderCell.xib in Resources */,
@@ -586,7 +597,7 @@
 				746B91032057225A00A2A26F /* MVPCollectionView.swift in Sources */,
 				74857A83206AD2830078746D /* ChatMessage.swift in Sources */,
 				74C1E23120713E0900DF2611 /* ChatMessageCell.swift in Sources */,
-				431AD75720AF1F8200B1F856 /* MVPAsyncTableView.swift in Sources */,
+				431AD75720AF1F8200B1F856 /* MVPTableNode.swift in Sources */,
 				7409D74620A75EE900C2F70C /* AuthChatMessage.swift in Sources */,
 				749BCCBD206C319B008189B8 /* ChannelCountersChatMessage.swift in Sources */,
 				74E14160206D7E500032A69A /* ChatPresenter.swift in Sources */,
@@ -599,6 +610,7 @@
 				7417ECAB2072C0AC003734F0 /* ChatMessageCellViewModel.swift in Sources */,
 				7445E56B2099E47600647A96 /* StreamsRouter.swift in Sources */,
 				74E14159206D70280032A69A /* IntegerTransform.swift in Sources */,
+				74A60AF420B0BBA20011130B /* ChatInputControl.swift in Sources */,
 				745A691420A36B7F00C52F3A /* GrowingTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -722,6 +734,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q5BTGEHWS4;
 				INFOPLIST_FILE = GoodGame/Application/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = alexey.pak.GoodGamee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -741,6 +754,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q5BTGEHWS4;
 				INFOPLIST_FILE = GoodGame/Application/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = alexey.pak.GoodGamee;
 				PRODUCT_NAME = "$(TARGET_NAME)";

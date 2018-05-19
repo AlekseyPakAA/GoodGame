@@ -7,47 +7,49 @@
 //
 
 import UIKit
+import AsyncDisplayKit
 
-protocol ChatView: class, MVPCollectionView {
 
+protocol ChatView: class, MVPTableNode {
+    func insertMessage(with animation: UITableViewRowAnimation)
 }
 
-class ChatViewController: UIViewController {
+class ChatViewController: ASViewController<ChatViewController.ContentNode>  {
     
     var presenter: ChatPresenter?
 
     fileprivate var collectionViewOrgignalIndicatorInsets: UIEdgeInsets!
     fileprivate var collectionViewOrgignalInsets: UIEdgeInsets!
-    @IBOutlet weak var collectionView: UICollectionView! {
-        didSet {
-            collectionView.dataSource = self
-            collectionView.delegate = self
+    
+    var contentNode: ContentNode
+    var tableNode: ASTableNode {
+        return contentNode.tableNode
+    }
+    
+//    @IBOutlet fileprivate weak var messageInputViewBottomConstarint: NSLayoutConstraint!
+//    @IBOutlet fileprivate weak var messageInputViewContainer: UIView!
+//    @IBOutlet fileprivate weak var messageInputView: GrowingTextView!
+    
+    init() {
+        contentNode = ContentNode()
+        super.init(node: contentNode)
         
-            collectionViewOrgignalInsets = collectionView.contentInset
-            collectionViewOrgignalIndicatorInsets = collectionView.scrollIndicatorInsets
-            
-            let nib = UINib(nibName: ChatMessageCell.reuseIdentifier, bundle: nil)
-            collectionView.register(nib, forCellWithReuseIdentifier: ChatMessageCell.reuseIdentifier)
-            
-            if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-                layout.sectionInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-                
-                let size: CGSize = {
-                    let width: CGFloat = 1.0
-                    let height: CGFloat = 1.0
-                    return CGSize(width: width, height: height)
-                }()
-                layout.estimatedItemSize = size
-                layout.itemSize = size
-            }
+        tableNode.dataSource = self
+        tableNode.delegate = self
+        tableNode.view.separatorStyle = .none
+        tableNode.inverted = true
+        
+        if #available(iOS 11.0, *) {
+            tableNode.view.contentInsetAdjustmentBehavior = .never
         }
     }
-    @IBOutlet fileprivate weak var messageInputViewBottomConstarint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var messageInputViewContainer: UIView!
-    @IBOutlet fileprivate weak var messageInputView: GrowingTextView!
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
-        print(#function)
+        super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
@@ -58,8 +60,23 @@ class ChatViewController: UIViewController {
         presenter?.viewDidLoad()
     }
     
-    override func viewDidLayoutSubviews() {
-        self.additionalSafeAreaInsets.bottom = messageInputViewContainer.frame.height
+    override func viewSafeAreaInsetsDidChange() {
+        let inset: UIEdgeInsets = {
+            if #available(iOS 11.0, *) {
+                let top = view.safeAreaInsets.bottom
+                let bottom = view.safeAreaInsets.top
+                
+                return UIEdgeInsets(top: top, left: 0.0, bottom: bottom, right: 0.0)
+            } else {
+                let top = topLayoutGuide.length
+                let bottom = topLayoutGuide.length
+                
+                return UIEdgeInsets(top: top, left: 0.0, bottom: bottom, right: 0.0)
+            }
+        }()
+
+        tableNode.contentInset = inset
+        tableNode.view.scrollIndicatorInsets = inset
     }
     
     @objc func applicationDidBecomeActive() {
@@ -79,18 +96,18 @@ class ChatViewController: UIViewController {
             return
         }
         
-        collectionView.contentInset.bottom = collectionViewOrgignalInsets.bottom + frame.height
-        collectionView.scrollIndicatorInsets.bottom = collectionViewOrgignalIndicatorInsets.bottom + frame.height
-        collectionView.contentOffset = {
-            let x = collectionView.contentOffset.x
-            let y = collectionView.contentOffset.y + frame.height
+        tableNode.contentInset.bottom = collectionViewOrgignalInsets.bottom + frame.height
+        tableNode.view.scrollIndicatorInsets.bottom = collectionViewOrgignalIndicatorInsets.bottom + frame.height
+        tableNode.contentOffset = {
+            let x = tableNode.contentOffset.x
+            let y = tableNode.contentOffset.y + frame.height
             return CGPoint(x: x, y: y)
         }()
         
-        messageInputViewBottomConstarint.constant = frame.height
-        UIView.animate(withDuration: duartion, animations: { [weak self] in
-            self?.view.layoutIfNeeded()
-        })
+//        messageInputViewBottomConstarint.constant = frame.height
+//        UIView.animate(withDuration: duartion, animations: { [weak self] in
+//            self?.view.layoutIfNeeded()
+//        })
     }
     
     @objc func keyboardWillHide(notification: Notification) {
@@ -102,75 +119,123 @@ class ChatViewController: UIViewController {
             return
         }
         
-        collectionView.contentOffset = {
-            let x = collectionView.contentOffset.x
-            let y = collectionView.contentOffset.y - frame.height
+        tableNode.contentOffset = {
+            let x = tableNode.contentOffset.x
+            let y = tableNode.contentOffset.y - frame.height
             return CGPoint(x: x, y: y)
         }()
 
-        collectionView.contentInset.bottom = collectionViewOrgignalInsets.bottom
-        collectionView.scrollIndicatorInsets.bottom = collectionViewOrgignalIndicatorInsets.bottom
+        tableNode.contentInset.bottom = collectionViewOrgignalInsets.bottom
+        tableNode.view.scrollIndicatorInsets.bottom = collectionViewOrgignalIndicatorInsets.bottom
         
-        messageInputViewBottomConstarint.constant = 0
-        UIView.animate(withDuration: duartion, animations: {[weak self] in
-            self?.view.layoutIfNeeded()
-        })
+//        messageInputViewBottomConstarint.constant = 0
+//        UIView.animate(withDuration: duartion, animations: {[weak self] in
+//            self?.view.layoutIfNeeded()
+//        })
     }
     
-    @IBAction func didTouchScrollView(_ sender: Any) {
-        if messageInputView.isFirstResponder {
-            _ = messageInputView.resignFirstResponder()
-        }
+    @objc func didTouchScrollView(_ sender: Any) {
+        view.endEditing(true)
     }
     
     @IBAction func didTouchSendButton(_ sender: Any) {
         presenter?.didTouchSendButton()
     }
     
+    class ContentNode: ASDisplayNode {
+        
+        let tableNode: ASTableNode = ASTableNode(style: .plain)
+        
+        override init() {
+            super.init()
+            
+            automaticallyManagesSubnodes = true
+        }
+        
+        override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+            return ASWrapperLayoutSpec(layoutElement: tableNode)
+        }
+        
+    }
+    
 }
 
 extension ChatViewController: ChatView {
     
+    func insertMessage(with animation: UITableViewRowAnimation) {
+        let indexPath = IndexPath(row: 0, section: 0)
+        let indexPathsOfVisibleRows = tableNode.indexPathsForVisibleRows()
+        
+        if indexPathsOfVisibleRows.isEmpty || indexPathsOfVisibleRows.contains(indexPath) {
+            tableNode.performBatchUpdates({
+                self.tableNode.insertRows(at: [indexPath], with: animation)
+            }, completion: {_ in
+                let offset: CGPoint = {
+                    let x = self.tableNode.contentOffset.x
+                    let y = -self.tableNode.contentInset.top
+                    
+                    return CGPoint(x: x, y: y)
+                }()
+                self.tableNode.setContentOffset(offset, animated: true)
+            })
+        } else {
+            UIView.performWithoutAnimation {
+                self.tableNode.insertRows(at: [indexPath], with: .top)
+                
+                guard !tableNode.view.isDecelerating else { return }
+                
+                let offset: CGPoint = {
+                    let x = tableNode.contentOffset.x
+                    let y = tableNode.contentOffset.y + tableNode.rectForRow(at: indexPath).height
+                    
+                    return CGPoint(x: x, y: y)
+                }()
+                
+                tableNode.contentOffset = offset
+            }
+        }
+        
+    }
+    
 }
 
-extension ChatViewController: UICollectionViewDataSource {
+extension ChatViewController: ASTableDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         return presenter?.numberOfItems(in: 0) ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let item = presenter?.itemForCell(at: indexPath) else {
-            return UICollectionViewCell()
+    func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
+        let cellNodeBlock = { () -> ASCellNode in
+            guard let item = self.presenter?.itemForCell(at: indexPath) else {
+                return ASCellNode()
+            }
+            
+            switch item {
+            case .default(let model):
+                let cell = ChatMessageCell()
+                cell.configure(model: model)
+                return cell
+            }
         }
-
-        switch item {
-        case .default(let model):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChatMessageCell.reuseIdentifier, for: indexPath) as! ChatMessageCell
-            cell.configure(model: model)
-            return cell
-        }
+        
+        return cellNodeBlock
     }
+    
     
 }
 
-extension ChatViewController: UICollectionViewDelegateFlowLayout {
+extension ChatViewController: ASTableDelegate {
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let size: CGSize = {
-//            let width: CGFloat = collectionView.frame.width
-//            let height: CGFloat = 60.0
-//            return CGSize(width: width, height: height)
-//        }()
-//
-//        return size
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        presenter?.willDisplayCell(at: indexPath)
 //    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        presenter?.willDisplayCell(at: indexPath)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        presenter?.didEndDisplayCell(at: indexPath)
-    }
+//
+//    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        presenter?.didEndDisplayCell(at: indexPath)
+//    }
+
 }
+
+
+

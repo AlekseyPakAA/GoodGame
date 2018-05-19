@@ -27,8 +27,6 @@ class ChatPresenter {
     fileprivate var service: ChatSocketService?
     fileprivate var channelID: Int
     
-    fileprivate var isVisibleLastCell: Bool = false
-    
     init(channelID: Int) {
         self.channelID = channelID
         
@@ -57,18 +55,6 @@ class ChatPresenter {
         service?.send(message: message)
     }
     
-    func willDisplayCell(at indexPath: IndexPath) {
-        if indexPath.row == items.count - 1 {
-            isVisibleLastCell = true
-        }
-    }
-    
-    func didEndDisplayCell(at indexPath: IndexPath) {
-        if indexPath.row == items.count - 1 {
-            isVisibleLastCell = false
-        }
-    }
-    
 }
 
 extension ChatPresenter: ChatSocketServiceDelegate {
@@ -85,74 +71,35 @@ extension ChatPresenter: ChatSocketServiceDelegate {
     func didRecive(message: IncomingMessage) {
         if let message = message as? IncomingMessageChatMessage  {
             let model = ChatMessageCellViewModel(message: message)
-            items.append(.default(model: model))
-            
-            let indexPath = IndexPath(item: items.count - 1)
-            let isVisibleLastCell = self.isVisibleLastCell
-            
-            view?.performBatchUpdates( { [weak self] in
-                self?.view?.insertItems(at: [indexPath])
-            }, completion: { [weak self] _ in
-                guard let `self` = self else { return }
-                if isVisibleLastCell {
-                    self.view?.scrollToBottom(animated: true) 
-                }
-            })
+            items.insert(.default(model: model), at: 0)
+        
+            view?.insertMessage(with: .top)
         } else if let message = message as? ChannelCountersChatMessage {
             updateChatCounters(message: message)
         } else if let message = message as? ChatHistoryChatMesssage {
             var models: [ChatCollectionItemTypes] = message.messages.map {
                 .default(model:ChatMessageCellViewModel(message: $0))
-            }
-            
-            let insertItemsIndexPaths: [IndexPath]
-            let deleteItemsIndexPaths: [IndexPath]
+            }.reversed()
             
             if items.isEmpty {
                 print("Chat was empty, will be added new items.")
-                
-                insertItemsIndexPaths = (items.count..<items.count + models.count).map {
-                    IndexPath(item: $0)
-                }
-                deleteItemsIndexPaths = []
                 items.append(contentsOf: models)
             } else {
                 if items[items.count - 1] == models[models.count - 1] {
                     print("The last item of chat equals the last item of new items, nothing has been changed.")
-
-                    insertItemsIndexPaths = []
-                    deleteItemsIndexPaths = []
                 } else if let startIndex = models.index(of: items[items.count - 1]) {
                     print("Chat was non empty, but new items contain the last item of chat and they are can be merged.")
 
                     models.removeSubrange((0...startIndex))
-                    insertItemsIndexPaths = (items.count..<items.count + models.count).map {
-                        IndexPath(item: $0)
-                    }
-                    deleteItemsIndexPaths = []
                     items.append(contentsOf: models)
                 } else {
                     print("Chat was non empty, and new items don't contain the last item of chat, chat will be cleaned then will be added new items.")
-
-                    deleteItemsIndexPaths = (0..<items.count).map {
-                        IndexPath(item: $0)
-                    }
                     items.removeAll()
-                    
-                    insertItemsIndexPaths = (items.count..<items.count + models.count).map {
-                        IndexPath(item: $0)
-                    }
                     items.append(contentsOf: models)
                 }
             }
             
-            view?.performBatchUpdates( { [weak self] in
-                self?.view?.deleteItems(at: deleteItemsIndexPaths)
-                self?.view?.insertItems(at: insertItemsIndexPaths)
-            }, completion: { [weak self] _ in
-                guard let `self` = self else { return }
-                self.view?.scrollToBottom(animated: true)
-            })
+            view?.reloadData()
         }
     }
     

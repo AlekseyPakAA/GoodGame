@@ -11,7 +11,7 @@ import UIKit
 class ChatAssembly {
     
     static func makeModule(channelID: Int) -> ChatViewController {
-        let controller = ChatViewController.instantiateFromStoryboard()
+        let controller = ChatViewController()
         let presenter = ChatPresenter(channelID: channelID)
         
         controller.presenter = presenter

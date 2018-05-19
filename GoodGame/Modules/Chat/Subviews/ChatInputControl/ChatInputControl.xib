@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8Y-r1-S5M" customClass="MessageInputView" customModule="GoodGame" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="206"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ma3-UZ-U2y">
+                    <rect key="frame" x="335" y="166" width="36" height="36"/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="eNR-Sf-UUH"/>
+                        <constraint firstAttribute="height" constant="36" id="hx2-5H-BRN"/>
+                    </constraints>
+                    <state key="normal" title="S"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KEJ-G3-14e" customClass="GrowingTextView" customModule="GoodGame" customModuleProvider="target">
+                    <rect key="frame" x="4" y="4" width="327" height="198"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+            <constraints>
+                <constraint firstItem="KEJ-G3-14e" firstAttribute="leading" secondItem="h8Y-r1-S5M" secondAttribute="leading" constant="4" id="2XK-yb-OeD"/>
+                <constraint firstAttribute="bottom" secondItem="Ma3-UZ-U2y" secondAttribute="bottom" constant="4" id="8u5-CB-Yt0"/>
+                <constraint firstItem="Ma3-UZ-U2y" firstAttribute="leading" secondItem="KEJ-G3-14e" secondAttribute="trailing" constant="4" id="G2K-Td-0qj"/>
+                <constraint firstAttribute="height" priority="250" constant="44" id="KQd-f2-Ro0"/>
+                <constraint firstAttribute="trailing" secondItem="Ma3-UZ-U2y" secondAttribute="trailing" constant="4" id="TjE-OH-0DP"/>
+                <constraint firstAttribute="bottom" secondItem="KEJ-G3-14e" secondAttribute="bottom" constant="4" id="i3k-eK-8yF"/>
+                <constraint firstItem="KEJ-G3-14e" firstAttribute="top" secondItem="h8Y-r1-S5M" secondAttribute="top" constant="4" id="ia2-Q3-Hzm"/>
+                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="kt4-hH-pZq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Fo9-p5-uDe"/>
+            <point key="canvasLocation" x="49.5" y="75"/>
+        </view>
+    </objects>
+</document>

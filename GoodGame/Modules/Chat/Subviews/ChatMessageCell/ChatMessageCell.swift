@@ -6,18 +6,41 @@
 //  Copyright © 2018 alexey.pak. All rights reserved.
 //
 
-import UIKit
+import AsyncDisplayKit
 
-class ChatMessageCell: UICollectionViewCell {
+class ChatMessageCell: ASCellNode {
     
-    @IBOutlet weak var titleLabel: UILabel!
+    var titleTextNode: ASTextNode  = ASTextNode()
+    var descriptionTextNode: ASTextNode  = ASTextNode()
     
-    override func awakeFromNib() {
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+    override init() {
+        super.init()
+        
+        automaticallyManagesSubnodes = true
+        selectionStyle = .none
+        
+        titleTextNode.maximumNumberOfLines = 1
     }
     
     func configure(model: ChatMessageCellViewModel) {
-        titleLabel.text = model.title
+        let attributes: [NSAttributedStringKey : Any] = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)]
+        titleTextNode.attributedText = NSAttributedString(string: model.title, attributes: attributes)
+        
+        descriptionTextNode.attributedText = NSAttributedString(string: model.description)
+    }
+    
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        let spec = ASStackLayoutSpec()
+        
+        spec.direction = .vertical
+        spec.alignItems = .start
+        spec.spacing = 8.0
+        
+        spec.children = [titleTextNode, descriptionTextNode]
+        
+        let insets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        
+        return ASInsetLayoutSpec(insets: insets, child: spec)
     }
     
 }

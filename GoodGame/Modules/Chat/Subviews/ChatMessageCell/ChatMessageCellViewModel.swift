@@ -9,16 +9,14 @@
 struct ChatMessageCellViewModel: Equatable {
     
     let id: Int
-    let title: String
     
-    init(string: String) {
-        id = -1
-        title = string
-    }
+    let title: String
+    let description: String
     
     init(message: IncomingMessageChatMessage) {
         id = message.id
-        title = message.text
+        title = message.userName
+        description = message.text
     }
     
     static func == (lhs: ChatMessageCellViewModel, rhs: ChatMessageCellViewModel) -> Bool {
