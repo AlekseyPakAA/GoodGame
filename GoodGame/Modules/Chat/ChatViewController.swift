@@ -18,26 +18,27 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode>  {
     
     var presenter: ChatPresenter?
 
-    fileprivate var collectionViewOrgignalIndicatorInsets: UIEdgeInsets!
-    fileprivate var collectionViewOrgignalInsets: UIEdgeInsets!
-    
-    var contentNode: ContentNode
-    var tableNode: ASTableNode {
+    fileprivate var contentNode: ContentNode = ContentNode()
+    internal var tableNode: ASTableNode {
         return contentNode.tableNode
     }
     
-//    @IBOutlet fileprivate weak var messageInputViewBottomConstarint: NSLayoutConstraint!
-//    @IBOutlet fileprivate weak var messageInputViewContainer: UIView!
-//    @IBOutlet fileprivate weak var messageInputView: GrowingTextView!
+    fileprivate weak var inputControl: ChatInputControl?
+    fileprivate weak var inputControlBottomConstraint: NSLayoutConstraint?
+    
+    fileprivate var keyboardFrame: CGRect = .zero
     
     init() {
-        contentNode = ContentNode()
         super.init(node: contentNode)
         
         tableNode.dataSource = self
         tableNode.delegate = self
+        
         tableNode.view.separatorStyle = .none
         tableNode.inverted = true
+        
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTouchScrollView(_:)))
+        tableNode.view.addGestureRecognizer(recognizer)
         
         if #available(iOS 11.0, *) {
             tableNode.view.contentInsetAdjustmentBehavior = .never
@@ -51,30 +52,57 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode>  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNotificationsObserving()
+        setupInputControl()
+        
+        presenter?.viewDidLoad()
+    }
+    
+    fileprivate func setupNotificationsObserving() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .UIApplicationWillResignActive, object: nil)
-
-        presenter?.viewDidLoad()
+    }
+    
+    fileprivate func setupInputControl() {
+        let inputControl = ChatInputControl()
+        contentNode.view.addSubview(inputControl)
+        
+        inputControl.translatesAutoresizingMaskIntoConstraints = false
+        
+        inputControl.leadingAnchor.constraint(equalTo: contentNode.view.leadingAnchor).isActive = true
+        inputControl.trailingAnchor.constraint(equalTo: contentNode.view.trailingAnchor).isActive = true
+        inputControlBottomConstraint = contentNode.view.bottomAnchor.constraint(equalTo: inputControl.bottomAnchor)
+        inputControlBottomConstraint?.isActive = true
+        
+        self.inputControl = inputControl
     }
     
     override func viewSafeAreaInsetsDidChange() {
+        updateContentInsets()
+    }
+    
+    fileprivate func updateContentInsets() {
         let inset: UIEdgeInsets = {
+            var top: CGFloat = 0
+            var bottom: CGFloat = 0
+            
+            bottom += inputControl?.frame.height ?? 0
+            bottom += keyboardFrame.size.height
+            
             if #available(iOS 11.0, *) {
-                let top = view.safeAreaInsets.bottom
-                let bottom = view.safeAreaInsets.top
-                
-                return UIEdgeInsets(top: top, left: 0.0, bottom: bottom, right: 0.0)
+                top += view.safeAreaInsets.top
+                bottom += view.safeAreaInsets.bottom
             } else {
-                let top = topLayoutGuide.length
-                let bottom = topLayoutGuide.length
-                
-                return UIEdgeInsets(top: top, left: 0.0, bottom: bottom, right: 0.0)
+                top += topLayoutGuide.length
+                bottom += bottomLayoutGuide.length
             }
+            
+            return UIEdgeInsets(top: bottom, left: 0.0, bottom: top, right: 0.0)
         }()
-
+        
         tableNode.contentInset = inset
         tableNode.view.scrollIndicatorInsets = inset
     }
@@ -92,22 +120,20 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode>  {
             return
         }
         
+        keyboardFrame = frame
+        
         guard let duartion = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double else {
             return
         }
+
+        updateContentInsets()
         
-        tableNode.contentInset.bottom = collectionViewOrgignalInsets.bottom + frame.height
-        tableNode.view.scrollIndicatorInsets.bottom = collectionViewOrgignalIndicatorInsets.bottom + frame.height
-        tableNode.contentOffset = {
-            let x = tableNode.contentOffset.x
-            let y = tableNode.contentOffset.y + frame.height
-            return CGPoint(x: x, y: y)
-        }()
+        tableNode.contentOffset.y -= frame.size.height
         
-//        messageInputViewBottomConstarint.constant = frame.height
-//        UIView.animate(withDuration: duartion, animations: { [weak self] in
-//            self?.view.layoutIfNeeded()
-//        })
+        inputControlBottomConstraint?.constant = frame.height
+        UIView.animate(withDuration: duartion, animations: { [weak self] in
+            self?.contentNode.view.layoutIfNeeded()
+        })
     }
     
     @objc func keyboardWillHide(notification: Notification) {
@@ -115,23 +141,20 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode>  {
             return
         }
         
+        keyboardFrame = .zero
+        
         guard let duartion = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double else {
             return
         }
-        
-        tableNode.contentOffset = {
-            let x = tableNode.contentOffset.x
-            let y = tableNode.contentOffset.y - frame.height
-            return CGPoint(x: x, y: y)
-        }()
 
-        tableNode.contentInset.bottom = collectionViewOrgignalInsets.bottom
-        tableNode.view.scrollIndicatorInsets.bottom = collectionViewOrgignalIndicatorInsets.bottom
+        tableNode.contentOffset.y += frame.size.height
         
-//        messageInputViewBottomConstarint.constant = 0
-//        UIView.animate(withDuration: duartion, animations: {[weak self] in
-//            self?.view.layoutIfNeeded()
-//        })
+        updateContentInsets()
+        
+        inputControlBottomConstraint?.constant = 0
+        UIView.animate(withDuration: duartion, animations: { [weak self] in
+            self?.contentNode.view.layoutIfNeeded()
+        })
     }
     
     @objc func didTouchScrollView(_ sender: Any) {
@@ -143,7 +166,7 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode>  {
     }
     
     class ContentNode: ASDisplayNode {
-        
+    
         let tableNode: ASTableNode = ASTableNode(style: .plain)
         
         override init() {

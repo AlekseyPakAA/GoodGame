@@ -57,6 +57,8 @@ class GrowingTextView: UIView {
         innerTextView.delegate = self
         innerTextView.isScrollEnabled = false
         
+        innerTextView.autocorrectionType = .no
+        
         heightConstraint = heightAnchor.constraint(equalToConstant: maxHeight)
     }
     

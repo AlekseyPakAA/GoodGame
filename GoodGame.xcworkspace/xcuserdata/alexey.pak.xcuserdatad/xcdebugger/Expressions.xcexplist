@@ -3,7 +3,12 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #2 in StreamsPresenter.refresh():StreamsPresenter.swift">
+         contextName = "closure #2 in ChatViewController.keyboardWillHide(notification:):ChatViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "inputControlBottomConstraint">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "Router.asURLRequest():Router.swift">
@@ -12,6 +17,17 @@
                value = "URLEncoding.default.encode(urlRequest, with: result.parameters).description">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ChatViewController.keyboardWillShow(notification:):ChatViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "inputControlBottomConstraint">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in StreamsPresenter.refresh():StreamsPresenter.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
