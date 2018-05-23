@@ -57,7 +57,7 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode>  {
         
         presenter?.viewDidLoad()
     }
-    
+
     fileprivate func setupNotificationsObserving() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
@@ -79,7 +79,11 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode>  {
         
         self.inputControl = inputControl
     }
-    
+
+	override func viewDidLayoutSubviews() {
+		print(#function)
+	}
+
     override func viewSafeAreaInsetsDidChange() {
         updateContentInsets()
     }

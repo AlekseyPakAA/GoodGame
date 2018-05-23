@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AsyncDisplayKit
 
 protocol StreamsView: class, MVPCollectionView {
     
@@ -15,7 +16,7 @@ protocol StreamsView: class, MVPCollectionView {
     
 }
 
-class StreamsViewController: UIViewController {
+class StreamsViewController: ASViewController<ASDisplayNode> {
     
     let margin: CGFloat = 16.0
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AsyncDisplayKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = window
         
         // Instantiate the root view controller with dependencies injected by the container.
-        window.rootViewController = UINavigationController(rootViewController: StreamsAssembly.makeModule())
+        window.rootViewController = ASNavigationController(rootViewController: StreamsAssembly.makeModule())
         
         return true
     }

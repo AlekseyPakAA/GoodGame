@@ -42,20 +42,11 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="7bk-tZ-2XL" id="6Od-D6-y5C"/>
-                        <segue destination="tyR-fL-gUV" kind="show" identifier="StreamsDetail" id="Kf0-h5-cBJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0y1-vH-GME" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="9" y="45"/>
-        </scene>
-        <!--ChatStoryboard-->
-        <scene sceneID="f6W-VO-uxb">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ChatStoryboard" id="tyR-fL-gUV" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Sdj-Yd-tiQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="652" y="44"/>
         </scene>
     </scenes>
 </document>
