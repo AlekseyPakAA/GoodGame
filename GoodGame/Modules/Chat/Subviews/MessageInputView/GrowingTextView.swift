@@ -79,24 +79,11 @@ class GrowingTextView: UIView {
 }
 
 extension GrowingTextView: InnerTextViewDelegate {
-    
-    func textView(_ textView: UITextView, didChange contentSize: CGSize) {
-        if previousContentSize.height > contentSize.height {
-            if maxHeight > contentSize.height && previousContentSize.height > maxHeight  {
-                heightConstraint?.isActive = false
-                textView.isScrollEnabled = false
-            }
-        } else {
-            if maxHeight < contentSize.height && previousContentSize.height < maxHeight  {
-                heightConstraint?.constant = contentSize.height
-                heightConstraint?.isActive = true
-                textView.isScrollEnabled = true
-            }
-        }
-    
-        previousContentSize = contentSize
-    }
-    
+
+	func textView(_ textView: UITextView, didChange contentSize: CGSize) {
+
+	}
+
 }
 
 fileprivate protocol InnerTextViewDelegate: UITextViewDelegate {
@@ -106,7 +93,34 @@ fileprivate protocol InnerTextViewDelegate: UITextViewDelegate {
 }
 
 fileprivate class InnerTextView: UITextView {
-    
+
+	var maximumNumberOfLines = 5
+	fileprivate var previousNumberOfLines = 0
+
+	override var intrinsicContentSize: CGSize {
+		get {
+			var numberOfLines = 0
+			var i = 0
+
+			var range = NSRange()
+
+			while i < layoutManager.numberOfGlyphs {
+				let rect = layoutManager.lineFragmentRect(forGlyphAt: i, effectiveRange: &range)
+
+				i = range.upperBound
+				numberOfLines += 1
+
+				if numberOfLines == maximumNumberOfLines {
+					let layoutManager.boundingRect(forGlyphRange: NSRange(0...i), in: textContainer)
+				}
+			}
+
+			previousNumberOfLines = numberOfLines
+
+			return super.intrinsicContentSize
+		}
+	}
+
     override var contentSize: CGSize {
         didSet {
             guard let delegate = delegate as? InnerTextViewDelegate, oldValue != contentSize else { return }

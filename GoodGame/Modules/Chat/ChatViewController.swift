@@ -23,7 +23,7 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode>  {
         return contentNode.tableNode
     }
     
-	fileprivate weak var inputControl: ChatInputControl? 
+	fileprivate weak var inputControl: ChatInputControl?
     fileprivate weak var inputControlBottomConstraint: NSLayoutConstraint?
     
     fileprivate var keyboardFrame: CGRect = .zero
@@ -79,10 +79,15 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode>  {
         self.inputControl = inputControl
     }
 
-    override func viewSafeAreaInsetsDidChange() {
+	override func viewDidLayoutSubviews() {
+		let oldinset = tableNode.contentInset
         updateContentInsets()
-    }
-    
+		let newinset = tableNode.contentInset
+		let diff = oldinset.top - newinset.top
+
+		tableNode.contentOffset.y += diff
+	}
+
     fileprivate func updateContentInsets() {
         let inset: UIEdgeInsets = {
             var top: CGFloat = 0
