@@ -23,7 +23,7 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode>  {
         return contentNode.tableNode
     }
     
-    fileprivate weak var inputControl: ChatInputControl?
+	fileprivate weak var inputControl: ChatInputControl? 
     fileprivate weak var inputControlBottomConstraint: NSLayoutConstraint?
     
     fileprivate var keyboardFrame: CGRect = .zero
@@ -32,7 +32,6 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode>  {
         super.init(node: contentNode)
         
         tableNode.dataSource = self
-        tableNode.delegate = self
         
         tableNode.view.separatorStyle = .none
         tableNode.inverted = true
@@ -79,10 +78,6 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode>  {
         
         self.inputControl = inputControl
     }
-
-	override func viewDidLayoutSubviews() {
-		print(#function)
-	}
 
     override func viewSafeAreaInsetsDidChange() {
         updateContentInsets()
@@ -248,21 +243,7 @@ extension ChatViewController: ASTableDataSource {
         
         return cellNodeBlock
     }
-    
-    
-}
-
-extension ChatViewController: ASTableDelegate {
-    
-//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        presenter?.willDisplayCell(at: indexPath)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        presenter?.didEndDisplayCell(at: indexPath)
-//    }
 
 }
-
 
 
