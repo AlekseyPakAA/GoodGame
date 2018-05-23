@@ -55,7 +55,6 @@ class GrowingTextView: UIView {
         innerTextView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         innerTextView.delegate = self
-        innerTextView.isScrollEnabled = false
 
 		innerTextView.spellCheckingType = .yes
         innerTextView.autocorrectionType = .no
@@ -99,25 +98,32 @@ fileprivate class InnerTextView: UITextView {
 
 	override var intrinsicContentSize: CGSize {
 		get {
-			var numberOfLines = 0
-			var i = 0
+            var numberOfLines = 1
+            var i = 0
+            var range = NSRange()
+            
+            while i < layoutManager.numberOfGlyphs {
+                layoutManager.lineFragmentRect(forGlyphAt: i, effectiveRange: &range)
+                
+                i = range.upperBound
+                numberOfLines += 1
+            }
+            
+            previousNumberOfLines = numberOfLines
 
-			var range = NSRange()
-
-			while i < layoutManager.numberOfGlyphs {
-				let rect = layoutManager.lineFragmentRect(forGlyphAt: i, effectiveRange: &range)
-
-				i = range.upperBound
-				numberOfLines += 1
-
-				if numberOfLines == maximumNumberOfLines {
-					let layoutManager.boundingRect(forGlyphRange: NSRange(0...i), in: textContainer)
-				}
-			}
-
-			previousNumberOfLines = numberOfLines
-
-			return super.intrinsicContentSize
+            let size: CGSize = {
+                let contaner = CGSize(width: self.contentSize.width, height: .infinity)
+                var size = attributedText.boundingRect(with: contaner, options: .usesLineFragmentOrigin, context: nil).size
+                size.height += self.textContainerInset.top + self.textContainerInset.bottom
+                size.height = size.height.rounded()
+                
+                return size
+            }()
+            
+            print(size)
+            print(super.intrinsicContentSize)
+            
+			return size
 		}
 	}
 
@@ -125,6 +131,18 @@ fileprivate class InnerTextView: UITextView {
         didSet {
             guard let delegate = delegate as? InnerTextViewDelegate, oldValue != contentSize else { return }
             delegate.textView(self, didChange: contentSize)
+        }
+    }
+    
+    override var attributedText: NSAttributedString! {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
+    }
+    
+    override var text: String! {
+        didSet {
+            invalidateIntrinsicContentSize()
         }
     }
     
