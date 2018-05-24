@@ -1,4 +1,3 @@
-
 //
 //  GrowingTextView.swift
 //  GrowingTextViewDemo
@@ -10,32 +9,35 @@
 import UIKit
 
 class GrowingTextView: UIView {
-    
-    fileprivate var innerTextView: InnerTextView
-    fileprivate var previousContentSize: CGSize = .zero
-    
-    var maxHeight: CGFloat = 80.0
-    var text: String {
-        get {
-            return innerTextView.text
+
+	fileprivate var innerTextView: UITextView
+
+	var maximumNumberOfLines = 5 {
+		didSet {
+			invalidateIntrinsicContentSize()
+		}
+	}
+
+	var text: String {
+		get {
+			return innerTextView.text
         }
         
         set {
             innerTextView.text = newValue
         }
     }
-    
-    fileprivate weak var heightConstraint: NSLayoutConstraint?
-    
+
     override init(frame: CGRect) {
-        innerTextView = InnerTextView(frame: .zero)
+        innerTextView = UITextView(frame: .zero)
         super .init(frame: frame)
         
         setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        innerTextView = InnerTextView(frame: .zero)
+
+        innerTextView = UITextView(frame: .zero)
         super.init(coder: aDecoder)
 
         setup()
@@ -43,25 +45,30 @@ class GrowingTextView: UIView {
     
     fileprivate func setup() {
         addSubview(innerTextView)
-        
-        innerTextView.translatesAutoresizingMaskIntoConstraints = false
-        
-        innerTextView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        innerTextView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        
-        topAnchor.constraint(lessThanOrEqualTo: innerTextView.topAnchor).isActive = true
-        innerTextView.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor).isActive = true
-        
-        innerTextView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-        innerTextView.delegate = self
+		setupConstraints ()
+
+		innerTextView.alwaysBounceVertical = true
 
 		innerTextView.spellCheckingType = .yes
         innerTextView.autocorrectionType = .no
-        
-        heightConstraint = heightAnchor.constraint(equalToConstant: maxHeight)
+
+		innerTextView.isScrollEnabled = false
+
+		innerTextView.font = UIFont.preferredFont(forTextStyle: .body)
+		innerTextView.textContainerInset = UIEdgeInsetsMake(7.0, 0.0, 4.0, 7.0)
+
+		NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: .UITextViewTextDidChange, object: innerTextView)
     }
-    
+
+	fileprivate func setupConstraints () {
+		innerTextView.translatesAutoresizingMaskIntoConstraints = false
+
+		innerTextView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+		innerTextView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+		innerTextView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+		innerTextView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+	}
+
     override var isFirstResponder: Bool {
         get {
             return innerTextView.isFirstResponder
@@ -75,75 +82,52 @@ class GrowingTextView: UIView {
     override func becomeFirstResponder() -> Bool {
         return innerTextView.becomeFirstResponder()
     }
-}
-
-extension GrowingTextView: InnerTextViewDelegate {
-
-	func textView(_ textView: UITextView, didChange contentSize: CGSize) {
-
-	}
-
-}
-
-fileprivate protocol InnerTextViewDelegate: UITextViewDelegate {
-    
-    func textView(_ textView: UITextView, didChange contentSize: CGSize)
-    
-}
-
-fileprivate class InnerTextView: UITextView {
-
-	var maximumNumberOfLines = 5
-	fileprivate var previousNumberOfLines = 0
 
 	override var intrinsicContentSize: CGSize {
 		get {
-            var numberOfLines = 1
-            var i = 0
-            var range = NSRange()
-            
-            while i < layoutManager.numberOfGlyphs {
-                layoutManager.lineFragmentRect(forGlyphAt: i, effectiveRange: &range)
-                
-                i = range.upperBound
-                numberOfLines += 1
-            }
-            
-            previousNumberOfLines = numberOfLines
+			var numberOfLines = 1
+			var attributedTextContainsMaximumNumberOfLines: NSAttributedString? = nil
 
-            let size: CGSize = {
-                let contaner = CGSize(width: self.contentSize.width, height: .infinity)
-                var size = attributedText.boundingRect(with: contaner, options: .usesLineFragmentOrigin, context: nil).size
-                size.height += self.textContainerInset.top + self.textContainerInset.bottom
-                size.height = size.height.rounded()
-                
-                return size
-            }()
-            
-            print(size)
-            print(super.intrinsicContentSize)
-            
+			var i = 0
+			var range = NSRange()
+
+			while i < innerTextView.layoutManager.numberOfGlyphs {
+				innerTextView.layoutManager.lineFragmentRect(forGlyphAt: i, effectiveRange: &range)
+
+				i = range.upperBound
+				numberOfLines += 1
+
+				if numberOfLines == maximumNumberOfLines {
+					let glyphsRange = NSMakeRange(0, range.upperBound)
+					let charRange = innerTextView.layoutManager.characterRange(forGlyphRange: glyphsRange, actualGlyphRange: nil)
+					attributedTextContainsMaximumNumberOfLines = innerTextView.attributedText.attributedSubstring(from: charRange)
+				}
+			}
+
+			let size: CGSize = {
+				let contaner = CGSize(width: innerTextView.contentSize.width, height: .infinity)
+
+				let text = attributedTextContainsMaximumNumberOfLines ?? innerTextView.attributedText!
+
+				var size = text.boundingRect(with: contaner, options: .usesLineFragmentOrigin, context: nil).size
+				size.height += innerTextView.textContainerInset.top + innerTextView.textContainerInset.bottom
+				size.height = size.height.rounded()
+
+				return size
+			}()
+
+			if numberOfLines >= maximumNumberOfLines {
+				innerTextView.isScrollEnabled = true
+			} else {
+				innerTextView.isScrollEnabled = false
+			}
+
 			return size
 		}
 	}
 
-    override var contentSize: CGSize {
-        didSet {
-            guard let delegate = delegate as? InnerTextViewDelegate, oldValue != contentSize else { return }
-            delegate.textView(self, didChange: contentSize)
-        }
-    }
-    
-    override var attributedText: NSAttributedString! {
-        didSet {
-            invalidateIntrinsicContentSize()
-        }
-    }
-    
-    override var text: String! {
-        didSet {
-            invalidateIntrinsicContentSize()
-        }
-    }
-    
+	@objc func textDidChange() {
+		self.invalidateIntrinsicContentSize()
+	}
+
 }
