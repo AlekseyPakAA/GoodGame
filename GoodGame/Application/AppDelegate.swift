@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Instantiate the root view controller with dependencies injected by the container.
         window.rootViewController = ASNavigationController(rootViewController: StreamsAssembly.makeModule())
         
+        SmilesManager.shared.scync()
+        
         return true
     }
 

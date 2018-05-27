@@ -18,6 +18,9 @@
 		741097E42061A426004A4EF0 /* StreamsErrorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 741097E32061A426004A4EF0 /* StreamsErrorCell.xib */; };
 		741097E62062F686004A4EF0 /* ChatSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741097E52062F686004A4EF0 /* ChatSocketService.swift */; };
 		7417ECAB2072C0AC003734F0 /* ChatMessageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7417ECAA2072C0AC003734F0 /* ChatMessageCellViewModel.swift */; };
+		74313DC420B98C45006E9BCC /* SmilesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74313DC320B98C45006E9BCC /* SmilesManager.swift */; };
+		74313DC620BAC55A006E9BCC /* freeformatter-out.json in Resources */ = {isa = PBXBuildFile; fileRef = 74313DC520BAC55A006E9BCC /* freeformatter-out.json */; };
+		74313DC820BAD3BD006E9BCC /* Smile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74313DC720BAD3BD006E9BCC /* Smile.swift */; };
 		7445E5692099E38600647A96 /* ChatAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7445E5682099E38600647A96 /* ChatAssembly.swift */; };
 		7445E56B2099E47600647A96 /* StreamsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7445E56A2099E47600647A96 /* StreamsRouter.swift */; };
 		7445E56D2099F24B00647A96 /* StreamsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7445E56C2099F24B00647A96 /* StreamsAssembly.swift */; };
@@ -70,6 +73,9 @@
 		741097E32061A426004A4EF0 /* StreamsErrorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StreamsErrorCell.xib; sourceTree = "<group>"; };
 		741097E52062F686004A4EF0 /* ChatSocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSocketService.swift; sourceTree = "<group>"; };
 		7417ECAA2072C0AC003734F0 /* ChatMessageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCellViewModel.swift; sourceTree = "<group>"; };
+		74313DC320B98C45006E9BCC /* SmilesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmilesManager.swift; sourceTree = "<group>"; };
+		74313DC520BAC55A006E9BCC /* freeformatter-out.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "freeformatter-out.json"; sourceTree = "<group>"; };
+		74313DC720BAD3BD006E9BCC /* Smile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Smile.swift; sourceTree = "<group>"; };
 		7445E5682099E38600647A96 /* ChatAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAssembly.swift; sourceTree = "<group>"; };
 		7445E56A2099E47600647A96 /* StreamsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamsRouter.swift; sourceTree = "<group>"; };
 		7445E56C2099F24B00647A96 /* StreamsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamsAssembly.swift; sourceTree = "<group>"; };
@@ -160,6 +166,14 @@
 			path = StreamsErrorCell;
 			sourceTree = "<group>";
 		};
+		74313DC220B98C1D006E9BCC /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				74313DC320B98C45006E9BCC /* SmilesManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		745A691220A36AC800C52F3A /* GrowingTextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				749C85BC2051B9AA00387832 /* Info.plist */,
+				74313DC520BAC55A006E9BCC /* freeformatter-out.json */,
 				749C85B02051B9AA00387832 /* AppDelegate.swift */,
 			);
 			path = Application;
@@ -272,6 +287,7 @@
 		749C85C52051C02A00387832 /* Businesslogic */ = {
 			isa = PBXGroup;
 			children = (
+				74313DC220B98C1D006E9BCC /* Managers */,
 				74F7114320586DFF00BCF893 /* Common */,
 				74F7114020586DC800BCF893 /* Models */,
 				74A7A9762054501200FA06BE /* Services */,
@@ -413,6 +429,7 @@
 			children = (
 				74F7114120586DDD00BCF893 /* Stream.swift */,
 				74CE8032205AFC25007A1A48 /* Channel.swift */,
+				74313DC720BAD3BD006E9BCC /* Smile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -492,6 +509,7 @@
 				749C85CF2051C6CA00387832 /* Main.storyboard in Resources */,
 				74A60AF620B0BBB10011130B /* ChatInputControl.xib in Resources */,
 				741097D720605B6B004A4EF0 /* LaunchScreen.storyboard in Resources */,
+				74313DC620BAC55A006E9BCC /* freeformatter-out.json in Resources */,
 				74C1E22F20713DCE00DF2611 /* ChatMessageCell.xib in Resources */,
 				741097DF206195EA004A4EF0 /* StreamsPreloaderCell.xib in Resources */,
 				741097E42061A426004A4EF0 /* StreamsErrorCell.xib in Resources */,
@@ -581,6 +599,7 @@
 				741097DD206195BF004A4EF0 /* StreamsPreloaderCell.swift in Sources */,
 				741097DA20619068004A4EF0 /* StreamsCellViewModel.swift in Sources */,
 				74A7A97D205452A200FA06BE /* Router.swift in Sources */,
+				74313DC420B98C45006E9BCC /* SmilesManager.swift in Sources */,
 				74CE8033205AFC25007A1A48 /* Channel.swift in Sources */,
 				74C00B7B2054408D00EF0B70 /* StreamsViewController.swift in Sources */,
 				74A7A9782054502A00FA06BE /* StreamsService.swift in Sources */,
@@ -605,6 +624,7 @@
 				74A7A97A2054519800FA06BE /* Constants.swift in Sources */,
 				74E1415E206D7E310032A69A /* ChatViewController.swift in Sources */,
 				74A7A97520544E1B00FA06BE /* IndexPath.swift in Sources */,
+				74313DC820BAD3BD006E9BCC /* Smile.swift in Sources */,
 				7445E56D2099F24B00647A96 /* StreamsAssembly.swift in Sources */,
 				74A7A97120544BFB00FA06BE /* StreamsCell.swift in Sources */,
 				7417ECAB2072C0AC003734F0 /* ChatMessageCellViewModel.swift in Sources */,
