@@ -22,6 +22,8 @@ PODS:
   - Realm (3.5.0):
     - Realm/Headers (= 3.5.0)
   - Realm/Headers (3.5.0)
+  - RealmSwift (3.5.0):
+    - Realm (= 3.5.0)
   - SwiftWebSocket (2.7.0)
   - Texture (2.6):
     - Texture/PINRemoteImage (= 2.6)
@@ -35,7 +37,7 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
   - ObjectMapper
-  - Realm
+  - RealmSwift
   - SwiftWebSocket
   - Texture
 
@@ -47,9 +49,10 @@ SPEC CHECKSUMS:
   PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
+  RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   Texture: 7249074582daf75e524e59df5428b66b8e8db0e4
 
-PODFILE CHECKSUM: e11f7ed6a707eaa0c43c59e782332dd0ce931ab9
+PODFILE CHECKSUM: 7c70b102c4cdc821d5979dbce1aeeee286716612
 
 COCOAPODS: 1.4.0

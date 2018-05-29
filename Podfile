@@ -14,6 +14,6 @@ target 'GoodGame' do
 
   pod 'Texture'
 
-  pod 'Realm'
+  pod 'RealmSwift'
 
 end
