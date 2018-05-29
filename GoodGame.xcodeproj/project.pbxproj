@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		431AD75720AF1F8200B1F856 /* MVPTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431AD75620AF1F8200B1F856 /* MVPTableNode.swift */; };
+		43BE0BFA20BD4F5B00C4C40F /* SmileManagedObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BE0BF820BD4F5A00C4C40F /* SmileManagedObject+CoreDataProperties.swift */; };
+		43BE0BFB20BD4F5B00C4C40F /* SmileManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BE0BF920BD4F5B00C4C40F /* SmileManagedObject+CoreDataClass.swift */; };
 		7409D74420A74A9E00C2F70C /* OutgoingMessageChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */; };
 		7409D74620A75EE900C2F70C /* AuthChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7409D74520A75EE900C2F70C /* AuthChatMessage.swift */; };
 		741097D720605B6B004A4EF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */; };
@@ -63,6 +65,9 @@
 /* Begin PBXFileReference section */
 		2E5BD78CBC920B67DCC385F3 /* Pods_GoodGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		431AD75620AF1F8200B1F856 /* MVPTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPTableNode.swift; sourceTree = "<group>"; };
+		43BE0BE820BD4BCC00C4C40F /* GoodGame.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoodGame.xcdatamodel; sourceTree = "<group>"; };
+		43BE0BF820BD4F5A00C4C40F /* SmileManagedObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SmileManagedObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		43BE0BF920BD4F5B00C4C40F /* SmileManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SmileManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageChatMessage.swift; sourceTree = "<group>"; };
 		7409D74520A75EE900C2F70C /* AuthChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthChatMessage.swift; sourceTree = "<group>"; };
 		741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -138,6 +143,15 @@
 				8A166B63B3B0A00ECF3F57DE /* Pods-GoodGame.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		43BE0BEB20BD4D0B00C4C40F /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				43BE0BF920BD4F5B00C4C40F /* SmileManagedObject+CoreDataClass.swift */,
+				43BE0BF820BD4F5A00C4C40F /* SmileManagedObject+CoreDataProperties.swift */,
+			);
+			path = ManagedObjects;
 			sourceTree = "<group>";
 		};
 		56407E0107D924A7C1E88E97 /* Frameworks */ = {
@@ -261,6 +275,7 @@
 				749C85BC2051B9AA00387832 /* Info.plist */,
 				74313DC520BAC55A006E9BCC /* freeformatter-out.json */,
 				749C85B02051B9AA00387832 /* AppDelegate.swift */,
+				43BE0BE720BD4BCC00C4C40F /* GoodGame.xcdatamodeld */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -287,6 +302,7 @@
 		749C85C52051C02A00387832 /* Businesslogic */ = {
 			isa = PBXGroup;
 			children = (
+				43BE0BEB20BD4D0B00C4C40F /* ManagedObjects */,
 				74313DC220B98C1D006E9BCC /* Managers */,
 				74F7114320586DFF00BCF893 /* Common */,
 				74F7114020586DC800BCF893 /* Models */,
@@ -599,6 +615,7 @@
 				741097DD206195BF004A4EF0 /* StreamsPreloaderCell.swift in Sources */,
 				741097DA20619068004A4EF0 /* StreamsCellViewModel.swift in Sources */,
 				74A7A97D205452A200FA06BE /* Router.swift in Sources */,
+				43BE0BFB20BD4F5B00C4C40F /* SmileManagedObject+CoreDataClass.swift in Sources */,
 				74313DC420B98C45006E9BCC /* SmilesManager.swift in Sources */,
 				74CE8033205AFC25007A1A48 /* Channel.swift in Sources */,
 				74C00B7B2054408D00EF0B70 /* StreamsViewController.swift in Sources */,
@@ -611,6 +628,7 @@
 				7445E56F2099F51100647A96 /* UIViewController.swift in Sources */,
 				7445E575209B8E2C00647A96 /* ChatHistoryChatMesssage.swift in Sources */,
 				74A9EA20205C56BA007D945C /* MVPCollectionDataSource.swift in Sources */,
+				43BE0BFA20BD4F5B00C4C40F /* SmileManagedObject+CoreDataProperties.swift in Sources */,
 				749C85B12051B9AA00387832 /* AppDelegate.swift in Sources */,
 				74A7A97F20545B5100FA06BE /* UICollectionViewCell.swift in Sources */,
 				746B91032057225A00A2A26F /* MVPCollectionView.swift in Sources */,
@@ -807,6 +825,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		43BE0BE720BD4BCC00C4C40F /* GoodGame.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				43BE0BE820BD4BCC00C4C40F /* GoodGame.xcdatamodel */,
+			);
+			currentVersion = 43BE0BE820BD4BCC00C4C40F /* GoodGame.xcdatamodel */;
+			path = GoodGame.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 749C85A52051B9AA00387832 /* Project object */;
 }
