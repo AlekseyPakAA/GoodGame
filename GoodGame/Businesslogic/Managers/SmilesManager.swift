@@ -9,6 +9,7 @@
 import Alamofire
 import ObjectMapper
 import JavaScriptCore
+import RealmSwift
 
 class SmilesManager {
     
@@ -22,20 +23,35 @@ class SmilesManager {
         Alamofire.request(url).responseString(completionHandler: { response in
             switch response.result {
             case .success(let data):
-                _ = self.jscontext?.evaluateScript(data)
-                guard let jsonDictionary = self.jscontext?.objectForKeyedSubscript("Global").toDictionary() else { return }
-                guard let smiles: [Smile]? = {
-                    guard let commonSmilesArray = (jsonDictionary as AnyObject).value(forKeyPath: "Smiles") as? [[String: Any]] else {
-                        return nil
-                    }
-                    return try? Mapper<Smile>().mapArray(JSONArray: commonSmilesArray)
-                }() else { return }
-                
-                print(smiles)
-            case .failure(let error):
+				self.handleReceivedScript(script: data)
+			case .failure(let error):
                 print(error)
             }
         })
     }
-    
+
+	fileprivate func handleReceivedScript(script: String) {
+		_ = self.jscontext?.evaluateScript(script)
+		guard let jsonDictionary = self.jscontext?.objectForKeyedSubscript("Global").toDictionary() else { return }
+
+		guard let smiles: [Smile] = {
+			guard let commonSmilesArray = (jsonDictionary as AnyObject).value(forKeyPath: "Smiles") as? [[String: Any]] else {
+				return nil
+			}
+			return try? Mapper<Smile>().mapArray(JSONArray: commonSmilesArray)
+		}() else {
+				return
+		}
+
+		let realm = try! Realm()
+		let realmSmiles: [RealmSmile] = smiles.map { smile in
+			let realmSmile = RealmSmile()
+			realmSmile.id = smile.id
+			realmSmile.name = smile.name
+
+			return realmSmile
+		}
+
+	}
+
 }

@@ -7,12 +7,25 @@
 //
 
 import Foundation
-import Realm
+import RealmSwift
 
 class RealmSmile: Object {
 
 	@objc dynamic var id = 0
 	@objc dynamic var name = ""
+
+	override var hashValue: Int {
+		return id.hashValue
+	}
+
+	static func == (lhs: RealmSmile, rhs: RealmSmile) -> Bool {
+		return lhs.id == rhs.id
+	}
+
+	override static func primaryKey() -> String? {
+		return "id"
+	}
+
 
 
 }
