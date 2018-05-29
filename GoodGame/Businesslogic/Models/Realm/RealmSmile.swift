@@ -11,19 +11,14 @@ import RealmSwift
 
 class RealmSmile: Object {
 
-	@objc dynamic var id = 0
 	@objc dynamic var name = ""
 
-	override var hashValue: Int {
-		return id.hashValue
-	}
-
-	static func == (lhs: RealmSmile, rhs: RealmSmile) -> Bool {
-		return lhs.id == rhs.id
-	}
-
+    @objc dynamic var img: String = ""
+    @objc dynamic var imgBig: String = ""
+    @objc dynamic var imgGif: String = ""
+    
 	override static func primaryKey() -> String? {
-		return "id"
+		return "name"
 	}
 
 

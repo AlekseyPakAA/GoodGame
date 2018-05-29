@@ -3,6 +3,7 @@ PODS:
   - AlamofireObjectMapper (5.0.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
+  - Kingfisher (4.8.0)
   - ObjectMapper (3.1.0)
   - PINCache (3.0.1-beta.6):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
@@ -36,6 +37,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
+  - Kingfisher
   - ObjectMapper
   - RealmSwift
   - SwiftWebSocket
@@ -44,6 +46,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
@@ -53,6 +56,6 @@ SPEC CHECKSUMS:
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   Texture: 7249074582daf75e524e59df5428b66b8e8db0e4
 
-PODFILE CHECKSUM: 7c70b102c4cdc821d5979dbce1aeeee286716612
+PODFILE CHECKSUM: 416eaef2b5bae8bd1104fcaab943e04e5417cba7
 
 COCOAPODS: 1.4.0

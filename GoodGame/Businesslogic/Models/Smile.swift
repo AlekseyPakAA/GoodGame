@@ -10,7 +10,6 @@ import ObjectMapper
 
 struct Smile: ImmutableMappable {
     
-    let id: Int
     let name: String
     let donat: Int
     let premium: Int
@@ -25,9 +24,7 @@ struct Smile: ImmutableMappable {
     let channel: String
     let channelID: Int
     
-    init(map: Map) throws {
-        id = try map.value("id", using: IntegerTransform())
-        
+    init(map: Map) throws {        
         name = try map.value("name")
         donat = try map.value("donat")
         premium = try map.value("premium")

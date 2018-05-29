@@ -9,11 +9,10 @@ target 'GoodGame' do
   pod 'Alamofire'
   pod 'ObjectMapper'
   pod 'AlamofireObjectMapper'
-  
   pod 'SwiftWebSocket'
+  pod 'Kingfisher'
 
   pod 'Texture'
-
   pod 'RealmSwift'
 
 end
