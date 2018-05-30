@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		431AD75720AF1F8200B1F856 /* MVPTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431AD75620AF1F8200B1F856 /* MVPTableNode.swift */; };
-		43BE0C0120BD7D1300C4C40F /* RealmSmile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BE0C0020BD7D1300C4C40F /* RealmSmile.swift */; };
 		7409D74420A74A9E00C2F70C /* OutgoingMessageChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */; };
 		7409D74620A75EE900C2F70C /* AuthChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7409D74520A75EE900C2F70C /* AuthChatMessage.swift */; };
 		741097D720605B6B004A4EF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */; };
@@ -65,7 +64,6 @@
 		2E5BD78CBC920B67DCC385F3 /* Pods_GoodGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		431AD75620AF1F8200B1F856 /* MVPTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPTableNode.swift; sourceTree = "<group>"; };
 		43BE0BE820BD4BCC00C4C40F /* GoodGame.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoodGame.xcdatamodel; sourceTree = "<group>"; };
-		43BE0C0020BD7D1300C4C40F /* RealmSmile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSmile.swift; sourceTree = "<group>"; };
 		7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageChatMessage.swift; sourceTree = "<group>"; };
 		7409D74520A75EE900C2F70C /* AuthChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthChatMessage.swift; sourceTree = "<group>"; };
 		741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -141,14 +139,6 @@
 				8A166B63B3B0A00ECF3F57DE /* Pods-GoodGame.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		43BE0BFF20BD7CFA00C4C40F /* Realm */ = {
-			isa = PBXGroup;
-			children = (
-				43BE0C0020BD7D1300C4C40F /* RealmSmile.swift */,
-			);
-			path = Realm;
 			sourceTree = "<group>";
 		};
 		56407E0107D924A7C1E88E97 /* Frameworks */ = {
@@ -439,7 +429,6 @@
 		74F7114020586DC800BCF893 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				43BE0BFF20BD7CFA00C4C40F /* Realm */,
 				74F7114120586DDD00BCF893 /* Stream.swift */,
 				74CE8032205AFC25007A1A48 /* Channel.swift */,
 				74313DC720BAD3BD006E9BCC /* Smile.swift */,
@@ -639,7 +628,6 @@
 				7409D74620A75EE900C2F70C /* AuthChatMessage.swift in Sources */,
 				749BCCBD206C319B008189B8 /* ChannelCountersChatMessage.swift in Sources */,
 				74E14160206D7E500032A69A /* ChatPresenter.swift in Sources */,
-				43BE0C0120BD7D1300C4C40F /* RealmSmile.swift in Sources */,
 				7445E5692099E38600647A96 /* ChatAssembly.swift in Sources */,
 				74A7A97A2054519800FA06BE /* Constants.swift in Sources */,
 				74E1415E206D7E310032A69A /* ChatViewController.swift in Sources */,

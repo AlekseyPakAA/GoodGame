@@ -10,7 +10,6 @@ import Alamofire
 import ObjectMapper
 import JavaScriptCore
 import RealmSwift
-import Kingfisher
 
 class SmilesManager {
     
@@ -18,7 +17,11 @@ class SmilesManager {
     private init() {}
     
     fileprivate let url = "https://static.goodgame.ru/js/minified/global.js"
-    
+
+	fileprivate var dirURL: URL! {
+		return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first?.appendingPathComponent("Smiles")
+	}
+
     func scync() {
         Alamofire.request(url).responseString(completionHandler: { response in
             switch response.result {
@@ -33,68 +36,148 @@ class SmilesManager {
 	fileprivate func handleReceivedScript(script: String) {
         DispatchQueue.global(qos: .utility).async {
             let jscontext = JSContext()
-            let realm = try? Realm()
+            let realm = try! Realm()
             
             _ = jscontext?.evaluateScript(script)
             guard let jsonDictionary = jscontext?.objectForKeyedSubscript("Global").toDictionary() else { return }
             
-            guard let smiles: [Smile] = {
+            guard var smiles: [MappableSmile] = {
                 guard let commonSmilesArray = (jsonDictionary as AnyObject).value(forKeyPath: "Smiles") as? [[String: Any]] else {
                     return nil
                 }
-                return try? Mapper<Smile>().mapArray(JSONArray: commonSmilesArray)
+                return try? Mapper<MappableSmile>().mapArray(JSONArray: commonSmilesArray)
             }() else {
                 return
             }
-            
+
+			for i in stride(from: smiles.count - 1, to: -1, by: -1) {
+				let dataset = realm.objects(RealmSmile.self)
+				if let realmsmile = dataset.filter("name == %@", smiles[i].name).first, realmsmile.scynced {
+					smiles.remove(at: i)
+				}
+			}
+
             let realmSmiles: [RealmSmile] = smiles.map { smile in
                 let realmSmile = RealmSmile()
                 realmSmile.name = smile.name
                 
                 realmSmile.img = smile.img.description
-                realmSmile.imgBig = smile.img.description
-                realmSmile.imgGif = smile.img.description
-                
+                realmSmile.imgBig = smile.imgBig.description
+
+				if smile.animated {
+					realmSmile.imgGif = smile.imgGif.description
+				}
+
+				realmSmile.animated = smile.animated
+
                 return realmSmile
             }
             
-            try? realm?.write {
-                realm?.add(realmSmiles, update: true)
+            try? realm.write {
+                realm.add(realmSmiles, update: true)
             }
             
             self.syncImages()
         }
 	}
     
-    fileprivate func syncImages() {
-        let realm = try? Realm()
-        
-        guard let smiles = realm?.objects(RealmSmile.self) else { return }
-        for smile in smiles {
-            var names:[String] = []
+	fileprivate func syncImages() {
+		let realm = try! Realm()
 
-            names.append(fileNameForImage(type: .small, name: smile.img))
-            names.append(fileNameForImage(type: .big, name: smile.imgBig))
-            names.append(fileNameForImage(type: .gif, name: smile.imgGif))
-            
-            
-        }
-    }
-    
-    fileprivate func fileNameForImage(type: ImageType, name: String) -> String {
-        switch type {
-        case .small:
-            return "\(name).png"
-        case .big:
-            return "\(type)-\(name).png"
-        case .gif:
-            return "\(type)-\(name).gif"
-        }
-    }
+		guard (try? FileManager.default.createDirectory(atPath: dirURL.path, withIntermediateDirectories: true, attributes: nil)) != nil else {
+			return
+		}
+
+		let smiles = realm.objects(RealmSmile.self)
+		for smile in smiles {
+			var synced = true
+
+			if let url = URL(string: smile.img), !(loadImage(url: url)) {
+				synced = false
+			}
+
+			if let url = URL(string: smile.imgBig), !(loadImage(url: url)) {
+				synced = false
+			}
+
+			if smile.animated {
+				if let url = URL(string: smile.imgGif), !(loadImage(url: url)) {
+					synced = false
+				}
+			}
+
+			try? realm.write {
+				smile.scynced = synced
+			}
+		}
+	}
+
+	fileprivate func loadImage(url: URL) -> Bool {
+		let filename = url.path.dropFirst().replacingOccurrences(of: "/", with: "_")
+		let fileURL = dirURL.appendingPathComponent("\(filename)")
+
+		guard !FileManager.default.fileExists(atPath: fileURL.path) else {
+			return true
+		}
+
+		if let data = try? Data(contentsOf: url) {
+			FileManager.default.createFile(atPath: fileURL.path, contents: data, attributes: nil)
+			return true
+		}
+
+		return false
+	}
 
 }
 
+class RealmSmile: Object {
 
-fileprivate enum ImageType: String {
-    case small, big, gif
+	@objc dynamic var name = ""
+
+	@objc dynamic var img: String = ""
+	@objc dynamic var imgBig: String = ""
+	@objc dynamic var imgGif: String = ""
+
+	@objc dynamic var scynced: Bool = false
+
+	@objc dynamic var animated: Bool = false
+
+	override static func primaryKey() -> String? {
+		return "name"
+	}
+
+}
+
+struct MappableSmile: ImmutableMappable {
+
+	let name: String
+	let donat: Int
+	let premium: Int
+	let paid: Int
+	let animated: Bool
+	let tag: String
+
+	let img: URL
+	let imgBig: URL
+	let imgGif: URL
+
+	let channel: String
+	let channelID: Int
+
+	init(map: Map) throws {
+		name = try map.value("name")
+		donat = try map.value("donat")
+		premium = try map.value("premium")
+		paid = try map.value("paid")
+		animated = try map.value("animated")
+		tag = try map.value("tag")
+
+		img = try map.value("img", using: URLTransform())
+		imgBig = try map.value("img_big", using: URLTransform())
+		imgGif = try map.value("img_gif", using: URLTransform())
+
+		channel = try map.value("channel")
+		channelID = try map.value("channel_id")
+	}
+
 }

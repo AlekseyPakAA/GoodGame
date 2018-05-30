@@ -9,6 +9,7 @@
 import UIKit
 import AsyncDisplayKit
 import CoreData
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,7 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Instantiate the root view controller with dependencies injected by the container.
         window.rootViewController = ASNavigationController(rootViewController: StreamsAssembly.makeModule())
-        
+
+		ASDisableLogging()
+
+		Realm.Configuration.defaultConfiguration.deleteRealmIfMigrationNeeded = true
         SmilesManager.shared.scync()
         
         return true
