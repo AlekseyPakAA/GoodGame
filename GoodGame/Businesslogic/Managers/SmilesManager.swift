@@ -113,8 +113,7 @@ class SmilesManager {
 	}
 
 	fileprivate func loadImage(url: URL) -> Bool {
-		let filename = url.path.dropFirst().replacingOccurrences(of: "/", with: "_")
-		let fileURL = dirURL.appendingPathComponent("\(filename)")
+		let fileURL = fileURLWith(url: url)
 
 		guard !FileManager.default.fileExists(atPath: fileURL.path) else {
 			return true
@@ -127,7 +126,27 @@ class SmilesManager {
 
 		return false
 	}
+    
+    fileprivate func fileURLWith(url: URL) -> URL {
+        let filename = url.path.dropFirst().replacingOccurrences(of: "/", with: "_")
+        return dirURL.appendingPathComponent("\(filename)")
+    }
+    
+    func urlForSmileWith(name: String) -> URL? {
+        let realm = try! Realm()
+        let dataset = realm.objects(RealmSmile.self)
+        if let realmsmile = dataset.filter("name == %@", name).first, realmsmile.scynced {
+            let url = URL(string: realmsmile.animated ? realmsmile.imgGif : realmsmile.img)!
+            return fileURLWith(url: url)
+        }
+        
+        return nil
+    }
 
+}
+
+enum SmileType {
+    case `default`, big, gif
 }
 
 class RealmSmile: Object {

@@ -26,6 +26,13 @@ class ChatMessageCell: ASCellNode {
         let attributes: [NSAttributedStringKey : Any] = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)]
         titleTextNode.attributedText = NSAttributedString(string: model.title, attributes: attributes)
         
+        let expression = try! NSRegularExpression(pattern: ":([A-z0-9])+:")
+        let range = NSRange(location: 0, length: model.description.count)
+        let matches = expression.matches(in: model.description, range: range).sorted(by: {l ,r in
+            return l.range.location > r.range.location
+        })
+        print(matches)
+
         descriptionTextNode.attributedText = NSAttributedString(string: model.description)
     }
     
