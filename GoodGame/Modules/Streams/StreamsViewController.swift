@@ -91,14 +91,14 @@ extension StreamsViewController: UICollectionViewDataSource {
         guard let item = presenter?.itemForCell(at: indexPath) else { return UICollectionViewCell() }
         switch item {
         case .default(let model):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StreamsCell.reuseIdentifier, for: indexPath) as! StreamsCell
+			let cell = collectionView.dequeueReusableCell(withCellType: StreamsCell.self, for: indexPath)
             cell.configure(model: model)
             return cell
         case .activityIndicator, .activityIndicatorFullScreen:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StreamsPreloaderCell.reuseIdentifier, for: indexPath) as! StreamsPreloaderCell
+            let cell = collectionView.dequeueReusableCell(withCellType: StreamsPreloaderCell.self, for: indexPath)
             return cell
         case .errorMessageFullScreen:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StreamsErrorCell.reuseIdentifier, for: indexPath) as! StreamsErrorCell
+            let cell = collectionView.dequeueReusableCell(withCellType: StreamsErrorCell.self, for: indexPath)
             return cell
         }
     }

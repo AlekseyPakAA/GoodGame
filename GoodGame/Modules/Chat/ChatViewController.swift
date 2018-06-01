@@ -197,10 +197,10 @@ extension ChatViewController: ChatView {
                 self.tableNode.insertRows(at: [indexPath], with: animation)
             }, completion: {_ in
                 let offset: CGPoint = {
-                    let x = self.tableNode.contentOffset.x
-                    let y = -self.tableNode.contentInset.top
+                    let xoffset = self.tableNode.contentOffset.x
+                    let yoffset = -self.tableNode.contentInset.top
 
-                    return CGPoint(x: x, y: y)
+                    return CGPoint(x: xoffset, y: yoffset)
                 }()
                 self.tableNode.setContentOffset(offset, animated: true)
             })
@@ -211,10 +211,10 @@ extension ChatViewController: ChatView {
                 guard !tableNode.view.isDecelerating else { return }
 
                 let offset: CGPoint = {
-                    let x = tableNode.contentOffset.x
-                    let y = tableNode.contentOffset.y + tableNode.rectForRow(at: indexPath).height
+                    let xoffset = tableNode.contentOffset.x
+                    let yoffset = tableNode.contentOffset.y + tableNode.rectForRow(at: indexPath).height
 
-                    return CGPoint(x: x, y: y)
+                    return CGPoint(x: xoffset, y: yoffset)
                 }()
 
                 tableNode.contentOffset = offset

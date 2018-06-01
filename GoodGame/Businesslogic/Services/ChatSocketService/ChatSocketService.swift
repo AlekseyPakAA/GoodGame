@@ -42,7 +42,7 @@ class ChatSocketService {
                 return
             }
 
-            guard let json: [String: Any] = Mapper<PH>.parseJSONStringIntoDictionary(JSONString: string) else {
+            guard let json: [String: Any] = Mapper<Generic>.parseJSONStringIntoDictionary(JSONString: string) else {
                 print("Received the non json message")
                 return
             }
@@ -92,7 +92,7 @@ class ChatSocketService {
     func send(message: OutgoingMessage) {
         let json = message.toJSON()
         let embededjson: [String: Any] = ["type": message.type, "data": json]
-        guard let jsonstring = Mapper<PH>.toJSONString(embededjson, prettyPrint: false) else {
+        guard let jsonstring = Mapper<Generic>.toJSONString(embededjson, prettyPrint: false) else {
             print("Unable to parse \(message) to a json string")
             return
         }
@@ -112,7 +112,7 @@ class ChatSocketService {
 }
 
 //Mapper want an generic parameter inherited from "Base mappable"
-private class PH: Mappable {
+private class Generic: Mappable {
 
     required init?(map: Map) { }
     func mapping(map: Map) { }

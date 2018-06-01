@@ -9,26 +9,30 @@
 import UIKit
 
 extension UIViewController {
-    
-    static func instantiateFromStoryboard(storyboardName: String? = nil) -> Self {
-        return defaultInstantiateFromStoryboard(type: self, storyboardName: storyboardName)
-    }
+
+	static func instantiateFromStoryboard(storyboardName: String? = nil) -> Self {
+		return defaultInstantiateFromStoryboard(type: self, storyboardName: storyboardName)
+	}
 
 }
 
-// MARK:- Private methods
+// MARK: - Private methods
 private extension UIViewController {
-    
-    static func defaultInstantiateFromStoryboard<T>(type: T.Type, storyboardName: String? = nil) -> T {
-        let name = String(describing: self).replacingOccurrences(of: "ViewController", with: "")
-        let storyboardName = storyboardName ?? name+"Storyboard"
-        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: name)
-        return vc as! T
-    }
-    
-    static func instantiateControllerInStoryboard<T: UIViewController>(_ storyboard: UIStoryboard, identifier: String) -> T {
-        return storyboard.instantiateViewController(withIdentifier: identifier) as! T
-    }
-    
+
+	static func defaultInstantiateFromStoryboard<T>(type: T.Type, storyboardName: String? = nil) -> T {
+		let name = String(describing: self).replacingOccurrences(of: "ViewController", with: "")
+		let storyboardName = storyboardName ?? name+"Storyboard"
+		let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+		let viewcontroller = storyboard.instantiateViewController(withIdentifier: name)
+		//swiftlint:disable force_cast
+		return viewcontroller as! T
+		//swiftlint:enable force_cast
+	}
+
+	static func instantiateControllerInStoryboard<T: UIViewController>(_ storyboard: UIStoryboard, identifier: String) -> T {
+		//swiftlint:disable force_cast
+		return storyboard.instantiateViewController(withIdentifier: identifier) as! T
+		//swiftlint:enable force_cast
+	}
+
 }

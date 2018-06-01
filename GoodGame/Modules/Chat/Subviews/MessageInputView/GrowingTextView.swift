@@ -82,46 +82,44 @@ class GrowingTextView: UIView {
     }
 
 	override var intrinsicContentSize: CGSize {
-		get {
-			var numberOfLines = 1
-			var attributedTextContainsMaximumNumberOfLines: NSAttributedString? = nil
+		var numberOfLines = 1
+		var croppedText: NSAttributedString? = nil
 
-			var i = 0
-			var range = NSRange()
+		var iterator = 0
+		var range = NSRange()
 
-			while i < innerTextView.layoutManager.numberOfGlyphs {
-				innerTextView.layoutManager.lineFragmentRect(forGlyphAt: i, effectiveRange: &range)
+		while iterator < innerTextView.layoutManager.numberOfGlyphs {
+			innerTextView.layoutManager.lineFragmentRect(forGlyphAt: iterator, effectiveRange: &range)
 
-				i = range.upperBound
-				numberOfLines += 1
+			iterator = range.upperBound
+			numberOfLines += 1
 
-				if numberOfLines == maximumNumberOfLines {
-					let glyphsRange = NSRange(location: 0, length: range.upperBound)
-					let charRange = innerTextView.layoutManager.characterRange(forGlyphRange: glyphsRange, actualGlyphRange: nil)
-					attributedTextContainsMaximumNumberOfLines = innerTextView.attributedText.attributedSubstring(from: charRange)
-				}
+			if numberOfLines == maximumNumberOfLines {
+				let glyphsRange = NSRange(location: 0, length: range.upperBound)
+				let charRange = innerTextView.layoutManager.characterRange(forGlyphRange: glyphsRange, actualGlyphRange: nil)
+				croppedText = innerTextView.attributedText.attributedSubstring(from: charRange)
 			}
+		}
 
-			let size: CGSize = {
-				let contaner = CGSize(width: innerTextView.contentSize.width, height: .infinity)
+		let size: CGSize = {
+			let contaner = CGSize(width: innerTextView.contentSize.width, height: .infinity)
 
-				let text = attributedTextContainsMaximumNumberOfLines ?? innerTextView.attributedText!
+			let text = croppedText ?? innerTextView.attributedText!
 
-				var size = text.boundingRect(with: contaner, options: .usesLineFragmentOrigin, context: nil).size
-				size.height += innerTextView.textContainerInset.top + innerTextView.textContainerInset.bottom
-				size.height = size.height.rounded()
-
-				return size
-			}()
-
-			if numberOfLines >= maximumNumberOfLines {
-				innerTextView.isScrollEnabled = true
-			} else {
-				innerTextView.isScrollEnabled = false
-			}
+			var size = text.boundingRect(with: contaner, options: .usesLineFragmentOrigin, context: nil).size
+			size.height += innerTextView.textContainerInset.top + innerTextView.textContainerInset.bottom
+			size.height = size.height.rounded()
 
 			return size
+		}()
+
+		if numberOfLines >= maximumNumberOfLines {
+			innerTextView.isScrollEnabled = true
+		} else {
+			innerTextView.isScrollEnabled = false
 		}
+
+		return size
 	}
 
 	@objc func textDidChange() {

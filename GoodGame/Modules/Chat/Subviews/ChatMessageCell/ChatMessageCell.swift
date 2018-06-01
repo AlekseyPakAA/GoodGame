@@ -20,21 +20,21 @@ class ChatMessageCell: ASCellNode {
         selectionStyle = .none
 
         titleTextNode.maximumNumberOfLines = 1
-    }
+	}
 
-    func configure(model: ChatMessageCellViewModel) {
-        let attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)]
-        titleTextNode.attributedText = NSAttributedString(string: model.title, attributes: attributes)
+	func configure(model: ChatMessageCellViewModel) {
+		let attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)]
+		titleTextNode.attributedText = NSAttributedString(string: model.title, attributes: attributes)
 
-        let expression = try! NSRegularExpression(pattern: ":([A-z0-9])+:")
-        let range = NSRange(location: 0, length: model.description.count)
-        let matches = expression.matches(in: model.description, range: range).sorted(by: {l, r in
-            return l.range.location > r.range.location
-        })
-        print(matches)
+		if let expression = try? NSRegularExpression(pattern: ":([A-z0-9])+:") {
+			let range = NSRange(location: 0, length: model.description.count)
+			let matches = expression.matches(in: model.description, range: range).sorted(by: {lhf, rhf in
+				return lhf.range.location > rhf.range.location
+			})
+		}
 
-        descriptionTextNode.attributedText = NSAttributedString(string: model.description)
-    }
+		descriptionTextNode.attributedText = NSAttributedString(string: model.description)
+	}
 
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let spec = ASStackLayoutSpec()
