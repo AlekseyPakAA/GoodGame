@@ -143,7 +143,7 @@ class SmilesManager {
 
 		let dataset = realm.objects(RealmSmile.self)
 		if let realmsmile = dataset.filter("name == %@", name).first, realmsmile.scynced {
-			let url = URL(string: realmsmile.animated ? realmsmile.imgGif : realmsmile.img)!
+			let url = URL(string: realmsmile.imgBig)!
 			return fileURLWith(url: url)
 		}
 
