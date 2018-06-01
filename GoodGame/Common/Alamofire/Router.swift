@@ -8,12 +8,11 @@
 
 import Alamofire
 
-
 enum Router: URLRequestConvertible {
     case streams(page: Int)
-    
+
     static let baseURLString = "http://api2.goodgame.ru/v2"
-    
+
     func asURLRequest() throws -> URLRequest {
         let result: (path: String, parameters: Parameters) = {
             switch self {
@@ -21,7 +20,7 @@ enum Router: URLRequestConvertible {
                 return ("/streams", ["page": page])
             }
         }()
-        
+
         let url = try Router.baseURLString.asURL()
         let urlRequest = URLRequest(url: url.appendingPathComponent(result.path))
         return try URLEncoding.default.encode(urlRequest, with: result.parameters)

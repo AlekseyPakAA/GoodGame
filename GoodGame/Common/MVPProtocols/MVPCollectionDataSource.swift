@@ -9,12 +9,12 @@
 import Foundation
 
 protocol MVPCollectionDataSource {
-    
+
     associatedtype ViewModelType
-    
+
     func numberOfItems(in section: Int) -> Int
     func itemForCell(at intdex: IndexPath) -> ViewModelType
-    
+
 }
 
 extension MVPCollectionDataSource {

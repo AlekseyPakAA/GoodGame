@@ -9,13 +9,13 @@
 import UIKit
 
 class StreamsRouter {
-    
+
     var context: UIViewController?
-    
+
     func showStreamsDetail(channelID: Int) {
         let controller = ChatAssembly.makeModule(channelID: channelID)
-        
+
         context?.navigationController?.pushViewController(controller, animated: true)
     }
-    
+
 }

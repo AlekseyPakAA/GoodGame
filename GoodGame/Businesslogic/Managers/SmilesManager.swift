@@ -12,10 +12,10 @@ import JavaScriptCore
 import RealmSwift
 
 class SmilesManager {
-    
+
     static let shared = SmilesManager()
     private init() {}
-    
+
     fileprivate let url = "https://static.goodgame.ru/js/minified/global.js"
 
 	fileprivate var dirURL: URL! {
@@ -37,10 +37,10 @@ class SmilesManager {
         DispatchQueue.global(qos: .utility).async {
             let jscontext = JSContext()
             let realm = try! Realm()
-            
+
             _ = jscontext?.evaluateScript(script)
             guard let jsonDictionary = jscontext?.objectForKeyedSubscript("Global").toDictionary() else { return }
-            
+
             guard var smiles: [MappableSmile] = {
                 guard let commonSmilesArray = (jsonDictionary as AnyObject).value(forKeyPath: "Smiles") as? [[String: Any]] else {
                     return nil
@@ -60,7 +60,7 @@ class SmilesManager {
             let realmSmiles: [RealmSmile] = smiles.map { smile in
                 let realmSmile = RealmSmile()
                 realmSmile.name = smile.name
-                
+
                 realmSmile.img = smile.img.description
                 realmSmile.imgBig = smile.imgBig.description
 
@@ -72,15 +72,15 @@ class SmilesManager {
 
                 return realmSmile
             }
-            
+
             try? realm.write {
                 realm.add(realmSmiles, update: true)
             }
-            
+
             self.syncImages()
         }
 	}
-    
+
 	fileprivate func syncImages() {
 		let realm = try! Realm()
 
@@ -126,12 +126,12 @@ class SmilesManager {
 
 		return false
 	}
-    
+
     fileprivate func fileURLWith(url: URL) -> URL {
         let filename = url.path.dropFirst().replacingOccurrences(of: "/", with: "_")
         return dirURL.appendingPathComponent("\(filename)")
     }
-    
+
     func urlForSmileWith(name: String) -> URL? {
         let realm = try! Realm()
         let dataset = realm.objects(RealmSmile.self)
@@ -139,7 +139,7 @@ class SmilesManager {
             let url = URL(string: realmsmile.animated ? realmsmile.imgGif : realmsmile.img)!
             return fileURLWith(url: url)
         }
-        
+
         return nil
     }
 

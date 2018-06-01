@@ -9,17 +9,17 @@
 import UIKit
 
 class StreamsPreloaderCell: UICollectionViewCell {
-    
+
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         activityIndicator.startAnimating()
     }
-    
+
     override func removeFromSuperview() {
         super.removeFromSuperview()
         activityIndicator.stopAnimating()
     }
-    
+
 }

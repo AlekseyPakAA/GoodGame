@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.makeKeyAndVisible()
         self.window = window
-        
+
         // Instantiate the root view controller with dependencies injected by the container.
         window.rootViewController = ASNavigationController(rootViewController: StreamsAssembly.makeModule())
 
@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		Realm.Configuration.defaultConfiguration.deleteRealmIfMigrationNeeded = true
         SmilesManager.shared.scync()
-        
+
         return true
     }
 
@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		error conditions that could cause the creation of the store to fail.
 		*/
 		let container = NSPersistentContainer(name: "GoodGame")
-		container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+		container.loadPersistentStores(completionHandler: { (_, error) in
 			if let error = error as NSError? {
 				// Replace this implementation with code to handle the error appropriately.
 				// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -100,4 +100,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 }
-

@@ -9,17 +9,17 @@
 import ObjectMapper
 
 class IntegerTransform: TransformType {
-   
+
     typealias Object = Int
     typealias JSON = String
-    
+
     func transformFromJSON(_ value: Any?) -> Int? {
         guard let string = value as? String else { return nil }
         return Int(string)
     }
-    
+
     func transformToJSON(_ value: Int?) -> String? {
         return String(describing: value)
     }
-    
+
 }

@@ -9,15 +9,15 @@
 import ObjectMapper
 
 protocol ChatMessage: ImmutableMappable {
-    
+
 }
 
 protocol IncomingMessage: ChatMessage {
-    
+
 }
 
 protocol OutgoingMessage: ChatMessage {
-    
+
     var type: String { get }
-    
+
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		431AD75720AF1F8200B1F856 /* MVPTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431AD75620AF1F8200B1F856 /* MVPTableNode.swift */; };
+		43EC31A920C135A9008EC817 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 43EC31A820C135A9008EC817 /* .swiftlint.yml */; };
 		7409D74420A74A9E00C2F70C /* OutgoingMessageChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */; };
 		7409D74620A75EE900C2F70C /* AuthChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7409D74520A75EE900C2F70C /* AuthChatMessage.swift */; };
 		741097D720605B6B004A4EF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */; };
@@ -64,6 +65,7 @@
 		2E5BD78CBC920B67DCC385F3 /* Pods_GoodGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		431AD75620AF1F8200B1F856 /* MVPTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPTableNode.swift; sourceTree = "<group>"; };
 		43BE0BE820BD4BCC00C4C40F /* GoodGame.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoodGame.xcdatamodel; sourceTree = "<group>"; };
+		43EC31A820C135A9008EC817 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageChatMessage.swift; sourceTree = "<group>"; };
 		7409D74520A75EE900C2F70C /* AuthChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthChatMessage.swift; sourceTree = "<group>"; };
 		741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 		749C85A42051B9AA00387832 = {
 			isa = PBXGroup;
 			children = (
+				43EC31A820C135A9008EC817 /* .swiftlint.yml */,
 				749C85AF2051B9AA00387832 /* GoodGame */,
 				749C85AE2051B9AA00387832 /* Products */,
 				4331CDEAF428217F8BFE8473 /* Pods */,
@@ -457,6 +460,7 @@
 				749C85AB2051B9AA00387832 /* Resources */,
 				3B6B5A56CC2C6A03B4932EB6 /* [CP] Embed Pods Frameworks */,
 				E941BFE43BD94751EF22C74B /* [CP] Copy Pods Resources */,
+				43EC31A720C13166008EC817 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -516,6 +520,7 @@
 				741097DF206195EA004A4EF0 /* StreamsPreloaderCell.xib in Resources */,
 				741097E42061A426004A4EF0 /* StreamsErrorCell.xib in Resources */,
 				74A7A97320544C0700FA06BE /* StreamsCell.xib in Resources */,
+				43EC31A920C135A9008EC817 /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,6 +564,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoodGame/Pods-GoodGame-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		43EC31A720C13166008EC817 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint";
 		};
 		B4C23374C623821E07B6B685 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

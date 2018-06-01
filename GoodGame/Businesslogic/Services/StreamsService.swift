@@ -21,12 +21,8 @@ class StreamsService {
                 failure?(error)
             }
         }
-        
+
         Alamofire.request(Router.streams(page: page)).responseObject(completionHandler: responseHandler)
     }
-    
+
 }
-
-
-
-

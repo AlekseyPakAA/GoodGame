@@ -15,7 +15,7 @@ enum ChatCollectionItemTypes: Equatable {
             return lhsmodel == rhsmodel
         }
     }
-    
+
     case `default`(model: ChatMessageCellViewModel)
 }
 
@@ -23,56 +23,56 @@ class ChatPresenter {
 
     weak var view: ChatView?
     fileprivate var items: [ChatCollectionItemTypes] = []
-    
+
     fileprivate var service: ChatSocketService?
     fileprivate var channelID: Int
-    
+
     init(channelID: Int) {
         self.channelID = channelID
-        
+
         self.service = ChatSocketService()
         service?.deleate = self
     }
-    
-    func viewDidLoad() {        
+
+    func viewDidLoad() {
         service?.connect(channelID: channelID)
     }
-    
+
     func applicationDidBecomeActive() {
         service?.connect(channelID: channelID)
     }
-    
+
     func applicationWillResignActive() {
         service?.disconnect()
     }
-    
+
     func updateChatCounters(message: ChannelCountersChatMessage) {
-        
+
     }
-    
+
     func didTouchSendButton() {
         let message = OutgoingMessageChatMessage(channelID: channelID, text: "Lorem ipsum dolor sit amet.")
         service?.send(message: message)
     }
-    
+
 }
 
 extension ChatPresenter: ChatSocketServiceDelegate {
-    
+
     func connectionOpened() {
         let message = GetChatHistoryChatMesssage(channelID: channelID)
         service?.send(message: message)
     }
-    
+
     func connectionClosed(code: Int, reason: String, clean: Bool) {
         print(#function)
     }
-    
+
     func didRecive(message: IncomingMessage) {
-        if let message = message as? IncomingMessageChatMessage  {
+        if let message = message as? IncomingMessageChatMessage {
             let model = ChatMessageCellViewModel(message: message)
             items.insert(.default(model: model), at: 0)
-        
+
             view?.insertMessage(with: .top)
         } else if let message = message as? ChannelCountersChatMessage {
             updateChatCounters(message: message)
@@ -80,7 +80,7 @@ extension ChatPresenter: ChatSocketServiceDelegate {
             var models: [ChatCollectionItemTypes] = message.messages.map {
                 .default(model:ChatMessageCellViewModel(message: $0))
             }.reversed()
-            
+
             if items.isEmpty {
                 print("Chat was empty, will be added new items.")
                 items.append(contentsOf: models)
@@ -98,23 +98,23 @@ extension ChatPresenter: ChatSocketServiceDelegate {
                     items.append(contentsOf: models)
                 }
             }
-            
+
             view?.reloadData()
         }
     }
-    
+
 }
 
 extension ChatPresenter: MVPCollectionDataSource {
-    
+
     typealias ViewModelType = ChatCollectionItemTypes
-    
+
     func numberOfItems(in section: Int) -> Int {
         return items.count
     }
-    
+
     func itemForCell(at indexPath: IndexPath) -> ChatCollectionItemTypes {
         return items[indexPath.row]
     }
-    
+
 }

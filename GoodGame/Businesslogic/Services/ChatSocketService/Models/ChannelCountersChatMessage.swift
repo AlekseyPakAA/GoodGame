@@ -8,25 +8,22 @@
 
 import ObjectMapper
 
-struct ChannelCountersChatMessage: IncomingMessage{
+struct ChannelCountersChatMessage: IncomingMessage {
 
     let channelID: Int
     let clientsInChannel: Int
     let usersInChannel: Int
-    
+
     init(map: Map) throws {
         channelID = try map.value("channel_id", using: IntegerTransform())
         clientsInChannel = try map.value("clients_in_channel", using: IntegerTransform())
         usersInChannel = try map.value("users_in_channel")
     }
-    
+
     func mapping(map: Map) {
         channelID >>> map["channel_id"]
         clientsInChannel >>> map["clients_in_channel"]
         usersInChannel >>> map["users_in_channel"]
     }
 
-    
-    
 }
-

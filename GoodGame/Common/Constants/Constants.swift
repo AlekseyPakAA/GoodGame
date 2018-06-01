@@ -7,6 +7,5 @@
 //
 
 struct Constants {
-    
-    
+
 }

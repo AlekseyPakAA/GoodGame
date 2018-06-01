@@ -9,15 +9,15 @@
 import ObjectMapper
 
 struct Channel: ImmutableMappable {
-    
+
     let id: Int
     let key: String
     let title: String
-    
+
     init(map: Map) throws {
         id    = try map.value("id")
         key   = try map.value("key")
         title = try map.value("title")
     }
-    
+
 }

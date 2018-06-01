@@ -9,14 +9,13 @@
 import ObjectMapper
 
 struct Stream: ImmutableMappable {
-    
+
     let id: Int
     let channel: Channel
-    
+
     init(map: Map) throws {
         id      = try map.value("id")
         channel = try map.value("channel")
     }
-    
-}
 
+}

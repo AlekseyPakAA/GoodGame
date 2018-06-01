@@ -9,21 +9,20 @@
 import Foundation
 
 class StreamsAssembly {
-    
+
     static func makeModule() -> StreamsViewController {
         let controller = StreamsViewController.instantiateFromStoryboard()
         let presenter = StreamsPresenter()
         let router = StreamsRouter()
-        
+
         controller.presenter = presenter
-        
+
         router.context = controller
-        
+
         presenter.view = controller
         presenter.router = router
-        
-        return controller
-    }
-    
-}
 
+        return controller
+	}
+
+}

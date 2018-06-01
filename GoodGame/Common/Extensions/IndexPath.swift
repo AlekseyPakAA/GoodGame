@@ -9,13 +9,13 @@
 import Foundation
 
 extension IndexPath {
-    
+
     init(item: Int) {
         self.init(item: item, section: 0)
     }
-    
+
     init(row: Int) {
         self.init(row: row, section: 0)
     }
-    
+
 }

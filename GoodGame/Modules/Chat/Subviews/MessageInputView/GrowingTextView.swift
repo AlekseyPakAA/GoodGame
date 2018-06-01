@@ -22,7 +22,7 @@ class GrowingTextView: UIView {
 		get {
 			return innerTextView.text
         }
-        
+
         set {
             innerTextView.text = newValue
         }
@@ -31,10 +31,10 @@ class GrowingTextView: UIView {
     override init(frame: CGRect) {
         innerTextView = UITextView(frame: .zero)
         super .init(frame: frame)
-        
+
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
 
         innerTextView = UITextView(frame: .zero)
@@ -42,7 +42,7 @@ class GrowingTextView: UIView {
 
         setup()
     }
-    
+
     fileprivate func setup() {
         addSubview(innerTextView)
 		setupConstraints ()
@@ -55,7 +55,7 @@ class GrowingTextView: UIView {
 		innerTextView.isScrollEnabled = false
 
 		innerTextView.font = UIFont.preferredFont(forTextStyle: .body)
-		innerTextView.textContainerInset = UIEdgeInsetsMake(7.0, 0.0, 4.0, 7.0)
+		innerTextView.textContainerInset = UIEdgeInsets(top: 7.0, left: 0.0, bottom: 4.0, right: 7.0)
 
 		NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: .UITextViewTextDidChange, object: innerTextView)
     }
@@ -70,15 +70,13 @@ class GrowingTextView: UIView {
 	}
 
     override var isFirstResponder: Bool {
-        get {
-            return innerTextView.isFirstResponder
-        }
+		return innerTextView.isFirstResponder
     }
-    
+
     override func resignFirstResponder() -> Bool {
         return innerTextView.resignFirstResponder()
     }
-    
+
     override func becomeFirstResponder() -> Bool {
         return innerTextView.becomeFirstResponder()
     }
@@ -98,7 +96,7 @@ class GrowingTextView: UIView {
 				numberOfLines += 1
 
 				if numberOfLines == maximumNumberOfLines {
-					let glyphsRange = NSMakeRange(0, range.upperBound)
+					let glyphsRange = NSRange(location: 0, length: range.upperBound)
 					let charRange = innerTextView.layoutManager.characterRange(forGlyphRange: glyphsRange, actualGlyphRange: nil)
 					attributedTextContainsMaximumNumberOfLines = innerTextView.attributedText.attributedSubstring(from: charRange)
 				}
