@@ -97,8 +97,6 @@ class ChatSocketService {
             return
         }
 
-        print(jsonstring)
-
         socket.send(text: jsonstring)
     }
 
