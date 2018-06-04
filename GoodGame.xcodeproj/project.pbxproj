@@ -10,6 +10,10 @@
 		431AD75720AF1F8200B1F856 /* MVPTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431AD75620AF1F8200B1F856 /* MVPTableNode.swift */; };
 		43EC31A920C135A9008EC817 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 43EC31A820C135A9008EC817 /* .swiftlint.yml */; };
 		43EC31AB20C14749008EC817 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EC31AA20C14749008EC817 /* UICollectionView.swift */; };
+		43EC31B420C53379008EC817 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EC31B320C53379008EC817 /* PlayerViewController.swift */; };
+		43EC31B620C53391008EC817 /* PlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EC31B520C53391008EC817 /* PlayerPresenter.swift */; };
+		43EC31B820C533A2008EC817 /* PlayerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EC31B720C533A2008EC817 /* PlayerAssembly.swift */; };
+		43EC31BA20C53469008EC817 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EC31B920C53469008EC817 /* AVFoundation.framework */; };
 		7409D74420A74A9E00C2F70C /* OutgoingMessageChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */; };
 		7409D74620A75EE900C2F70C /* AuthChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7409D74520A75EE900C2F70C /* AuthChatMessage.swift */; };
 		741097D720605B6B004A4EF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */; };
@@ -67,6 +71,10 @@
 		43BE0BE820BD4BCC00C4C40F /* GoodGame.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoodGame.xcdatamodel; sourceTree = "<group>"; };
 		43EC31A820C135A9008EC817 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		43EC31AA20C14749008EC817 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		43EC31B320C53379008EC817 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		43EC31B520C53391008EC817 /* PlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPresenter.swift; sourceTree = "<group>"; };
+		43EC31B720C533A2008EC817 /* PlayerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAssembly.swift; sourceTree = "<group>"; };
+		43EC31B920C53469008EC817 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageChatMessage.swift; sourceTree = "<group>"; };
 		7409D74520A75EE900C2F70C /* AuthChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthChatMessage.swift; sourceTree = "<group>"; };
 		741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -127,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43EC31BA20C53469008EC817 /* AVFoundation.framework in Frameworks */,
 				E881CBB353462A90EE6FCD9D /* Pods_GoodGame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,9 +152,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		43EC31B120C53327008EC817 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				43EC31B220C5335F008EC817 /* Subviews */,
+				43EC31B320C53379008EC817 /* PlayerViewController.swift */,
+				43EC31B520C53391008EC817 /* PlayerPresenter.swift */,
+				43EC31B720C533A2008EC817 /* PlayerAssembly.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		43EC31B220C5335F008EC817 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		56407E0107D924A7C1E88E97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43EC31B920C53469008EC817 /* AVFoundation.framework */,
 				2E5BD78CBC920B67DCC385F3 /* Pods_GoodGame.framework */,
 			);
 			name = Frameworks;
@@ -281,6 +309,7 @@
 		749C85C42051BF1600387832 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				43EC31B120C53327008EC817 /* Player */,
 				74E1415A206D7E030032A69A /* Chat */,
 				749C85D02051C71900387832 /* Streams */,
 				749C85CE2051C6CA00387832 /* Main.storyboard */,
@@ -634,8 +663,10 @@
 				74857A85206AD7600078746D /* JoinChatMessage.swift in Sources */,
 				7409D74420A74A9E00C2F70C /* OutgoingMessageChatMessage.swift in Sources */,
 				7445E56F2099F51100647A96 /* UIViewController.swift in Sources */,
+				43EC31B420C53379008EC817 /* PlayerViewController.swift in Sources */,
 				7445E575209B8E2C00647A96 /* ChatHistoryChatMesssage.swift in Sources */,
 				74A9EA20205C56BA007D945C /* MVPCollectionDataSource.swift in Sources */,
+				43EC31B620C53391008EC817 /* PlayerPresenter.swift in Sources */,
 				749C85B12051B9AA00387832 /* AppDelegate.swift in Sources */,
 				74A7A97F20545B5100FA06BE /* UICollectionViewCell.swift in Sources */,
 				746B91032057225A00A2A26F /* MVPCollectionView.swift in Sources */,
@@ -651,6 +682,7 @@
 				74A7A97520544E1B00FA06BE /* IndexPath.swift in Sources */,
 				74313DC820BAD3BD006E9BCC /* Smile.swift in Sources */,
 				7445E56D2099F24B00647A96 /* StreamsAssembly.swift in Sources */,
+				43EC31B820C533A2008EC817 /* PlayerAssembly.swift in Sources */,
 				74A7A97120544BFB00FA06BE /* StreamsCell.swift in Sources */,
 				7417ECAB2072C0AC003734F0 /* ChatMessageCellViewModel.swift in Sources */,
 				7445E56B2099E47600647A96 /* StreamsRouter.swift in Sources */,
