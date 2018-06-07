@@ -188,7 +188,7 @@ struct MappableSmile: ImmutableMappable {
 	let imgGif: URL
 
 	let channel: String
-	let channelID: Int
+	let channelid: Int
 
 	init(map: Map) throws {
 		name = try map.value("name")
@@ -203,7 +203,7 @@ struct MappableSmile: ImmutableMappable {
 		imgGif = try map.value("img_gif", using: URLTransform())
 
 		channel = try map.value("channel")
-		channelID = try map.value("channel_id")
+		channelid = try map.value("channel_id")
 	}
 
 }

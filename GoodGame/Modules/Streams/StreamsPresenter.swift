@@ -52,7 +52,7 @@ class StreamsPresenter {
 
     func didSelectItem(at indexPath: IndexPath) {
         if case let .default(model) = items[indexPath.row] {
-            router?.showStreamsDetail(channelID: model.id)
+            router?.showStreamsDetail(channelid: model.id)
         }
     }
 

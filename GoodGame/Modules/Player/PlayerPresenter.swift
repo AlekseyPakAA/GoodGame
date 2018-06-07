@@ -7,3 +7,38 @@
 //
 
 import Foundation
+class PlayerPresenter {
+
+	weak var view: PlayerView?
+    fileprivate var channelid: Int
+
+	fileprivate var quality: Quality = .source
+	fileprivate var videoURL: URL {
+		return URL(string: "https://hls.goodgame.ru/hls/\(channelid)\(quality.rawValue(withPrefix: "_")).m3u8")!
+	}
+
+	init(channelid: Int) {
+		self.channelid = channelid
+	}
+
+	func viewDidLoad() {
+		view?.setVideoURL(videoURL)
+		view?.play()
+	}
+
+}
+
+fileprivate extension Quality {
+
+	func rawValue(withPrefix prefix: String) -> String {
+		return rawValue.isEmpty ? rawValue : prefix + rawValue
+	}
+
+}
+
+enum Quality: String {
+	case mobile = "240"
+	case average = "480"
+	case hight = "720"
+	case source = ""
+}

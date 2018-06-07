@@ -10,16 +10,16 @@ import ObjectMapper
 
 struct ChatHistoryChatMesssage: IncomingMessage {
 
-    let channelID: Int
+    let channelid: Int
     let messages: [IncomingMessageChatMessage]
 
     init(map: Map) throws {
-        channelID = try map.value("channel_id")
+        channelid = try map.value("channel_id")
         messages = try map.value("messages")
     }
 
     func mapping(map: Map) {
-        channelID >>> map["channel_id"]
+        channelid >>> map["channel_id"]
         messages >>> map["messages"]
     }
 

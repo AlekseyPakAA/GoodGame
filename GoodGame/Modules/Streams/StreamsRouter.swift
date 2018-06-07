@@ -12,8 +12,8 @@ class StreamsRouter {
 
     var context: UIViewController?
 
-    func showStreamsDetail(channelID: Int) {
-        let controller = PlayerAssembly.makeModule(channelID: channelID)
+    func showStreamsDetail(channelid: Int) {
+        let controller = PlayerAssembly.makeModule(channelid: channelid)
 
         context?.navigationController?.pushViewController(controller, animated: true)
     }

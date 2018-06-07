@@ -25,21 +25,21 @@ class ChatPresenter {
     fileprivate var items: [ChatCollectionItemTypes] = []
 
     fileprivate var service: ChatSocketService?
-    fileprivate var channelID: Int
+    fileprivate var channelid: Int
 
-    init(channelID: Int) {
-        self.channelID = channelID
+    init(channelid: Int) {
+        self.channelid = channelid
 
         self.service = ChatSocketService()
         service?.deleate = self
     }
 
     func viewDidLoad() {
-        service?.connect(channelID: channelID)
+        service?.connect(channelid: channelid)
     }
 
     func applicationDidBecomeActive() {
-        service?.connect(channelID: channelID)
+        service?.connect(channelid: channelid)
     }
 
     func applicationWillResignActive() {
@@ -51,7 +51,7 @@ class ChatPresenter {
     }
 
     func didTouchSendButton() {
-        let message = OutgoingMessageChatMessage(channelID: channelID, text: "Lorem ipsum dolor sit amet.")
+        let message = OutgoingMessageChatMessage(channelid: channelid, text: "Lorem ipsum dolor sit amet.")
         service?.send(message: message)
     }
 
@@ -60,7 +60,7 @@ class ChatPresenter {
 extension ChatPresenter: ChatSocketServiceDelegate {
 
     func connectionOpened() {
-        let message = GetChatHistoryChatMesssage(channelID: channelID)
+        let message = GetChatHistoryChatMesssage(channelid: channelid)
         service?.send(message: message)
     }
 

@@ -12,21 +12,21 @@ struct JoinChatMessage: OutgoingMessage {
 
     let type: String = "join"
 
-    let channelID: Int
+    let channelid: Int
     let hidden: Bool
 
     init(map: Map) throws {
-        channelID = try map.value("channel_id")
+        channelid = try map.value("channel_id")
         hidden    = try map.value("hidden")
     }
 
     func mapping(map: Map) {
-        channelID >>> map["channel_id"]
+        channelid >>> map["channel_id"]
         hidden    >>> map["hidden"]
     }
 
-    init(channelID: Int) {
-        self.channelID = channelID
+    init(channelid: Int) {
+        self.channelid = channelid
         self.hidden = false
     }
 

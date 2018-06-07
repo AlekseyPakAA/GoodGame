@@ -23,7 +23,7 @@ class ChatSocketService {
 
     weak var deleate: ChatSocketServiceDelegate?
 
-    func connect(channelID: Int) {
+    func connect(channelid: Int) {
         socket.open(url)
 
         socket.event.close = { [weak self] (code, reason, clean) in
@@ -59,7 +59,7 @@ class ChatSocketService {
 
             switch type {
             case "welcome":
-                let join = JoinChatMessage(channelID: channelID)
+                let join = JoinChatMessage(channelid: channelid)
                 self.send(message: join)
             case "success_join":
                 self.deleate?.connectionOpened()

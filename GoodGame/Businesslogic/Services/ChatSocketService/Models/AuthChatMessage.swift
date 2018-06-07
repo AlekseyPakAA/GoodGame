@@ -12,26 +12,26 @@ struct AuthChatMessage: OutgoingMessage {
 
     var type: String = "auth"
 
-    let userID: Int
+    let userid: Int
     let token: String
 
     init() {
-        self.userID = 0
+        self.userid = 0
         self.token = ""
     }
 
-    init(userID: Int, token: String) {
-        self.userID = userID
+    init(userid: Int, token: String) {
+        self.userid = userid
         self.token = token
     }
 
     init(map: Map) throws {
-        userID = try map.value("user_id")
+        userid = try map.value("user_id")
         token = try map.value("token")
     }
 
     func mapping(map: Map) {
-        userID >>> map["user_id"]
+        userid >>> map["user_id"]
         token >>> map["token"]
     }
 
