@@ -12,21 +12,21 @@ struct OutgoingMessageChatMessage: OutgoingMessage {
 
     var type: String = "send_message"
 
-    let channelid: Int
+    let channelId: Int
     let text: String
 
-    init(channelid: Int, text: String) {
-        self.channelid = channelid
+    init(channelId: Int, text: String) {
+        self.channelId = channelId
         self.text = text
     }
 
     init(map: Map) throws {
-        channelid = try map.value("channel_id")
+        channelId = try map.value("channel_id")
         text = try map.value("text")
     }
 
     func mapping(map: Map) {
-        channelid >>> map["channel_id"]
+        channelId >>> map["channel_id"]
         text >>> map["text"]
 
         false >>> map["hideIcon"]

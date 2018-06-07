@@ -9,20 +9,23 @@
 import Alamofire
 
 enum Router: URLRequestConvertible {
-    case streams(page: Int)
+	case streams(page: Int)
+	case stream(id: Int)
 
-    static let baseURLString = "http://api2.goodgame.ru/v2"
+	static let baseURLString = "http://api2.goodgame.ru/v2"
 
-    func asURLRequest() throws -> URLRequest {
-        let result: (path: String, parameters: Parameters) = {
-            switch self {
-            case let .streams(page):
-                return ("/streams", ["page": page])
-            }
-        }()
+	func asURLRequest() throws -> URLRequest {
+		let result: (path: String, parameters: Parameters) = {
+			switch self {
+			case let .streams(page):
+				return ("/streams", ["page": page])
+			case .stream(let id):
+				return ("/streams/\(id)", [:])
+			}
+		}()
 
-        let url = try Router.baseURLString.asURL()
-        let urlRequest = URLRequest(url: url.appendingPathComponent(result.path))
-        return try URLEncoding.default.encode(urlRequest, with: result.parameters)
-    }
+		let url = try Router.baseURLString.asURL()
+		let urlRequest = URLRequest(url: url.appendingPathComponent(result.path))
+		return try URLEncoding.default.encode(urlRequest, with: result.parameters)
+	}
 }

@@ -12,18 +12,18 @@ struct GetChatHistoryChatMesssage: OutgoingMessage {
 
     let type: String = "get_channel_history"
 
-    let channelid: Int
+    let channelId: Int
 
-    init(channelid: Int) {
-        self.channelid = channelid
+    init(channelId: Int) {
+        self.channelId = channelId
     }
 
     init(map: Map) throws {
-        channelid = try map.value("channel_id", using: IntegerTransform())
+        channelId = try map.value("channel_id", using: IntegerTransform())
     }
 
     func mapping(map: Map) {
-         channelid >>> map["channel_id"]
+         channelId >>> map["channel_id"]
     }
 
 }

@@ -29,4 +29,21 @@ class StreamsService {
         Alamofire.request(Router.streams(page: page)).responseObject(completionHandler: responseHandler)
     }
 
+	func getStream(id: Int, success: ((Stream) -> Void)? = nil, failure: ((Error) -> Void)? = nil) {
+		let responseHandler = { (response: DataResponse<Stream>) in
+			if let data = response.data, let string = String(data: data, encoding: .utf8) {
+				print(string)
+			}
+
+			switch response.result {
+			case .success(let result):
+				success?(result)
+			case .failure(let error):
+				failure?(error)
+			}
+		}
+
+		Alamofire.request(Router.stream(id: id)).responseObject(completionHandler: responseHandler)
+	}
+
 }

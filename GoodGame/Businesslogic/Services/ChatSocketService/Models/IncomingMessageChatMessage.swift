@@ -13,7 +13,7 @@ struct IncomingMessageChatMessage: IncomingMessage, Equatable {
     let id: Int
     let text: String
 
-    let channelid: Int
+    let channelId: Int
 
     let userid: Int
     let userName: String
@@ -24,7 +24,7 @@ struct IncomingMessageChatMessage: IncomingMessage, Equatable {
         id = try map.value("message_id")
         text = try map.value("text")
 
-        channelid = try map.value("channel_id")
+        channelId = try map.value("channel_id")
 
         userid = try map.value("user_id")
         userName = try map.value("user_name")
@@ -36,7 +36,7 @@ struct IncomingMessageChatMessage: IncomingMessage, Equatable {
         id >>> map["message_id"]
         text >>> map["text"]
 
-        channelid >>> map["channel_id"]
+        channelId >>> map["channel_id"]
 
         userid >>> map["user_id"]
         userName >>> map["user_name"]
