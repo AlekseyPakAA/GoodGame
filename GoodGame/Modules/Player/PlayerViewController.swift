@@ -52,11 +52,11 @@ class PlayerViewControllerContentNode: ASDisplayNode {
 	override init() {
 		super.init()
 
-		backgroundColor = .green
+		backgroundColor = .white
 
-		videoNode.backgroundColor = .red
 		videoNode.addTarget(self, action: #selector(didTouchVideoNode(_:)), forControlEvents: .touchUpInside)
 
+		automaticallyRelayoutOnSafeAreaChanges = true
 		automaticallyManagesSubnodes = true
 	}
 
@@ -66,7 +66,8 @@ class PlayerViewControllerContentNode: ASDisplayNode {
 	}
 
 	override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-		return	ASOverlayLayoutSpec(child: videoNode, overlay: overlayNode)
+		let overlay = ASOverlayLayoutSpec(child: videoNode, overlay: overlayNode)
+		return ASInsetLayoutSpec(insets: safeAreaInsets, child: overlay)
 	}
 
 }
@@ -75,6 +76,9 @@ class VideoNodeOverlayNode: ASControlNode {
 
 	var state: State
 	var fullScreenButton = ASButtonNode()
+	var qualityPickerButton = ASButtonNode()
+	var closeButton = ASButtonNode()
+	var playStopButton = PlayStopButtonNode()
 
 	fileprivate var stamp: DispatchTime = .now()
 
@@ -89,27 +93,38 @@ class VideoNodeOverlayNode: ASControlNode {
 
 		addTarget(self, action: #selector(didTouch(_:)), forControlEvents: .touchUpInside)
 
-		fullScreenButton.backgroundColor = .red
 		fullScreenButton.setTitle("FS", with: UIFont.boldSystemFont(ofSize: 14), with: .white, for: .normal)
+		qualityPickerButton.setTitle("QP", with: UIFont.boldSystemFont(ofSize: 14), with: .white, for: .normal)
+		closeButton.setTitle("CL", with: UIFont.boldSystemFont(ofSize: 14), with: .white, for: .normal)
 
 		automaticallyManagesSubnodes = true
 	}
 
 	override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-		let stack = ASStackLayoutSpec(direction: .horizontal,
-									spacing: 16.0,
-									justifyContent: .end,
-									alignItems: .stretch,
-									children: [fullScreenButton])
+		let spacing: CGFloat = 16.0
+		let inset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
 
-		let insets = UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
-		let inset = ASInsetLayoutSpec(insets: insets, child: stack)
+		let top: ASLayoutSpec = {
+			let stack = ASStackLayoutSpec(direction: .horizontal, spacing: spacing, justifyContent: .end, alignItems: .center, children: [closeButton])
 
-		let relative = ASRelativeLayoutSpec(horizontalPosition: .end,
-												verticalPosition: .end,
-												sizingOption: [],
-												child: inset)
-		return relative
+			return ASInsetLayoutSpec(insets: inset, child: stack)
+		}()
+
+		let center: ASLayoutSpec = {
+			let stack = ASStackLayoutSpec(direction: .horizontal, spacing: spacing, justifyContent: .center, alignItems: .center, children: [playStopButton])
+			let inset = ASInsetLayoutSpec(insets: inset, child: stack)
+			inset.style.flexGrow = 1
+
+			return inset
+		}()
+
+		let bottom: ASLayoutSpec = {
+			let stack = ASStackLayoutSpec(direction: .horizontal, spacing: spacing, justifyContent: .end, alignItems: .center, children: [fullScreenButton])
+
+			return ASInsetLayoutSpec(insets: inset, child: stack)
+		}()
+
+		return ASStackLayoutSpec(direction: .vertical, spacing: spacing, justifyContent: .spaceAround, alignItems: .stretch, children: [top, center, bottom])
 	}
 
 	override func animateLayoutTransition(_ context: ASContextTransitioning) {

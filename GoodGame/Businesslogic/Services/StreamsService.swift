@@ -12,18 +12,18 @@ import Alamofire
 
 class StreamsService {
 
-    func getStreams(page: Int, success: ((PaginableResponse<Stream>) -> Void)? = nil, failure: ((Error) -> Void)? = nil) {
-        let responseHandler = { (response: DataResponse<PaginableResponse<Stream>>) in
-            switch response.result {
-            case .success(let result):
-                success?(result)
-            case .failure(let error):
-                failure?(error)
-            }
-        }
+	func getStreams(page: Int, success: ((PaginableResponse<Stream>) -> Void)? = nil, failure: ((Error) -> Void)? = nil) {
+		let responseHandler = { (response: DataResponse<PaginableResponse<Stream>>) in
+			switch response.result {
+			case .success(let result):
+				success?(result)
+			case .failure(let error):
+				failure?(error)
+			}
+		}
 
-        Alamofire.request(Router.streams(page: page)).responseObject(completionHandler: responseHandler)
-    }
+		Alamofire.request(Router.streams(page: page)).responseObject(completionHandler: responseHandler)
+	}
 
 	func getStream(id: Int, success: ((Stream) -> Void)? = nil, failure: ((Error) -> Void)? = nil) {
 		let responseHandler = { (response: DataResponse<Stream>) in

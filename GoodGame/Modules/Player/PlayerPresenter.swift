@@ -10,14 +10,14 @@ import Foundation
 class PlayerPresenter {
 
 	weak var view: PlayerView?
-    fileprivate var playerId: Int
+    fileprivate var playerId: String
 
 	fileprivate var quality: Quality = .source
 	fileprivate var videoURL: URL {
 		return URL(string: "https://hls.goodgame.ru/hls/\(playerId)\(quality.rawValue(withPrefix: "_")).m3u8")!
 	}
 
-	init(playerId: Int) {
+	init(playerId: String) {
 		self.playerId = playerId
 	}
 

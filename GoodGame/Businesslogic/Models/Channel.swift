@@ -13,13 +13,13 @@ struct Channel: ImmutableMappable {
     let id: Int
     let key: String
     let title: String
-	let playerId: Int
+	let playerId: String
 
     init(map: Map) throws {
         id    = try map.value("id")
         key   = try map.value("key")
         title = try map.value("title")
-		playerId = try map.value("gg_player_src", using: IntegerTransform())
+		playerId = try map.value("gg_player_src")
     }
 
 }

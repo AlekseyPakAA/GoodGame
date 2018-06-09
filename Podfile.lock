@@ -27,10 +27,10 @@ PODS:
     - Realm (= 3.5.0)
   - SwiftLint (0.25.1)
   - SwiftWebSocket (2.7.0)
-  - Texture (2.6):
-    - Texture/PINRemoteImage (= 2.6)
-  - Texture/Core (2.6)
-  - Texture/PINRemoteImage (2.6):
+  - Texture (2.7):
+    - Texture/PINRemoteImage (= 2.7)
+  - Texture/Core (2.7)
+  - Texture/PINRemoteImage (2.7):
     - PINRemoteImage/iOS (= 3.0.0-beta.13)
     - PINRemoteImage/PINCache
     - Texture/Core
@@ -57,7 +57,7 @@ SPEC CHECKSUMS:
   RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
-  Texture: 7249074582daf75e524e59df5428b66b8e8db0e4
+  Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
 
 PODFILE CHECKSUM: 26d281685b810468b7881efe1ad9fd0ec154db1d
 

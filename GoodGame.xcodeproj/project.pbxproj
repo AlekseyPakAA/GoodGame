@@ -14,6 +14,7 @@
 		43EC31B620C53391008EC817 /* PlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EC31B520C53391008EC817 /* PlayerPresenter.swift */; };
 		43EC31B820C533A2008EC817 /* PlayerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EC31B720C533A2008EC817 /* PlayerAssembly.swift */; };
 		43EC31BA20C53469008EC817 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EC31B920C53469008EC817 /* AVFoundation.framework */; };
+		43F5327320CAA0C300F9A815 /* PlayStopButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F5327220CAA0C300F9A815 /* PlayStopButtonNode.swift */; };
 		7409D74420A74A9E00C2F70C /* OutgoingMessageChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */; };
 		7409D74620A75EE900C2F70C /* AuthChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7409D74520A75EE900C2F70C /* AuthChatMessage.swift */; };
 		741097D720605B6B004A4EF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */; };
@@ -68,13 +69,13 @@
 /* Begin PBXFileReference section */
 		2E5BD78CBC920B67DCC385F3 /* Pods_GoodGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		431AD75620AF1F8200B1F856 /* MVPTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPTableNode.swift; sourceTree = "<group>"; };
-		43BE0BE820BD4BCC00C4C40F /* GoodGame.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoodGame.xcdatamodel; sourceTree = "<group>"; };
 		43EC31A820C135A9008EC817 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		43EC31AA20C14749008EC817 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		43EC31B320C53379008EC817 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		43EC31B520C53391008EC817 /* PlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPresenter.swift; sourceTree = "<group>"; };
 		43EC31B720C533A2008EC817 /* PlayerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAssembly.swift; sourceTree = "<group>"; };
 		43EC31B920C53469008EC817 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		43F5327220CAA0C300F9A815 /* PlayStopButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayStopButtonNode.swift; sourceTree = "<group>"; };
 		7409D74320A74A9E00C2F70C /* OutgoingMessageChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageChatMessage.swift; sourceTree = "<group>"; };
 		7409D74520A75EE900C2F70C /* AuthChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthChatMessage.swift; sourceTree = "<group>"; };
 		741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 		43EC31B220C5335F008EC817 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				43F5327220CAA0C300F9A815 /* PlayStopButtonNode.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -293,7 +295,6 @@
 				749C85BC2051B9AA00387832 /* Info.plist */,
 				74313DC520BAC55A006E9BCC /* freeformatter-out.json */,
 				749C85B02051B9AA00387832 /* AppDelegate.swift */,
-				43BE0BE720BD4BCC00C4C40F /* GoodGame.xcdatamodeld */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -656,6 +657,7 @@
 				74313DC420B98C45006E9BCC /* SmilesManager.swift in Sources */,
 				74CE8033205AFC25007A1A48 /* Channel.swift in Sources */,
 				74C00B7B2054408D00EF0B70 /* StreamsViewController.swift in Sources */,
+				43F5327320CAA0C300F9A815 /* PlayStopButtonNode.swift in Sources */,
 				74A7A9782054502A00FA06BE /* StreamsService.swift in Sources */,
 				741097E22061A418004A4EF0 /* StreamsErrorCell.swift in Sources */,
 				74A7A96D2054436C00FA06BE /* StreamsPresenter.swift in Sources */,
@@ -869,19 +871,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		43BE0BE720BD4BCC00C4C40F /* GoodGame.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				43BE0BE820BD4BCC00C4C40F /* GoodGame.xcdatamodel */,
-			);
-			currentVersion = 43BE0BE820BD4BCC00C4C40F /* GoodGame.xcdatamodel */;
-			path = GoodGame.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 749C85A52051B9AA00387832 /* Project object */;
 }
