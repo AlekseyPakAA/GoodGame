@@ -75,8 +75,8 @@ class PlayerViewControllerContentNode: ASDisplayNode {
 class VideoNodeOverlayNode: ASControlNode {
 
 	var state: State
-	var fullScreenButton = ASButtonNode()
-	var qualityPickerButton = ASButtonNode()
+
+	var expandButton = ASButtonNode()
 	var closeButton = ASButtonNode()
 	var playStopButton = PlayStopButtonNode()
 
@@ -91,11 +91,18 @@ class VideoNodeOverlayNode: ASControlNode {
 		backgroundColor = UIColor.black.withAlphaComponent(0.45)
 		alpha = 0.0
 
-		addTarget(self, action: #selector(didTouch(_:)), forControlEvents: .touchUpInside)
+		closeButton.setImage(#imageLiteral(resourceName: "close-video-button"), for: .normal)
+		closeButton.style.height = ASDimensionMake("14pt")
+		closeButton.style.width =  ASDimensionMake("14pt")
 
-		fullScreenButton.setTitle("FS", with: UIFont.boldSystemFont(ofSize: 14), with: .white, for: .normal)
-		qualityPickerButton.setTitle("QP", with: UIFont.boldSystemFont(ofSize: 14), with: .white, for: .normal)
-		closeButton.setTitle("CL", with: UIFont.boldSystemFont(ofSize: 14), with: .white, for: .normal)
+		expandButton.setImage(#imageLiteral(resourceName: "expand-video-button"), for: .normal)
+		expandButton.style.height = ASDimensionMake("14pt")
+		expandButton.style.width =  ASDimensionMake("14pt")
+
+		addTarget(self, action: #selector(didTouch(_:)), forControlEvents: .touchUpInside)
+		closeButton.addTarget(self, action: #selector(didTouch(_:)), forControlEvents: .touchUpInside)
+		expandButton.addTarget(self, action: #selector(didTouch(_:)), forControlEvents: .touchUpInside)
+		playStopButton.addTarget(self, action: #selector(didTouch(_:)), forControlEvents: .touchUpInside)
 
 		automaticallyManagesSubnodes = true
 	}
@@ -105,7 +112,7 @@ class VideoNodeOverlayNode: ASControlNode {
 		let inset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
 
 		let top: ASLayoutSpec = {
-			let stack = ASStackLayoutSpec(direction: .horizontal, spacing: spacing, justifyContent: .end, alignItems: .center, children: [closeButton])
+			let stack = ASStackLayoutSpec(direction: .horizontal, spacing: spacing, justifyContent: .start, alignItems: .center, children: [closeButton])
 
 			return ASInsetLayoutSpec(insets: inset, child: stack)
 		}()
@@ -119,7 +126,7 @@ class VideoNodeOverlayNode: ASControlNode {
 		}()
 
 		let bottom: ASLayoutSpec = {
-			let stack = ASStackLayoutSpec(direction: .horizontal, spacing: spacing, justifyContent: .end, alignItems: .center, children: [fullScreenButton])
+			let stack = ASStackLayoutSpec(direction: .horizontal, spacing: spacing, justifyContent: .end, alignItems: .center, children: [expandButton])
 
 			return ASInsetLayoutSpec(insets: inset, child: stack)
 		}()
@@ -148,8 +155,13 @@ class VideoNodeOverlayNode: ASControlNode {
 		}
 	}
 
-	@objc func didTouch(_ sender: VideoNodeOverlayNode) {
+	@objc func didTouch(_ sender: ASDisplayNode) {
 		startProcessOfHidding()
+		print(#function)
+	}
+
+	@objc func didTouch2(_ sender: ASDisplayNode) {
+		print(#function)
 	}
 
 	func startProcessOfHidding() {

@@ -141,6 +141,7 @@ class PlayStopLayer: CALayer {
 
 	override func draw(in ctx: CGContext) {
 		ctx.setFillColor(UIColor.white.cgColor)
+		ctx.setStrokeColor(UIColor.white.cgColor)
 
 		// first square
 		ctx.beginPath()
@@ -174,14 +175,14 @@ class PlayStopLayer: CALayer {
 
 		ctx.closePath()
 
-		ctx.drawPath(using: .fill)
+		ctx.drawPath(using: .fillStroke)
 
 		// second square
 		ctx.beginPath()
 
 		start = CGPoint(x: center.x + space * 0.5, y: center.y - rectsize.height / 2)
 
-		ctx.move(to: CGPoint(x: start.x - space * 0.5 * trasition, y:  start.y - (start.y - centerA.y) * trasition))
+		ctx.move(to: CGPoint(x: start.x - space * 0.5 * trasition, y: start.y - (start.y - centerA.y) * trasition))
 
 		start.x += rectsize.width
 		ctx.addLine(to: CGPoint(x: start.x, y: start.y + (rectsize.height * 0.5 * trasition)))
@@ -194,7 +195,7 @@ class PlayStopLayer: CALayer {
 
 		ctx.closePath()
 
-		ctx.drawPath(using: .fill)
+		ctx.drawPath(using: .fillStroke)
 	}
 
 }

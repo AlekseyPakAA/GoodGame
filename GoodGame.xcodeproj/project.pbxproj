@@ -42,7 +42,6 @@
 		749BCCBD206C319B008189B8 /* ChannelCountersChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749BCCBC206C319B008189B8 /* ChannelCountersChatMessage.swift */; };
 		749C85B12051B9AA00387832 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C85B02051B9AA00387832 /* AppDelegate.swift */; };
 		749C85B82051B9AA00387832 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 749C85B72051B9AA00387832 /* Assets.xcassets */; };
-		749C85CF2051C6CA00387832 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 749C85CE2051C6CA00387832 /* Main.storyboard */; };
 		749C85D22051C83A00387832 /* StreamsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 749C85D12051C83A00387832 /* StreamsStoryboard.storyboard */; };
 		74A60AF420B0BBA20011130B /* ChatInputControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A60AF320B0BBA20011130B /* ChatInputControl.swift */; };
 		74A60AF620B0BBB10011130B /* ChatInputControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74A60AF520B0BBB10011130B /* ChatInputControl.xib */; };
@@ -106,7 +105,6 @@
 		749C85B02051B9AA00387832 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		749C85B72051B9AA00387832 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		749C85BC2051B9AA00387832 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		749C85CE2051C6CA00387832 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		749C85D12051C83A00387832 /* StreamsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StreamsStoryboard.storyboard; sourceTree = "<group>"; };
 		74A60AF320B0BBA20011130B /* ChatInputControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputControl.swift; sourceTree = "<group>"; };
 		74A60AF520B0BBB10011130B /* ChatInputControl.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatInputControl.xib; sourceTree = "<group>"; };
@@ -156,7 +154,7 @@
 		43EC31B120C53327008EC817 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				43EC31B220C5335F008EC817 /* Subviews */,
+				43EC31B220C5335F008EC817 /* Subnodes */,
 				43EC31B320C53379008EC817 /* PlayerViewController.swift */,
 				43EC31B520C53391008EC817 /* PlayerPresenter.swift */,
 				43EC31B720C533A2008EC817 /* PlayerAssembly.swift */,
@@ -164,12 +162,12 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
-		43EC31B220C5335F008EC817 /* Subviews */ = {
+		43EC31B220C5335F008EC817 /* Subnodes */ = {
 			isa = PBXGroup;
 			children = (
 				43F5327220CAA0C300F9A815 /* PlayStopButtonNode.swift */,
 			);
-			path = Subviews;
+			path = Subnodes;
 			sourceTree = "<group>";
 		};
 		56407E0107D924A7C1E88E97 /* Frameworks */ = {
@@ -313,7 +311,6 @@
 				43EC31B120C53327008EC817 /* Player */,
 				74E1415A206D7E030032A69A /* Chat */,
 				749C85D02051C71900387832 /* Streams */,
-				749C85CE2051C6CA00387832 /* Main.storyboard */,
 				741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */,
 			);
 			path = Modules;
@@ -542,7 +539,6 @@
 			files = (
 				749C85D22051C83A00387832 /* StreamsStoryboard.storyboard in Resources */,
 				749C85B82051B9AA00387832 /* Assets.xcassets in Resources */,
-				749C85CF2051C6CA00387832 /* Main.storyboard in Resources */,
 				74A60AF620B0BBB10011130B /* ChatInputControl.xib in Resources */,
 				741097D720605B6B004A4EF0 /* LaunchScreen.storyboard in Resources */,
 				74313DC620BAC55A006E9BCC /* freeformatter-out.json in Resources */,
