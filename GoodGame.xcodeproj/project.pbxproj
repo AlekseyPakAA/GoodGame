@@ -455,7 +455,7 @@
 		74E1415A206D7E030032A69A /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				74E14161206D80350032A69A /* Subviews */,
+				74E14161206D80350032A69A /* Subnodes */,
 				74E1415D206D7E310032A69A /* ChatViewController.swift */,
 				74E1415F206D7E500032A69A /* ChatPresenter.swift */,
 				7445E5682099E38600647A96 /* ChatAssembly.swift */,
@@ -463,14 +463,14 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		74E14161206D80350032A69A /* Subviews */ = {
+		74E14161206D80350032A69A /* Subnodes */ = {
 			isa = PBXGroup;
 			children = (
 				74A60AF220B0BB840011130B /* ChatInputControl */,
 				745A691220A36AC800C52F3A /* GrowingTextView */,
 				74C1E22D20713D7B00DF2611 /* ChatMessageCell */,
 			);
-			path = Subviews;
+			path = Subnodes;
 			sourceTree = "<group>";
 		};
 		74F7114020586DC800BCF893 /* Models */ = {

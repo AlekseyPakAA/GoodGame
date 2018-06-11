@@ -6,4 +6,10 @@
 //  Copyright © 2018 alexey.pak. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class StreamViewController: ASViewController<PlayerViewControllerContentNode>  {
+
+
+
+}
