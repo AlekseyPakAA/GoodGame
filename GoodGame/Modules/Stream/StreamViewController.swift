@@ -7,9 +7,59 @@
 //
 
 import UIKit
+import AsyncDisplayKit
 
-class StreamViewController: ASViewController<PlayerViewControllerContentNode>  {
+protocol StreamView: class {
 
+}
 
+class StreamViewController: ASViewController<StreamNode> {
+
+	override var prefersStatusBarHidden: Bool {
+		return true
+	}
+
+	var presenter: StreamPresenter?
+
+	init(player: PlayerViewController, chat: ChatViewController) {
+		let node = StreamNode(playerNode: player.node, chatNode: chat.node)
+
+		super.init(node: node)
+
+		addChildViewController(player)
+		addChildViewController(chat)
+	}
+
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
+}
+
+extension StreamViewController: StreamView {
+
+}
+
+class StreamNode: ASDisplayNode {
+
+	let playerNode: PlayerNode
+	let chatNode: ChatNode
+
+	init(playerNode: PlayerNode, chatNode: ChatNode) {
+		self.playerNode = playerNode
+		self.chatNode = chatNode
+
+		super.init()
+		backgroundColor = .white
+
+		automaticallyRelayoutOnSafeAreaChanges = true
+		automaticallyManagesSubnodes = true
+	}
+
+	override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+		let stack = ASStackLayoutSpec(direction: .vertical, spacing: 0.0, justifyContent: .start, alignItems: .start, children: [playerNode])
+		return ASInsetLayoutSpec(insets: safeAreaInsets, child: stack)
+
+	}
 
 }

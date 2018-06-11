@@ -10,9 +10,9 @@ import Foundation
 
 class PlayerAssembly {
 
-	static func makeModule(playerId: String) -> PlayerViewController {
+	static func makeModule() -> PlayerViewController {
 		let controller = PlayerViewController()
-		let presenter = PlayerPresenter(playerId: playerId)
+		let presenter = PlayerPresenter()
 
 		controller.presenter = presenter
 		presenter.view = controller

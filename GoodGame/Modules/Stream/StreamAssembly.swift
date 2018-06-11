@@ -7,3 +7,20 @@
 //
 
 import Foundation
+
+class StreamAssembly {
+
+	static func makeModule(streamId: Int) -> StreamViewController {
+		let player = PlayerAssembly.makeModule()
+		let chat = ChatAssembly.makeModule()
+
+		let controller = StreamViewController(player: player, chat: chat)
+		let presenter = StreamPresenter(streamId: streamId)
+
+		controller.presenter = presenter
+		presenter.view = controller
+
+		return controller
+	}
+
+}

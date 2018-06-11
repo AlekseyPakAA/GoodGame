@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = window
 
         // Instantiate the root view controller with dependencies injected by the container.
-        window.rootViewController = ASNavigationController(rootViewController: StreamsAssembly.makeModule())
+        window.rootViewController = StreamAssembly.makeModule(streamId: 5)//ASNavigationController(rootViewController: StreamsAssembly.makeModule())
 
 		ASDisableLogging()
 

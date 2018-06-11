@@ -13,13 +13,12 @@ protocol ChatView: class, MVPTableNode {
     func insertMessage(with animation: UITableViewRowAnimation)
 }
 
-class ChatViewController: ASViewController<ChatViewController.ContentNode> {
+class ChatViewController: ASViewController<ChatNode> {
 
     var presenter: ChatPresenter?
 
-    fileprivate var contentNode: ContentNode = ContentNode()
-    internal var tableNode: ASTableNode {
-        return contentNode.tableNode
+	internal var tableNode: ASTableNode {
+        return node.tableNode
     }
 
 	fileprivate weak var inputControl: ChatInputControl?
@@ -28,7 +27,8 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode> {
     fileprivate var keyboardFrame: CGRect = .zero
 
     init() {
-        super.init(node: contentNode)
+		let node = ChatNode()
+        super.init(node: node)
 
         tableNode.dataSource = self
 
@@ -66,13 +66,13 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode> {
 
     fileprivate func setupInputControl() {
         let inputControl = ChatInputControl()
-        contentNode.view.addSubview(inputControl)
+        node.view.addSubview(inputControl)
 
         inputControl.translatesAutoresizingMaskIntoConstraints = false
 
-        inputControl.leadingAnchor.constraint(equalTo: contentNode.view.leadingAnchor).isActive = true
-        inputControl.trailingAnchor.constraint(equalTo: contentNode.view.trailingAnchor).isActive = true
-        inputControlBottomConstraint = contentNode.view.bottomAnchor.constraint(equalTo: inputControl.bottomAnchor)
+        inputControl.leadingAnchor.constraint(equalTo: node.view.leadingAnchor).isActive = true
+        inputControl.trailingAnchor.constraint(equalTo: node.view.trailingAnchor).isActive = true
+        inputControlBottomConstraint = node.view.bottomAnchor.constraint(equalTo: inputControl.bottomAnchor)
         inputControlBottomConstraint?.isActive = true
 
         self.inputControl = inputControl
@@ -135,7 +135,7 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode> {
 
         inputControlBottomConstraint?.constant = frame.height
         UIView.animate(withDuration: duartion, animations: { [weak self] in
-            self?.contentNode.view.layoutIfNeeded()
+            self?.node.view.layoutIfNeeded()
         })
     }
 
@@ -156,7 +156,7 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode> {
 
         inputControlBottomConstraint?.constant = 0
         UIView.animate(withDuration: duartion, animations: { [weak self] in
-            self?.contentNode.view.layoutIfNeeded()
+            self?.node.view.layoutIfNeeded()
         })
     }
 
@@ -168,21 +168,21 @@ class ChatViewController: ASViewController<ChatViewController.ContentNode> {
         presenter?.didTouchSendButton()
     }
 
-    class ContentNode: ASDisplayNode {
+}
 
-        let tableNode: ASTableNode = ASTableNode(style: .plain)
+class ChatNode: ASDisplayNode {
 
-        override init() {
-            super.init()
+	let tableNode: ASTableNode = ASTableNode(style: .plain)
 
-            automaticallyManagesSubnodes = true
-        }
+	override init() {
+		super.init()
 
-        override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-            return ASWrapperLayoutSpec(layoutElement: tableNode)
-        }
+		automaticallyManagesSubnodes = true
+	}
 
-    }
+	override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+		return ASWrapperLayoutSpec(layoutElement: tableNode)
+	}
 
 }
 

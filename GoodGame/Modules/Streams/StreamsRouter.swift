@@ -13,11 +13,8 @@ class StreamsRouter {
     var context: UIViewController?
 
     func showStreamsDetail(streamId: Int) {
-		StreamsService().getStream(id: streamId, success: { stream in
-			let controller = PlayerAssembly.makeModule(playerId: stream.channel.playerId)
-
-			self.context?.navigationController?.pushViewController(controller, animated: true)
-		})
+		let controller = StreamAssembly.makeModule(streamId: streamId)
+		context?.navigationController?.pushViewController(controller, animated: true)
     }
 
 }

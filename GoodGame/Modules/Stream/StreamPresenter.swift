@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+class StreamPresenter {
+
+	weak var view: StreamView?
+
+	let streamId: Int
+
+	init(streamId: Int) {
+		self.streamId = streamId
+	}
+
+}

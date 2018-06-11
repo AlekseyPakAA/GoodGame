@@ -10,9 +10,9 @@ import UIKit
 
 class ChatAssembly {
 
-    static func makeModule(channelId: Int) -> ChatViewController {
+    static func makeModule() -> ChatViewController {
         let controller = ChatViewController()
-        let presenter = ChatPresenter(channelId: channelId)
+        let presenter = ChatPresenter()
 
         controller.presenter = presenter
         presenter.view = controller

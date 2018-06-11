@@ -154,8 +154,8 @@
 				43EC31B120C53327008EC817 /* Player */,
 				74E1415A206D7E030032A69A /* Chat */,
 				4306D5F020CE81A50084F317 /* StreamViewController.swift */,
-				4306D5F220CE81B60084F317 /* StreamAssembly.swift */,
 				4306D5F420CE81C90084F317 /* StreamPresenter.swift */,
+				4306D5F220CE81B60084F317 /* StreamAssembly.swift */,
 			);
 			path = Stream;
 			sourceTree = "<group>";

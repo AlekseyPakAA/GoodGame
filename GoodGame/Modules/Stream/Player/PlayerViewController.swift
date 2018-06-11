@@ -17,17 +17,17 @@ protocol PlayerView: class {
 
 }
 
-class PlayerViewController: ASViewController<PlayerViewControllerContentNode> {
+class PlayerViewController: ASViewController<PlayerNode> {
 
 	var presenter: PlayerPresenter?
 
-	fileprivate var contentNode = PlayerViewControllerContentNode()
 	fileprivate var videoNode: ASVideoNode {
-		return contentNode.videoNode
+		return node.videoNode
 	}
 
 	init() {
-		super.init(node: contentNode)
+		let node = PlayerNode()
+		super.init(node: node)
 
 		videoNode.delegate = self
 	}
@@ -44,7 +44,7 @@ class PlayerViewController: ASViewController<PlayerViewControllerContentNode> {
 
 }
 
-class PlayerViewControllerContentNode: ASDisplayNode {
+class PlayerNode: ASDisplayNode {
 
 	let videoNode = ASVideoNode()
 	let overlayNode = VideoNodeOverlayNode()
@@ -56,7 +56,6 @@ class PlayerViewControllerContentNode: ASDisplayNode {
 
 		videoNode.addTarget(self, action: #selector(didTouchVideoNode(_:)), forControlEvents: .touchUpInside)
 
-		automaticallyRelayoutOnSafeAreaChanges = true
 		automaticallyManagesSubnodes = true
 	}
 
@@ -66,8 +65,9 @@ class PlayerViewControllerContentNode: ASDisplayNode {
 	}
 
 	override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-		let overlay = ASOverlayLayoutSpec(child: videoNode, overlay: overlayNode)
-		return ASInsetLayoutSpec(insets: safeAreaInsets, child: overlay)
+		let ratio = ASRatioLayoutSpec(ratio: 9.0 / 16.0, child: videoNode)
+		let overlay = ASOverlayLayoutSpec(child: ratio, overlay: overlayNode)
+		return overlay
 	}
 
 }
