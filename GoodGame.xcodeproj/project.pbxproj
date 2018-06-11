@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4306D5F120CE81A50084F317 /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306D5F020CE81A50084F317 /* StreamViewController.swift */; };
+		4306D5F320CE81B60084F317 /* StreamAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306D5F220CE81B60084F317 /* StreamAssembly.swift */; };
+		4306D5F520CE81C90084F317 /* StreamPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306D5F420CE81C90084F317 /* StreamPresenter.swift */; };
 		431AD75720AF1F8200B1F856 /* MVPTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431AD75620AF1F8200B1F856 /* MVPTableNode.swift */; };
 		43EC31A920C135A9008EC817 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 43EC31A820C135A9008EC817 /* .swiftlint.yml */; };
 		43EC31AB20C14749008EC817 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EC31AA20C14749008EC817 /* UICollectionView.swift */; };
@@ -67,6 +70,9 @@
 
 /* Begin PBXFileReference section */
 		2E5BD78CBC920B67DCC385F3 /* Pods_GoodGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4306D5F020CE81A50084F317 /* StreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamViewController.swift; sourceTree = "<group>"; };
+		4306D5F220CE81B60084F317 /* StreamAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamAssembly.swift; sourceTree = "<group>"; };
+		4306D5F420CE81C90084F317 /* StreamPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamPresenter.swift; sourceTree = "<group>"; };
 		431AD75620AF1F8200B1F856 /* MVPTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPTableNode.swift; sourceTree = "<group>"; };
 		43EC31A820C135A9008EC817 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		43EC31AA20C14749008EC817 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
@@ -142,6 +148,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4306D5EF20CE815F0084F317 /* Stream */ = {
+			isa = PBXGroup;
+			children = (
+				43EC31B120C53327008EC817 /* Player */,
+				74E1415A206D7E030032A69A /* Chat */,
+				4306D5F020CE81A50084F317 /* StreamViewController.swift */,
+				4306D5F220CE81B60084F317 /* StreamAssembly.swift */,
+				4306D5F420CE81C90084F317 /* StreamPresenter.swift */,
+			);
+			path = Stream;
+			sourceTree = "<group>";
+		};
 		4331CDEAF428217F8BFE8473 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,8 +326,7 @@
 		749C85C42051BF1600387832 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				43EC31B120C53327008EC817 /* Player */,
-				74E1415A206D7E030032A69A /* Chat */,
+				4306D5EF20CE815F0084F317 /* Stream */,
 				749C85D02051C71900387832 /* Streams */,
 				741097D620605B6B004A4EF0 /* LaunchScreen.storyboard */,
 			);
@@ -651,6 +668,7 @@
 				741097DA20619068004A4EF0 /* StreamsCellViewModel.swift in Sources */,
 				74A7A97D205452A200FA06BE /* Router.swift in Sources */,
 				74313DC420B98C45006E9BCC /* SmilesManager.swift in Sources */,
+				4306D5F120CE81A50084F317 /* StreamViewController.swift in Sources */,
 				74CE8033205AFC25007A1A48 /* Channel.swift in Sources */,
 				74C00B7B2054408D00EF0B70 /* StreamsViewController.swift in Sources */,
 				43F5327320CAA0C300F9A815 /* PlayStopButtonNode.swift in Sources */,
@@ -662,6 +680,7 @@
 				7409D74420A74A9E00C2F70C /* OutgoingMessageChatMessage.swift in Sources */,
 				7445E56F2099F51100647A96 /* UIViewController.swift in Sources */,
 				43EC31B420C53379008EC817 /* PlayerViewController.swift in Sources */,
+				4306D5F520CE81C90084F317 /* StreamPresenter.swift in Sources */,
 				7445E575209B8E2C00647A96 /* ChatHistoryChatMesssage.swift in Sources */,
 				74A9EA20205C56BA007D945C /* MVPCollectionDataSource.swift in Sources */,
 				43EC31B620C53391008EC817 /* PlayerPresenter.swift in Sources */,
@@ -680,6 +699,7 @@
 				74A7A97520544E1B00FA06BE /* IndexPath.swift in Sources */,
 				74313DC820BAD3BD006E9BCC /* Smile.swift in Sources */,
 				7445E56D2099F24B00647A96 /* StreamsAssembly.swift in Sources */,
+				4306D5F320CE81B60084F317 /* StreamAssembly.swift in Sources */,
 				43EC31B820C533A2008EC817 /* PlayerAssembly.swift in Sources */,
 				74A7A97120544BFB00FA06BE /* StreamsCell.swift in Sources */,
 				7417ECAB2072C0AC003734F0 /* ChatMessageCellViewModel.swift in Sources */,
