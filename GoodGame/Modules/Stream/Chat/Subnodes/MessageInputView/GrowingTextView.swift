@@ -55,7 +55,7 @@ class GrowingTextView: UIView {
 		innerTextView.isScrollEnabled = false
 
 		innerTextView.font = UIFont.preferredFont(forTextStyle: .body)
-		innerTextView.textContainerInset = UIEdgeInsets(top: 7.0, left: 0.0, bottom: 4.0, right: 7.0)
+		innerTextView.textContainerInset = UIEdgeInsets(top: 5.0, left: 0.0, bottom: 5.0, right: 0.0)
 
 		NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: .UITextViewTextDidChange, object: innerTextView)
     }
@@ -123,7 +123,8 @@ class GrowingTextView: UIView {
 	}
 
 	@objc func textDidChange() {
-		self.invalidateIntrinsicContentSize()
+		setNeedsLayout()
+		invalidateIntrinsicContentSize()
 	}
 
 }

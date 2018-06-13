@@ -80,11 +80,15 @@ class ChatViewController: ASViewController<ChatNode> {
 
 	override func viewDidLayoutSubviews() {
 		let oldinset = tableNode.contentInset
-        updateContentInsets()
+		updateContentInsets()
 		let newinset = tableNode.contentInset
 		let diff = oldinset.top - newinset.top
 
-		tableNode.contentOffset.y += diff
+		if tableNode.contentOffset.y != -tableNode.contentInset.top {
+			tableNode.contentOffset.y += diff
+		}
+		
+		inputControlBottomConstraint?.constant = max(node.safeAreaInsets.bottom, keyboardFrame.height)
 	}
 
     fileprivate func updateContentInsets() {
@@ -96,8 +100,8 @@ class ChatViewController: ASViewController<ChatNode> {
             bottom += keyboardFrame.size.height
 
             if #available(iOS 11.0, *) {
-                top += view.safeAreaInsets.top
-                bottom += view.safeAreaInsets.bottom
+                top += node.safeAreaInsets.top
+                bottom += node.safeAreaInsets.bottom
             } else {
                 top += topLayoutGuide.length
                 bottom += bottomLayoutGuide.length
@@ -154,7 +158,7 @@ class ChatViewController: ASViewController<ChatNode> {
 
         updateContentInsets()
 
-        inputControlBottomConstraint?.constant = 0
+        inputControlBottomConstraint?.constant = node.safeAreaInsets.bottom
         UIView.animate(withDuration: duartion, animations: { [weak self] in
             self?.node.view.layoutIfNeeded()
         })

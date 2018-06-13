@@ -16,15 +16,15 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="294"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KEJ-G3-14e" customClass="GrowingTextView" customModule="GoodGame" customModuleProvider="target">
-                    <rect key="frame" x="4" y="4" width="327" height="286"/>
+                    <rect key="frame" x="4" y="4" width="331" height="286"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ma3-UZ-U2y">
-                    <rect key="frame" x="335" y="254" width="36" height="36"/>
+                    <rect key="frame" x="339" y="258" width="32" height="32"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="36" id="eNR-Sf-UUH"/>
-                        <constraint firstAttribute="height" constant="36" id="hx2-5H-BRN"/>
+                        <constraint firstAttribute="width" constant="32" id="eNR-Sf-UUH"/>
+                        <constraint firstAttribute="height" constant="32" id="hx2-5H-BRN"/>
                     </constraints>
                     <state key="normal" title="S"/>
                 </button>
@@ -35,8 +35,6 @@
                 <constraint firstAttribute="bottom" secondItem="Ma3-UZ-U2y" secondAttribute="bottom" constant="4" id="8u5-CB-Yt0"/>
                 <constraint firstItem="Ma3-UZ-U2y" firstAttribute="leading" secondItem="KEJ-G3-14e" secondAttribute="trailing" constant="4" id="G2K-Td-0qj"/>
                 <constraint firstAttribute="trailing" secondItem="Ma3-UZ-U2y" secondAttribute="trailing" constant="4" id="TjE-OH-0DP"/>
-                <constraint firstItem="Ma3-UZ-U2y" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Fo9-p5-uDe" secondAttribute="top" constant="4" id="Zck-0P-zij"/>
-                <constraint firstItem="Ma3-UZ-U2y" firstAttribute="top" secondItem="Fo9-p5-uDe" secondAttribute="top" priority="250" constant="4" id="ahI-Fa-mgy"/>
                 <constraint firstAttribute="bottom" secondItem="KEJ-G3-14e" secondAttribute="bottom" constant="4" id="i3k-eK-8yF"/>
                 <constraint firstItem="KEJ-G3-14e" firstAttribute="top" secondItem="h8Y-r1-S5M" secondAttribute="top" constant="4" id="ia2-Q3-Hzm"/>
             </constraints>

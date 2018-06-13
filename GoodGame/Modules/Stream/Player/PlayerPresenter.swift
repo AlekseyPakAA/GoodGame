@@ -27,7 +27,7 @@ class PlayerPresenter {
 	}
 
 	func viewDidLoad() {
-		
+
 	}
 
 	func play() {

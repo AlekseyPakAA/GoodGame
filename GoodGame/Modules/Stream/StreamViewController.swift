@@ -64,8 +64,10 @@ class StreamNode: ASDisplayNode {
 
 	override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
 		let stack = ASStackLayoutSpec(direction: .vertical, spacing: 0.0, justifyContent: .spaceBetween, alignItems: .stretch, children: [playerNode, chatNode])
-		return ASInsetLayoutSpec(insets: safeAreaInsets, child: stack)
 
+		var insets = safeAreaInsets
+		insets.bottom = 0
+		return ASInsetLayoutSpec(insets: insets, child: stack)
 	}
 
 }
