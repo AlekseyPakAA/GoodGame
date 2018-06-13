@@ -52,7 +52,7 @@ class PlayerNode: ASDisplayNode {
 	override init() {
 		super.init()
 
-		backgroundColor = .white
+		backgroundColor = .black
 
 		videoNode.addTarget(self, action: #selector(didTouchVideoNode(_:)), forControlEvents: .touchUpInside)
 

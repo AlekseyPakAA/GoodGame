@@ -10,7 +10,13 @@ import Foundation
 class PlayerPresenter {
 
 	weak var view: PlayerView?
-    fileprivate var playerId: String?
+	var playerId: String? {
+		willSet {
+			if playerId == newValue || playerId == nil {
+				return
+			}
+		}
+	}
 
 	fileprivate var quality: Quality = .source
 	fileprivate var videoURL: URL? {
@@ -21,6 +27,10 @@ class PlayerPresenter {
 	}
 
 	func viewDidLoad() {
+		
+	}
+
+	func play() {
 		guard let videoURL = videoURL else { return }
 
 		view?.setVideoURL(videoURL)

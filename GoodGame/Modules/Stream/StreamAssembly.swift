@@ -15,7 +15,7 @@ class StreamAssembly {
 		let chat = ChatAssembly.makeModule()
 
 		let controller = StreamViewController(player: player, chat: chat)
-		let presenter = StreamPresenter(streamId: streamId)
+		let presenter = StreamPresenter(streamId: streamId, playerPresenter: player.presenter, chatPresenter: chat.presenter)
 
 		controller.presenter = presenter
 		presenter.view = controller

@@ -34,6 +34,10 @@ class StreamViewController: ASViewController<StreamNode> {
 		fatalError("init(coder:) has not been implemented")
 	}
 
+	override func viewDidLoad() {
+		presenter?.viewDidLoad()
+	}
+
 }
 
 extension StreamViewController: StreamView {
@@ -52,12 +56,14 @@ class StreamNode: ASDisplayNode {
 		super.init()
 		backgroundColor = .white
 
+		chatNode.style.flexGrow = 1.0
+
 		automaticallyRelayoutOnSafeAreaChanges = true
 		automaticallyManagesSubnodes = true
 	}
 
 	override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-		let stack = ASStackLayoutSpec(direction: .vertical, spacing: 0.0, justifyContent: .start, alignItems: .start, children: [playerNode])
+		let stack = ASStackLayoutSpec(direction: .vertical, spacing: 0.0, justifyContent: .spaceBetween, alignItems: .stretch, children: [playerNode, chatNode])
 		return ASInsetLayoutSpec(insets: safeAreaInsets, child: stack)
 
 	}

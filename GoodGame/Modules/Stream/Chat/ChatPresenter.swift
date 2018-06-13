@@ -25,7 +25,13 @@ class ChatPresenter {
     fileprivate var items: [ChatCollectionItemTypes] = []
 
     fileprivate var service: ChatSocketService?
-    fileprivate var channelId: Int?
+	var channelId: Int? {
+		willSet {
+			if channelId == newValue {
+				return
+			}
+		}
+	}
 
     init() {
          self.service = ChatSocketService()
@@ -33,12 +39,16 @@ class ChatPresenter {
     }
 
     func viewDidLoad() {
+
+    }
+
+	func connect() {
 		guard let channelId = channelId else {
 			return
 		}
 
-        service?.connect(channelId: channelId)
-    }
+		service?.connect(channelId: channelId)
+	}
 
     func applicationDidBecomeActive() {
 		guard let channelId = channelId else {
