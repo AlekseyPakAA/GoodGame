@@ -87,25 +87,15 @@ class ChatViewController: ASViewController<ChatNode> {
 		if tableNode.contentOffset.y != -tableNode.contentInset.top {
 			tableNode.contentOffset.y += diff
 		}
-		
+
 		inputControlBottomConstraint?.constant = max(node.safeAreaInsets.bottom, keyboardFrame.height)
 	}
 
     fileprivate func updateContentInsets() {
         let inset: UIEdgeInsets = {
-            var top: CGFloat = 0
-            var bottom: CGFloat = 0
-
-            bottom += inputControl?.frame.height ?? 0
-            bottom += keyboardFrame.size.height
-
-            if #available(iOS 11.0, *) {
-                top += node.safeAreaInsets.top
-                bottom += node.safeAreaInsets.bottom
-            } else {
-                top += topLayoutGuide.length
-                bottom += bottomLayoutGuide.length
-            }
+			let top = node.safeAreaInsets.top
+			let bottom = max(node.safeAreaInsets.bottom + (inputControl?.frame.height ?? 0),
+							 keyboardFrame.height + (inputControl?.frame.height ?? 0))
 
             return UIEdgeInsets(top: bottom, left: 0.0, bottom: top, right: 0.0)
         }()
@@ -135,7 +125,7 @@ class ChatViewController: ASViewController<ChatNode> {
 
         updateContentInsets()
 
-        tableNode.contentOffset.y -= frame.size.height
+        tableNode.contentOffset.y -= frame.size.height - node.safeAreaInsets.bottom
 
         inputControlBottomConstraint?.constant = frame.height
         UIView.animate(withDuration: duartion, animations: { [weak self] in
@@ -154,7 +144,7 @@ class ChatViewController: ASViewController<ChatNode> {
             return
         }
 
-        tableNode.contentOffset.y += frame.size.height
+        tableNode.contentOffset.y += frame.size.height - node.safeAreaInsets.bottom
 
         updateContentInsets()
 

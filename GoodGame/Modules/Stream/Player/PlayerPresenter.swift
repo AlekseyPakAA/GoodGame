@@ -18,7 +18,7 @@ class PlayerPresenter {
 		}
 	}
 
-	fileprivate var quality: Quality = .source
+	fileprivate var quality: Quality = .mobile
 	fileprivate var videoURL: URL? {
 		guard let playerId = playerId else {
 			return nil

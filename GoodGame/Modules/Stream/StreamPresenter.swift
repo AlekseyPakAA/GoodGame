@@ -14,6 +14,8 @@ class StreamPresenter {
 	weak var playerPresenter: PlayerPresenter?
 	weak var chatPresenter: ChatPresenter?
 
+	var router: StreamRouter?
+
 	fileprivate let streamsService = StreamsService()
 
 	let streamId: Int
@@ -37,6 +39,10 @@ class StreamPresenter {
 		}, failure: { error in
 			//TO DO: Handle error
 		})
+	}
+
+	func didTouchCloseButton() {
+		router?.dissmiss(animated: true, completion: nil)
 	}
 
 }

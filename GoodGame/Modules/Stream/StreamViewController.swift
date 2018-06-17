@@ -26,6 +26,8 @@ class StreamViewController: ASViewController<StreamNode> {
 
 		super.init(node: node)
 
+		player.delegate = self
+
 		addChildViewController(player)
 		addChildViewController(chat)
 	}
@@ -36,6 +38,14 @@ class StreamViewController: ASViewController<StreamNode> {
 
 	override func viewDidLoad() {
 		presenter?.viewDidLoad()
+	}
+
+}
+
+extension StreamViewController: PlayerViewControllerDelegate {
+
+	func didTouchCloseButton() {
+		presenter?.didTouchCloseButton()
 	}
 
 }

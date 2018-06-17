@@ -14,7 +14,7 @@ class StreamsRouter {
 
     func showStreamsDetail(streamId: Int) {
 		let controller = StreamAssembly.makeModule(streamId: streamId)
-		context?.navigationController?.pushViewController(controller, animated: true)
+		context?.present(controller, animated: true)
     }
 
 }

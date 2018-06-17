@@ -11,6 +11,7 @@
 		4306D5F320CE81B60084F317 /* StreamAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306D5F220CE81B60084F317 /* StreamAssembly.swift */; };
 		4306D5F520CE81C90084F317 /* StreamPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306D5F420CE81C90084F317 /* StreamPresenter.swift */; };
 		431AD75720AF1F8200B1F856 /* MVPTableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431AD75620AF1F8200B1F856 /* MVPTableNode.swift */; };
+		43991C9420D2EB3A0076B33A /* StreamRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43991C9320D2EB3A0076B33A /* StreamRouter.swift */; };
 		43EC31A920C135A9008EC817 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 43EC31A820C135A9008EC817 /* .swiftlint.yml */; };
 		43EC31AB20C14749008EC817 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EC31AA20C14749008EC817 /* UICollectionView.swift */; };
 		43EC31B420C53379008EC817 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EC31B320C53379008EC817 /* PlayerViewController.swift */; };
@@ -74,6 +75,7 @@
 		4306D5F220CE81B60084F317 /* StreamAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamAssembly.swift; sourceTree = "<group>"; };
 		4306D5F420CE81C90084F317 /* StreamPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamPresenter.swift; sourceTree = "<group>"; };
 		431AD75620AF1F8200B1F856 /* MVPTableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPTableNode.swift; sourceTree = "<group>"; };
+		43991C9320D2EB3A0076B33A /* StreamRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamRouter.swift; sourceTree = "<group>"; };
 		43EC31A820C135A9008EC817 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		43EC31AA20C14749008EC817 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		43EC31B320C53379008EC817 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				4306D5F020CE81A50084F317 /* StreamViewController.swift */,
 				4306D5F420CE81C90084F317 /* StreamPresenter.swift */,
 				4306D5F220CE81B60084F317 /* StreamAssembly.swift */,
+				43991C9320D2EB3A0076B33A /* StreamRouter.swift */,
 			);
 			path = Stream;
 			sourceTree = "<group>";
@@ -167,6 +170,16 @@
 				8A166B63B3B0A00ECF3F57DE /* Pods-GoodGame.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		43991C9820D2EBEE0076B33A /* MVP */ = {
+			isa = PBXGroup;
+			children = (
+				746B91022057225A00A2A26F /* MVPCollectionView.swift */,
+				74A9EA1F205C56BA007D945C /* MVPCollectionDataSource.swift */,
+				431AD75620AF1F8200B1F856 /* MVPTableNode.swift */,
+			);
+			path = MVP;
 			sourceTree = "<group>";
 		};
 		43EC31B120C53327008EC817 /* Player */ = {
@@ -240,14 +253,12 @@
 			path = "Objective-C";
 			sourceTree = "<group>";
 		};
-		746B91012057220D00A2A26F /* MVPProtocols */ = {
+		746B91012057220D00A2A26F /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				746B91022057225A00A2A26F /* MVPCollectionView.swift */,
-				74A9EA1F205C56BA007D945C /* MVPCollectionDataSource.swift */,
-				431AD75620AF1F8200B1F856 /* MVPTableNode.swift */,
+				43991C9820D2EBEE0076B33A /* MVP */,
 			);
-			path = MVPProtocols;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		74857A79206AC9A70078746D /* ChatSocketService */ = {
@@ -348,7 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				745A691620A38A4700C52F3A /* Objective-C */,
-				746B91012057220D00A2A26F /* MVPProtocols */,
+				746B91012057220D00A2A26F /* Protocols */,
 				74A7A97B2054528B00FA06BE /* Alamofire */,
 				74E14157206D6FFB0032A69A /* ObjectMapper */,
 				749C85CD2051C52600387832 /* Constants */,
@@ -708,6 +719,7 @@
 				74A60AF420B0BBA20011130B /* ChatInputControl.swift in Sources */,
 				43EC31AB20C14749008EC817 /* UICollectionView.swift in Sources */,
 				745A691420A36B7F00C52F3A /* GrowingTextView.swift in Sources */,
+				43991C9420D2EB3A0076B33A /* StreamRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

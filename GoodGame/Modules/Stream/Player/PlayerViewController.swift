@@ -17,19 +17,23 @@ protocol PlayerView: class {
 
 }
 
+protocol PlayerViewControllerDelegate: class {
+
+	func  didTouchCloseButton()
+
+}
+
 class PlayerViewController: ASViewController<PlayerNode> {
 
 	var presenter: PlayerPresenter?
 
-	fileprivate var videoNode: ASVideoNode {
-		return node.videoNode
-	}
+	weak var delegate: PlayerViewControllerDelegate?
 
 	init() {
 		let node = PlayerNode()
 		super.init(node: node)
 
-		videoNode.delegate = self
+		node.videoNode.delegate = self
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -40,6 +44,12 @@ class PlayerViewController: ASViewController<PlayerNode> {
 		super.viewDidLoad()
 
 		presenter?.viewDidLoad()
+
+		node.overlayNode.closeButton.addTarget(self, action: #selector(didTouchCloseButton(_ :)), forControlEvents: .touchUpInside)
+	}
+
+	@objc func didTouchCloseButton(_ sender: ASDisplayNode) {
+		delegate?.didTouchCloseButton()
 	}
 
 }
@@ -74,7 +84,7 @@ class PlayerNode: ASDisplayNode {
 
 class VideoNodeOverlayNode: ASControlNode {
 
-	var state: State
+	fileprivate var state: State
 
 	var expandButton = ASButtonNode()
 	var closeButton = ASButtonNode()
@@ -157,11 +167,6 @@ class VideoNodeOverlayNode: ASControlNode {
 
 	@objc func didTouch(_ sender: ASDisplayNode) {
 		startProcessOfHidding()
-		print(#function)
-	}
-
-	@objc func didTouch2(_ sender: ASDisplayNode) {
-		print(#function)
 	}
 
 	func startProcessOfHidding() {
@@ -188,7 +193,7 @@ extension PlayerViewController: ASVideoNodeDelegate {
 	}
 
 	func videoNode(_ videoNode: ASVideoNode, didFailToLoadValueForKey key: String, asset: AVAsset, error: Error) {
-		print(#function)
+		print(error)
 	}
 
 }
@@ -197,14 +202,14 @@ extension PlayerViewController: PlayerView {
 
 	func setVideoURL(_ url: URL) {
 		let asset = AVAsset(url: url)
-		videoNode.asset = asset
+		node.videoNode.asset = asset
 	}
 
 	func play() {
-		videoNode.play()
+		node.videoNode.play()
 	}
 
 	func pause() {
-		videoNode.pause()
+		node.videoNode.pause()
 	}
 }

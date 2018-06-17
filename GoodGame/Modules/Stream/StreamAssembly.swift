@@ -16,9 +16,13 @@ class StreamAssembly {
 
 		let controller = StreamViewController(player: player, chat: chat)
 		let presenter = StreamPresenter(streamId: streamId, playerPresenter: player.presenter, chatPresenter: chat.presenter)
+		let router = StreamRouter()
+
+		router.context = controller
 
 		controller.presenter = presenter
 		presenter.view = controller
+		presenter.router = router
 
 		return controller
 	}
